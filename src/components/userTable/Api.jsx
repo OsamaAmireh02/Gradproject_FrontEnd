@@ -1,0 +1,36 @@
+import axios from 'axios';
+
+// Create an Axios instance with a base URL (if needed)
+const api = axios.create({
+  baseURL: 'http://localhost:8080', // Replace with your API base URL
+});
+
+// Function to get the token from local storage
+// function getToken() {
+//   return localStorage.getItem('token'); // Replace 'token' with your actual key
+// }
+
+// Function to make an authenticated request
+async function makeAuthenticatedRequest(endpoint) {
+  try {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('Token not found. Please authenticate first.');
+      return null;
+    }
+
+    // Set the Authorization header
+    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+    // Make the request
+    const response = await api.get(endpoint);
+    return response;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return null;
+  }
+}
+
+export default makeAuthenticatedRequest
+// Example usage
+
