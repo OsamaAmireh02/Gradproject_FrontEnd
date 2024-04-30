@@ -14,6 +14,7 @@ function ConfParking() {
     const [carColor, setCarColor] = useState('');
     const [slot, setSlot] = useState(localStorage.getItem('seat'));
     const [carPlate, setCarPlate] = useState();
+    const [time, settime] = useState(localStorage.getItem('time'));
 
 
     const handleButtonClick = async (e) => {
@@ -124,6 +125,31 @@ function ConfParking() {
                 <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Selected Time</Form.Label>
+                            <Form.Control 
+                            type="text" 
+                            placeholder={localStorage.getItem('time')} 
+                            value={time} 
+                            onChange={(e) => settime(e.target.value)}
+                            />
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Selected Slot</Form.Label>
+                            <Form.Control 
+                            type="text" 
+                            placeholder={localStorage.getItem('seat')} 
+                            value={carColor} 
+                            onChange={(e) => setCarColor(e.target.value)}
+                            disabled
+                            />
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Car Plate number</Form.Label>
                             <Form.Control 
                             type="text" 
@@ -150,6 +176,7 @@ function ConfParking() {
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
+                <Button variant='dark' href='/booking/chooseSlot'>Back</Button>
             </Form>
         </Container>
     );

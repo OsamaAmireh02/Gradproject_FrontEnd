@@ -38,6 +38,8 @@ const role = localStorage.getItem('role')
             {isAuthenticated() && role === "GUARD" && <Nav.Link href="/guard/scan" style={{ color: '#ffffff' }}>Scan QR Code</Nav.Link>}
             {isAuthenticated() && role === "GUARD" && <Nav.Link href="/guard/tickets" style={{ color: '#ffffff' }}>View Tickets</Nav.Link>}
             {isAuthenticated() && role === "ADMIN" && <Nav.Link href="/admin/myprofile" style={{ color: '#ffffff' }}>My Profile</Nav.Link>}
+            {isAuthenticated() && role === "STUDENT" && <Nav.Link href="/student/myprofile" style={{ color: '#ffffff' }}>My Profile</Nav.Link>}
+            {isAuthenticated() && role === "GUARD" && <Nav.Link href="/guard/myprofile" style={{ color: '#ffffff' }}>My Profile</Nav.Link>}
             {isAuthenticated() && <Button variant="danger" onClick={handleLogout} href='/' style={{ color: '#ffffff' }}>LogOut</Button>}
           </Nav>
         </Navbar.Collapse>

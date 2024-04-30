@@ -2,7 +2,7 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import * as React from 'react';
 import ParkingBooking from '../PopUp/PopUp';
-import { Row } from 'react-bootstrap';
+import { Button, Row } from 'react-bootstrap';
 import makeAuthenticatedRequest from '../userTable/Api';
 
 
@@ -43,9 +43,8 @@ function CreateCard() {
                         No. of available parking lots from 10:00 - 11:00 is {parking.numberOfAvailableSlot}.<br /><br />
                         No. of available parking lots from 11:00 - 12:00 is {parking.numberOfAvailableSlot}.<br /><br />
                     </Card.Text>
-                    <ParkingBooking 
-                    name = {parking.name}/>
                 </Card.Body>
+                <Card.Footer><Button href='/booking/chooseSlot'>Yalla!</Button></Card.Footer>
             </Card>
         </Col>)}
         </Row>

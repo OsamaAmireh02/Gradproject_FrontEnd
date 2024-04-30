@@ -29,7 +29,7 @@ function AddUser() {
             const apiResponse = await PostMethod(endpoint, requestData);
             console.log('API Response:', apiResponse);
             // Handle the response data as needed
-            //window.location.href = '/admin/users';
+            window.location.href = '/admin/users';
         } catch (error) {
             console.error('Error making authenticated request:', error);
             // Handle the error

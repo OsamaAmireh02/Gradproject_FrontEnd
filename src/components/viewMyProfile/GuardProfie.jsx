@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'; // Import useState for managing state
 import { Col, Container, Row } from 'react-bootstrap';
 
-function AdminProfile() {
+function GuardProfile() {
   // Initialize state variables
   const [adminData, setAdminData] = useState({
     firstName: '',
@@ -73,4 +73,4 @@ function AdminProfile() {
   );
 }
 
-export default AdminProfile;
+export default GuardProfile;

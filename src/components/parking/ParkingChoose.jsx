@@ -31,11 +31,37 @@ const time = [
   },
 ];
 
+const modifiedTime = [];
+
+for (let i = 0; i < time.length; i++) {
+  const currentElement = time[i];
+  const nextElement = time[(i + 1) % time.length]; // Wrap around to the first element if needed
+
+  // Create new elements with names based on current hour and next hour
+  modifiedTime.push({
+    name: `${hour}:00 - ${hourr}:00`,
+    occupied: currentElement.occupied,
+  });
+
+  modifiedTime.push({
+    name: `${hourr}:00 - ${(hourr + 1) % 24}:00`, // Wrap around to 0 if needed
+    occupied: nextElement.occupied,
+  });
+
+  // Update hour and hourr for the next iteration
+  hourr = (hourr + 1) % 24; // Wrap around to 0 if needed
+  hour = (hour + 1) % 24; // Wrap around to 0 if needed
+}
+
+console.log(modifiedTime);
+
 const seats = Array.from({ length: 8 * 8 }, (_, i) => i);
 
-export default function App() {
-  const [selectedMovie, setSelectedMovie] = useState(time[0]);
+export default function Parkings() {
+  const [selectedMovie, setSelectedMovie] = useState(modifiedTime[0]);
   const [selectedSeats, setSelectedSeats] = useState([]);
+
+  localStorage.setItem('time', selectedMovie.name)
 
   return (
     <div className="App">
@@ -74,10 +100,10 @@ function Movies({ movie, onChange }) {
         id="movie"
         value={movie.name}
         onChange={(e) => {
-          onChange(time.find((movie) => movie.name === e.target.value));
+          onChange(modifiedTime.find((movie) => movie.name === e.target.value));
         }}
       >
-        {time.map((movie) => (
+        {modifiedTime.map((movie) => (
           <option key={movie.name} value={movie.name}>
             {movie.name}
           </option>
@@ -104,6 +130,8 @@ function ShowCase() {
 }
 
 function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
+
+
   function handleSelectedState(seat) {
     const isSelected = selectedSeats.includes(seat);
     if (isSelected) {

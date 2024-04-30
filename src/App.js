@@ -13,6 +13,10 @@ import CreateUserPage from './pages/CreateUserPage';
 import AddParkingPage from './pages/AddParkingPage';
 import { isAuthenticated } from './components/login/isAuthenticated';
 import AdminViewProfilePage from './pages/AdminViewProfilePage';
+import ChooseSlotPage from './pages/ChooseSlotPage';
+import SubmitBooking from './pages/SubmitBooking';
+import UserViewProfilePage from './pages/UserViewProfilePage';
+import GuardViewProfiePage from './pages/GuardViewProfiePage';
 
 
 function App() {
@@ -31,6 +35,11 @@ function App() {
       <Route path="/guard/tickets" element={<GuardViewTickets />} />
       <Route path="/admin/addUser" element={<CreateUserPage />} />
       <Route path="/admin/addParking" element={<AddParkingPage />} />
+      <Route path="/booking/chooseSlot" element={<ChooseSlotPage />} />
+      <Route path="/booking/submit" element={<SubmitBooking />} />
+      <Route path="/student/myprofile" element={<UserViewProfilePage />} />
+      <Route path="/guard/myprofile" element={<GuardViewProfiePage/>} />
+
     </Routes>
   </>
   );

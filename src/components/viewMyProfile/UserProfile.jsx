@@ -2,13 +2,16 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'; // Import useState for managing state
 import { Col, Container, Row } from 'react-bootstrap';
 
-function AdminProfile() {
+function UserProfile() {
   // Initialize state variables
-  const [adminData, setAdminData] = useState({
+  const [userData, setUserData] = useState({
     firstName: '',
     lastName: '',
     email: '',
     phoneNumber: '',
+    carModel: '',
+    carColor: '',
+    carPlateNumber: '',
   });
 
   useEffect(() => {
@@ -29,13 +32,16 @@ function AdminProfile() {
       axios
         .post('http://localhost:8080/user/getByEmail', data, config)
         .then((response) => {
-          const { firstName, lastName, email, phoneNumber } = response.data;
+          const { firstName, lastName, email, phoneNumber, carModel, carColor, carPlateNumber } = response.data;
           // Update state with retrieved data
-          setAdminData({
+          setUserData({
             firstName,
             lastName,
             email,
             phoneNumber,
+            carModel,
+            carColor, 
+            carPlateNumber
           });
         })
         .catch((error) => {
@@ -51,21 +57,37 @@ function AdminProfile() {
         <Row className='my-3'>
           <Col>
             <strong>First Name: </strong>
-            {adminData.firstName}
+            {userData.firstName}
           </Col>
           <Col>
             <strong>Last Name: </strong>
-            {adminData.lastName}
+            {userData.lastName}
           </Col>
         </Row>
         <Row className='my-3'>
           <Col>
             <strong>Email: </strong>
-            {adminData.email}
+            {userData.email}
           </Col>
           <Col>
             <strong>Phone Number: </strong>
-            {adminData.phoneNumber}
+            {userData.phoneNumber}
+          </Col>
+        </Row>
+        <Row className='my-3'>
+          <Col>
+            <strong>Car Model: </strong>
+            {userData.carModel}
+          </Col>
+          <Col>
+            <strong>Car Color: </strong>
+            {userData.carColor}
+          </Col>
+        </Row>
+        <Row className='my-3'>
+          <Col>
+            <strong>Car Plate Number: </strong>
+            {userData.carPlateNumber}
           </Col>
         </Row>
       </Container>
@@ -73,4 +95,4 @@ function AdminProfile() {
   );
 }
 
-export default AdminProfile;
+export default UserProfile;

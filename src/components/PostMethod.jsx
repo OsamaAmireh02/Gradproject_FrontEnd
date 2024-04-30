@@ -5,10 +5,6 @@ const api = axios.create({
   baseURL: 'http://localhost:8080', // Replace with your API base URL
 });
 
-// Function to get the token from local storage
-// function getToken() {
-//   return localStorage.getItem('token'); // Replace 'token' with your actual key
-// }
 
 // Function to make an authenticated request
 async function PostMethod(endpoint, data) {
@@ -26,7 +22,8 @@ async function PostMethod(endpoint, data) {
     return response;
   } catch (error) {
     console.error('Error fetching data:', error);
-    return null;
+    throw error
+    return error;
   }
 }
 
