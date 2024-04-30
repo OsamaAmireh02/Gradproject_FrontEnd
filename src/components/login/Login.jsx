@@ -9,6 +9,7 @@ function Login() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleLogin = async (e) => {
         try {
@@ -35,16 +36,16 @@ function Login() {
             const userInfo = userInfoResponse.data;
 
             // You can handle the user info as needed (e.g., display it on the UI)
-            //console.log('User Info:', userInfo);
             localStorage.setItem('role', userInfo.userRole);
             localStorage.setItem('id', userInfo.id);
+
             // Redirect to home page
             window.location.href = '/';
         } catch (error) {
             console.error('Login failed:', error.message);
+            setErrorMessage('Incorrect email or password. Please try again.');
         }
     };
-    
     return (
         <Container className='my-3'>
             <Form onSubmit={handleLogin}>
@@ -60,8 +61,12 @@ function Login() {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </Form.Group>
+                {errorMessage && <Form.Text style={{ color: 'red' }}>
+                        {errorMessage}
+                    </Form.Text>}
+                    <br/>
                 <Button variant="light" type="submit" style={{ backgroundColor: '#627254', color: '#ffffff' }}>
-                    Submit
+                    Login
                 </Button>
                 <Button variant="warning" type="reset" className='mx-3'>
                     Clear

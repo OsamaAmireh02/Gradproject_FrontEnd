@@ -18,7 +18,7 @@ const role = localStorage.getItem('role')
 
   };
   return (
-    <Navbar expand="lg" style={{ backgroundColor: '#627254' }}>
+    <Navbar expand="lg" style={{ backgroundColor: 'background-color: rgba(255, 255, 255, 0)' }} fixed="top">
       <Container >
         <Navbar.Brand href="/"><img
           src="..\"
@@ -28,7 +28,7 @@ const role = localStorage.getItem('role')
           alt="Logo"
         />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav fixed-top" />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/" style={{ color: '#ffffff' }} >Home</Nav.Link>

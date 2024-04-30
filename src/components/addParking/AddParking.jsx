@@ -25,7 +25,7 @@ function AddParking() {
             e.preventDefault();
             const apiResponse = await PostMethod(endpoint, requestData);
             console.log('API Response:', apiResponse);
-            window.location.href = '/admin/parkings';
+            window.location.href = '/admin/parkings?success=true';
             // Handle the response data as needed
         } catch (error) {
             console.error('Error making authenticated request:', error);
@@ -72,8 +72,11 @@ function AddParking() {
                     </Col>
                 </Row>
 
-                <Button variant="primary" type="submit">
-                    Submit
+                <Button variant="primary" type="danger">
+                    Add Parking
+                </Button>
+                <Button variant="caution" type="clear">
+                    Clear
                 </Button>
             </Form>
         </Container>

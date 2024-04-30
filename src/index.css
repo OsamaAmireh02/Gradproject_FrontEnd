@@ -3,8 +3,11 @@ body {
   font-family: "Oswald", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  background-color: #EEEEEE;
-  font-size: large;
+  background-size: cover;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(to bottom, #303841, #60646c, #93959b, #c8c8cb, #ffffff);
+    font-size: large;
 }
 
 code {

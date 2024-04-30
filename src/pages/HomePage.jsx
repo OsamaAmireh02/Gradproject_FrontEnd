@@ -11,6 +11,7 @@ function HomePage() {
             <NavBar />
             <Slider />
             <Container>
+                
                 <h2 className="text-center my-3">Prices</h2>
                 <PricingCard />
             </Container>
