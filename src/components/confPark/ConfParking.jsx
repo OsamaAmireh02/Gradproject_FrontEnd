@@ -4,24 +4,27 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import PostMethod from '../PostMethod';
 
-function AddUser() {
+function ConfParking() {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [carModel, setCarModel] = useState('');
     const [phoneNumber, setPhoneNumber] = useState();
-    const [userRole, setUeserRole] = useState('');
+    const [carColor, setCarColor] = useState('');
+    const [slot, setSlot] = useState(localStorage.getItem('seat'));
+    const [carPlate, setCarPlate] = useState();
+
 
     const handleButtonClick = async (e) => {
-        const endpoint = '/user/save'; // Replace with your actual endpoint
+        const endpoint = ''; // Replace with your actual endpoint
         const requestData = {
             firstName,
             lastName,
             email,
-            password,
+            carModel,
             phoneNumber,
-            userRole
+            carColor
         }; // Your data object
 
         try {
@@ -48,6 +51,7 @@ function AddUser() {
                             placeholder="Enter First Name" 
                             value={firstName} 
                             onChange={(e) => setFirstName(e.target.value)}
+                            disabled
                             />
                         </Form.Group>
                     </Col>
@@ -59,6 +63,7 @@ function AddUser() {
                             placeholder="Enter Last Name"
                             value={lastName} 
                             onChange={(e) => setLastName(e.target.value)}
+                            disabled
                             />
                         </Form.Group>
                     </Col>
@@ -73,6 +78,7 @@ function AddUser() {
                             placeholder="Enter Phone Number"
                             value={phoneNumber} 
                             onChange={(e) => setPhoneNumber(e.target.value)}
+                            disabled
                             />
                         </Form.Group>
                     </Col>
@@ -84,6 +90,7 @@ function AddUser() {
                             placeholder="Enter Email"
                             value={email} 
                             onChange={(e) => setEmail(e.target.value)}
+                            disabled
                             />
                         </Form.Group>
                     </Col>
@@ -92,28 +99,50 @@ function AddUser() {
                 <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Password</Form.Label>
+                            <Form.Label>Car Model</Form.Label>
                             <Form.Control 
-                            type="password" 
-                            placeholder="Enter Password" 
-                            value={password} 
-                            onChange={(e) => setPassword(e.target.value)}
+                            type="text" 
+                            placeholder="Enter Car Model" 
+                            value={carModel} 
+                            onChange={(e) => setCarModel(e.target.value)}
                             />
                         </Form.Group>
                     </Col>
                     <Col>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Car Color</Form.Label>
+                            <Form.Control 
+                            type="text" 
+                            placeholder="Enter Car Color" 
+                            value={carColor} 
+                            onChange={(e) => setCarColor(e.target.value)}
+                            />
+                        </Form.Group>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Role</Form.Label>
-                            <Form.Select 
-                            aria-label="Default select example"
-                            value={userRole} 
-                            onChange={(e) => setUeserRole(e.target.value)}
-                            >
-                                <option>Select a role</option>
-                                <option value="STUDENT">Student</option>
-                                <option value="ADMIN">Admin</option>
-                                <option value="GUARD">Guard</option>
-                            </Form.Select>
+                            <Form.Label>Car Plate number</Form.Label>
+                            <Form.Control 
+                            type="text" 
+                            placeholder="Enter Car Model" 
+                            value={carPlate} 
+                            onChange={(e) => setCarPlate(e.target.value)}
+                            />
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Selected Slot</Form.Label>
+                            <Form.Control 
+                            type="text" 
+                            placeholder={localStorage.getItem('seat')} 
+                            value={carColor} 
+                            onChange={(e) => setCarColor(e.target.value)}
+                            disabled
+                            />
                         </Form.Group>
                     </Col>
                 </Row>
@@ -126,4 +155,4 @@ function AddUser() {
     );
 }
 
-export default AddUser;
+export default ConfParking;

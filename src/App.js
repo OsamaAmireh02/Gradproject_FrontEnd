@@ -8,14 +8,15 @@ import ParkingsPage from './pages/ParkingsPage'
 import TicketPage from './pages/TicketsPage';
 import BookingPage from './pages/BookingPage';
 import ReadQRPage from './pages/ReadQRPage';
-import MyProfilePage from './pages/MyProfilePage';
 import GuardViewTickets from './pages/GuardViewTickets';
 import CreateUserPage from './pages/CreateUserPage';
 import AddParkingPage from './pages/AddParkingPage';
 import { isAuthenticated } from './components/login/isAuthenticated';
+import AdminViewProfilePage from './pages/AdminViewProfilePage';
 
 
 function App() {
+
   return (<>
     <Routes>
       <Route path="/" element={<HomePage />} />
@@ -26,7 +27,7 @@ function App() {
       <Route path="/admin/tickets" element={<TicketPage />} />
       <Route path="/booking" element={<BookingPage />} />
       <Route path="/guard/scan" element={<ReadQRPage />} />
-      <Route path="/myprofile" element={<MyProfilePage />} />
+      <Route path="/admin/myprofile" element={<AdminViewProfilePage />} />
       <Route path="/guard/tickets" element={<GuardViewTickets />} />
       <Route path="/admin/addUser" element={<CreateUserPage />} />
       <Route path="/admin/addParking" element={<AddParkingPage />} />

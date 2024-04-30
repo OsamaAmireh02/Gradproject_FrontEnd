@@ -1,41 +1,32 @@
+import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
+import makeAuthenticatedRequest from '../userTable/Api';
 
-const tickets = [{
-    "firstName": "Osama",
-    "lastName": "moh",
-    "phoneNumber": "0778926680",
-    "parkingName": "3lmieh",
-    "date": "2024-04-21",
-    "fromTime": "08:00:00",
-    "toTime": "04:00:00",
-    "slotNumber": 1,
-    "ticketStatus": "active",
-    "carModel": "Rolls Royce",
-    "carColor": "Black",
-    "carPlateNumber": "78155206",
-    "userId": 1,
-    "parkingId": 2,
-    "slotId": 3
-  },
-  {
-    "firstName": "Osama",
-    "lastName": "moh",
-    "phoneNumber": "0778926680",
-    "parkingName": "3lmieh",
-    "date": "2024-04-21",
-    "fromTime": "08:00:00",
-    "toTime": "04:00:00",
-    "slotNumber": 1,
-    "ticketStatus": "active",
-    "carModel": "Rolls Royce",
-    "carColor": "Black",
-    "carPlateNumber": "78155206",
-    "userId": 1,
-    "parkingId": 2,
-    "slotId": 3
-  }]
 
-function TicketTable(ticket) {
+function TicketTable() {
+
+    const [responseData, setResponseData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const fetchData = async () => {
+        try {
+            const response = await makeAuthenticatedRequest('/ticket/all');
+            setResponseData(response.data);
+            setIsLoading(false);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    if (isLoading) {
+        return null; // Render loading state or spinner
+    }
+
+
     return (
         <Table striped>
             <thead>
@@ -52,7 +43,7 @@ function TicketTable(ticket) {
                 </tr>
             </thead>
             <tbody>
-                {tickets.map(ticket => <tr>
+                {responseData.map(ticket => <tr>
                     <td>{ticket.userId}</td>
                     <td>{ticket.parkingName}</td>
                     <td>{ticket.fromTime}</td>

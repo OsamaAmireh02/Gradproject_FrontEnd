@@ -8,25 +8,25 @@ import "./parkingchoose.css";
 import React, { useState } from "react";
 import clsx from "clsx";
 
-const movies = [
+const d = new Date();
+let hour = parseInt(d.getHours());
+let hourr = hour + 1;
+
+const time = [
   {
-    name: "Avenger",
-    price: 10,
+    name: hour + ":00 - " + hourr + ":00",
     occupied: [20, 21, 30, 1, 2, 8],
   },
   {
     name: "Joker",
-    price: 12,
     occupied: [9, 41, 35, 11, 65, 26],
   },
   {
     name: "Toy story",
-    price: 8,
     occupied: [37, 25, 44, 13, 2, 3],
   },
   {
     name: "the lion king",
-    price: 9,
     occupied: [10, 12, 50, 33, 28, 47],
   },
 ];
@@ -34,7 +34,7 @@ const movies = [
 const seats = Array.from({ length: 8 * 8 }, (_, i) => i);
 
 export default function App() {
-  const [selectedMovie, setSelectedMovie] = useState(movies[0]);
+  const [selectedMovie, setSelectedMovie] = useState(time[0]);
   const [selectedSeats, setSelectedSeats] = useState([]);
 
   return (
@@ -59,7 +59,7 @@ export default function App() {
         You have selected <span className="count">{selectedSeats.length}</span>{" "}
         seats for the price of{" "}
         <span className="total">
-          {selectedSeats.length * selectedMovie.price}$
+          {selectedSeats.length}
         </span>
       </p>
     </div>
@@ -69,17 +69,17 @@ export default function App() {
 function Movies({ movie, onChange }) {
   return (
     <div className="Movies">
-      <label htmlFor="movie">Pick a movie</label>
+      <label htmlFor="movie">Select Time</label>
       <select
         id="movie"
         value={movie.name}
         onChange={(e) => {
-          onChange(movies.find((movie) => movie.name === e.target.value));
+          onChange(time.find((movie) => movie.name === e.target.value));
         }}
       >
-        {movies.map((movie) => (
+        {time.map((movie) => (
           <option key={movie.name} value={movie.name}>
-            {movie.name} (${movie.price})
+            {movie.name}
           </option>
         ))}
       </select>
@@ -114,6 +114,7 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
       onSelectedSeatsChange([seat]);
     }
   }
+  localStorage.setItem('seat', selectedSeats[0])
 
   return (
     <div className="Cinema">

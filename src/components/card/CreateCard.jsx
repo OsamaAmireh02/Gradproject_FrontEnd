@@ -1,50 +1,39 @@
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import * as React from 'react';
 import ParkingBooking from '../PopUp/PopUp';
 import { Row } from 'react-bootstrap';
+import makeAuthenticatedRequest from '../userTable/Api';
 
 
 function CreateCard() {
-    const [anchor, setAnchor] = React.useState(null);
 
-    const handleClick = (event) => {
-        setAnchor(anchor ? null : event.currentTarget);
+    const [responseData, setResponseData] = React.useState([]);
+    const [isLoading, setIsLoading] = React.useState(true);
+
+    const fetchData = async () => {
+        try {
+            const response = await makeAuthenticatedRequest('/parking/all');
+            setResponseData(response.data);
+            setIsLoading(false);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
     };
 
-    const open = Boolean(anchor);
-    const id = open ? 'simple-popup' : undefined;
+    React.useEffect(() => {
+        fetchData();
+    }, []);
 
-    const parkings = [{
-        "name": "Zera'aa",
-        "address": "Amman",
-        "numberOfSlot": 44,
-        "numberOfAvailableSlot": 24
-    },
-    {
-        "name": "Zera'aa",
-        "address": "Amman",
-        "numberOfSlot": 44,
-        "numberOfAvailableSlot": 24
-    },
-    {
-        "name": "Zera'aa",
-        "address": "Amman",
-        "numberOfSlot": 44,
-        "numberOfAvailableSlot": 24
-    },
-    {
-        "name": "Zera'aa",
-        "address": "Amman",
-        "numberOfSlot": 44,
-        "numberOfAvailableSlot": 24
+    if (isLoading) {
+        return null; // Render loading state or spinner
     }
-     ]
+
+
 
     return (
         <Row>
-        {parkings.map(parking => <Col lg={3} className='my-2'>
+        {responseData.map(parking => <Col lg={3} className='my-2'>
             <Card>
                 <Card.Body>
                     <Card.Title>{parking.name}</Card.Title>
@@ -54,7 +43,8 @@ function CreateCard() {
                         No. of available parking lots from 10:00 - 11:00 is {parking.numberOfAvailableSlot}.<br /><br />
                         No. of available parking lots from 11:00 - 12:00 is {parking.numberOfAvailableSlot}.<br /><br />
                     </Card.Text>
-                    <ParkingBooking />
+                    <ParkingBooking 
+                    name = {parking.name}/>
                 </Card.Body>
             </Card>
         </Col>)}
