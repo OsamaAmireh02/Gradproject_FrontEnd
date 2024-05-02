@@ -5,9 +5,11 @@ import Footer from '../components/footer/Footer'
 import axios from 'axios';
 
 function AdminViewProfilePage() {
-    
+
     return (
-        <div>
+        <div style={{
+            // paddingTop: '50px',
+        }}>
             <NavBar />
             <AdminProfile />
             <Footer />

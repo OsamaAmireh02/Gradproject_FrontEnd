@@ -6,7 +6,9 @@ import { Container } from 'react-bootstrap'
 
 function ReadQRPage() {
     return (
-        <div>
+        <div style={{
+            // paddingTop: '50px'
+        }}>
             <NavBar />
             <Container>
             <ReadQR />

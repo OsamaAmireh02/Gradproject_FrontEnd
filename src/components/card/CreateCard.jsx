@@ -29,24 +29,22 @@ function CreateCard() {
         return null; // Render loading state or spinner
     }
 
-
-
     return (
         <Row>
-        {responseData.map(parking => <Col lg={3} className='my-2'>
-            <Card>
-                <Card.Body>
-                    <Card.Title>{parking.name}</Card.Title>
-                    <Card.Text>
-                        Location: {parking.address}<br /><br />
-                        No. of available parking lots from 09:00 - 10:00 is {parking.numberOfAvailableSlot}.<br /><br />
-                        No. of available parking lots from 10:00 - 11:00 is {parking.numberOfAvailableSlot}.<br /><br />
-                        No. of available parking lots from 11:00 - 12:00 is {parking.numberOfAvailableSlot}.<br /><br />
-                    </Card.Text>
-                </Card.Body>
-                <Card.Footer><Button href='/booking/chooseSlot'>Yalla!</Button></Card.Footer>
-            </Card>
-        </Col>)}
+            {responseData.map(parking => <Col lg={3} className='my-2'>
+                <Card >
+                    <Card.Body>
+                        <Card.Title>{parking.name}</Card.Title>
+                        <Card.Text>
+                            Location: {parking.address}<br /><br />
+                            No. of available parking lots from 09:00 - 10:00 is {parking.numberOfAvailableSlot}.<br /><br />
+                            No. of available parking lots from 10:00 - 11:00 is {parking.numberOfAvailableSlot}.<br /><br />
+                            No. of available parking lots from 11:00 - 12:00 is {parking.numberOfAvailableSlot}.<br /><br />
+                        </Card.Text>
+                    </Card.Body>
+                    <Button href={`/booking/chooseSlot?parkingName=${encodeURIComponent(parking.name)}`}>Yalla!</Button>
+                </Card>
+            </Col>)}
         </Row>
     );
 }

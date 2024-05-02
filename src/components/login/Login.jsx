@@ -47,24 +47,26 @@ function Login() {
         }
     };
     return (
-        <Container className='my-3'>
-            <Form onSubmit={handleLogin}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
-                </Form.Group>
+        <Container className='my-3' style={{
+            'position': 'sticky',
+            'top': '50px',
+            'height': '80vh'
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </Form.Group>
+        }}>
+            <Form onSubmit={handleLogin}>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                        <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <label for="floatingPassword">Password</label>
+                </div>
+            
                 {errorMessage && <Form.Text style={{ color: 'red' }}>
-                        {errorMessage}
-                    </Form.Text>}
-                    <br/>
+                    {errorMessage}
+                </Form.Text>}
+                <br />
                 <Button variant="light" type="submit" style={{ backgroundColor: '#627254', color: '#ffffff' }}>
                     Login
                 </Button>

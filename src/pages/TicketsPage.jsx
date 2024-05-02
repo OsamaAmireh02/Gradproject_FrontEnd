@@ -8,7 +8,9 @@ import { Button } from 'react-bootstrap'
 
 function TicketPage() {
     return (
-        <div>
+        <div style={{
+            // paddingTop: '50px'
+        }}>
             <NavBar />
             <SideBar
                 table={<TicketTable/>}

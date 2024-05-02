@@ -1,9 +1,3 @@
-/**
- * inspiration repo: https://github.com/bradtraversy/vanillawebprojects
- * movie seat booking: https://github.com/bradtraversy/vanillawebprojects/tree/master/movie-seat-booking
- * but in react 🤓
- */
-
 import "./parkingchoose.css";
 import React, { useState } from "react";
 import clsx from "clsx";
@@ -53,11 +47,12 @@ for (let i = 0; i < time.length; i++) {
   hour = (hour + 1) % 24; // Wrap around to 0 if needed
 }
 
-console.log(modifiedTime);
 
 const seats = Array.from({ length: 8 * 8 }, (_, i) => i);
 
 export default function Parkings() {
+
+  
   const [selectedMovie, setSelectedMovie] = useState(modifiedTime[0]);
   const [selectedSeats, setSelectedSeats] = useState([]);
 

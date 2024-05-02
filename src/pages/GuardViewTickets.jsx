@@ -5,7 +5,9 @@ import TicketTable from '../components/ticketTable/TicketTable'
  
 function GuardViewTickets() {
   return (
-    <div>
+    <div style={{
+      // paddingTop: '50px',
+  }}>
       <NavBar />
       <TicketTable/>
     </div>

@@ -18,7 +18,7 @@ const role = localStorage.getItem('role')
 
   };
   return (
-    <Navbar expand="lg" style={{ backgroundColor: 'background-color: rgba(255, 255, 255, 0)' }} fixed="top">
+    <Navbar expand="lg" style={{ backgroundColor: 'background-color: rgba(255, 255, 255, 0)' }}>
       <Container >
         <Navbar.Brand href="/"><img
           src="..\"

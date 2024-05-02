@@ -18,7 +18,9 @@ const users = [{
 ]
 function MyProfilePage() {
   return (
-    <div>
+    <div style={{
+      // paddingTop: '50px'
+  }}>
       <NavBar />
       {users.map(user => 
       <ViewProfile 

@@ -5,7 +5,9 @@ import AddParking from '../components/addParking/AddParking'
 
 function AddParkingPage() {
   return (
-    <div>
+    <div style={{
+      // paddingTop: '50px',
+    }}>
       <NavBar />
       <AddParking />
       <Footer />

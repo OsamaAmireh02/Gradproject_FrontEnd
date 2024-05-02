@@ -39,7 +39,9 @@ const users = [{
   
 function UsersPage() {
     return (
-        <div>
+        <div style={{
+            // paddingTop: '50px'
+        }}>
             <NavBar />
             <SideBar
                 table={<UserTable />}

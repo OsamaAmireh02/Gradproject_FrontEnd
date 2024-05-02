@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import { ThemeProvider } from 'react-bootstrap';
-
+import images from '../../assests/images.jpg';
 
 function Slider() {
   const [index, setIndex] = useState(0);
@@ -17,7 +17,7 @@ function Slider() {
     >
       <Carousel activeIndex={index} onSelect={handleSelect} className='lg'>
         <Carousel.Item>
-          <img src="https://get.wallhere.com/photo/2000x1000-px-death-fantasy-art-waves-1256985.jpg" alt='' width={"100%"} />
+          <img src={images} alt='' width={"100%"} />
           <Carousel.Caption>
             <h3>First slide label</h3>
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>

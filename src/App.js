@@ -26,7 +26,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       
       {isAuthenticated  && <Route path="/login" element={<LoginPage />} />}
-      <Route path="/admin/users" element={<UsersPage />} />
+      {localStorage.getItem('role') == 'ADMIN' && <Route path="/admin/users" element={<UsersPage />} />}
       <Route path="/admin/parkings" element={<ParkingsPage />} />
       <Route path="/admin/tickets" element={<TicketPage />} />
       <Route path="/booking" element={<BookingPage />} />
@@ -39,6 +39,7 @@ function App() {
       <Route path="/booking/submit" element={<SubmitBooking />} />
       <Route path="/student/myprofile" element={<UserViewProfilePage />} />
       <Route path="/guard/myprofile" element={<GuardViewProfiePage/>} />
+
 
     </Routes>
   </>

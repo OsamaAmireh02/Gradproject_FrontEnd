@@ -5,7 +5,9 @@ import Footer from '../components/footer/Footer'
 
 function UserViewProfilePage() {
   return (
-    <div>
+    <div style={{
+      // paddingTop: '50px'
+    }}>
       <NavBar />
       <UserProfile />
       <Footer />

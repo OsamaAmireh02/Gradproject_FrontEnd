@@ -1,14 +1,16 @@
-body {
-  margin: 0;
+body { 
   font-family: "Oswald", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  background-size: cover;
+  background-size:cover;
   background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-image: linear-gradient(to bottom, #303841, #60646c, #93959b, #c8c8cb, #ffffff);
-    font-size: large;
+  background-repeat:no-repeat;
+  background-image: linear-gradient(to bottom, #5d5c59, #848180, #aca9a9, #d4d3d4, #ffffff);
+  font-size: large;
+  height: 100%;
 }
+
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

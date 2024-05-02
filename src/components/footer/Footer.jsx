@@ -1,6 +1,6 @@
 import React from "react"
 
-const Footer = () => <footer className="page-footer font-small blue pt-4" fixed="bottom">
+const Footer = () => <footer className="footer font-small blue pt-4">
     {/* <div className="container-fluid text-center text-md-left">
         <div className="row">
             <div className="col-md-6 mt-md-0 mt-3">
@@ -32,7 +32,7 @@ const Footer = () => <footer className="page-footer font-small blue pt-4" fixed=
         </div>
     </div> */}
 
-    <div className='text-center p-3' style={{
+    <div className='  text-center p-3' style={{
         backgroundColor: '#76885B'
     }}>
         &copy; {new Date().getFullYear()}
