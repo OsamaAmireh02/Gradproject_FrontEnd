@@ -48,18 +48,22 @@ for (let i = 0; i < time.length; i++) {
 }
 
 
-const seats = Array.from({ length: 8 * 8 }, (_, i) => i);
+const seats = Array.from({ length: 10 * 8 }, (_, i) => i);
 
 export default function Parkings() {
 
-  
+
   const [selectedMovie, setSelectedMovie] = useState(modifiedTime[0]);
   const [selectedSeats, setSelectedSeats] = useState([]);
 
   localStorage.setItem('time', selectedMovie.name)
 
   return (
-    <div className="App">
+    <div className="App" style={{
+      'position': 'sticky',
+      'height': '73vh'
+
+  }}>
       <Movies
         movie={selectedMovie}
         onChange={(movie) => {
@@ -76,21 +80,19 @@ export default function Parkings() {
         }
       />
 
-      <p className="info">
-        You have selected <span className="count">{selectedSeats.length}</span>{" "}
-        seats for the price of{" "}
-        <span className="total">
-          {selectedSeats.length}
-        </span>
+      <p className="info" style={{ color: 'white', display: 'flex', justifyContent: 'center' }}>
+        You have selected Slot no. <span className="count">{selectedSeats}</span>
+
       </p>
+      
     </div>
   );
 }
 
 function Movies({ movie, onChange }) {
   return (
-    <div className="Movies">
-      <label htmlFor="movie">Select Time</label>
+    <div className="Movies my-3" style={{ display: 'flex', justifyContent: 'center' }}>
+      <label htmlFor="movie" style={{ color: 'white' }}>Select Time: </label>
       <select
         id="movie"
         value={movie.name}
@@ -112,13 +114,13 @@ function ShowCase() {
   return (
     <ul className="ShowCase">
       <li>
-        <span className="seat" /> <small>N/A</small>
+        <span className="seat" /> <small>Available</small>
       </li>
       <li>
         <span className="seat selected" /> <small>Selected</small>
       </li>
       <li>
-        <span className="seat occupied" /> <small>Occupied</small>
+        <span className="seat occupied" /> <small>Booked</small>
       </li>
     </ul>
   );
@@ -161,10 +163,10 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
                 isOccupied
                   ? null
                   : (e) => {
-                      if (e.key === "Enter") {
-                        handleSelectedState(seat);
-                      }
+                    if (e.key === "Enter") {
+                      handleSelectedState(seat);
                     }
+                  }
               }
             />
           );

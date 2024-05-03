@@ -26,9 +26,9 @@ function CreateCard() {
     }
 
     return (
-        <Row>
+        <Row className="my-4">
             {responseData.map(parking => (
-                <Col lg={6} className="my-2" key={parking.id}>
+                <Col lg={6} className="my-3" key={parking.id}>
                     {/* Use the Card component as a button */}
                     <Card
                         as="a" // Set the Card component as an anchor (button)
@@ -37,7 +37,7 @@ function CreateCard() {
                         style={{
                             color: 'black',
                             cursor: 'pointer', // Show pointer cursor on hover
-                            backgroundColor: '#f8f9fa', // Light gray background
+                            backgroundColor: '#f0f1ee', // Light gray background
                             border: 'none', // Remove border
                             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // Subtle shadow
                             borderRadius: '8px', // Rounded corners
@@ -48,7 +48,10 @@ function CreateCard() {
                             <Card.Title><strong>{parking.name}</strong></Card.Title>
                             <Card.Text>
                                 Location: {parking.address}<br/>
-                                Total No. Of Slots: {parking.numberOfSlot}
+                                Total No. Of Slots: {parking.numberOfSlot}<br/>
+                                Total No. Of Slots: {parking.numberOfSlot}<br/>
+                                Total No. Of Slots: {parking.numberOfSlot}<br/>
+                                Total No. Of Slots: {parking.numberOfSlot}<br/>
                             </Card.Text>
                         </Card.Body>
                     </Card>

@@ -48,11 +48,13 @@ function Login() {
     };
     return (
         <Container className='my-3' style={{
+            width: '60%',
             'position': 'sticky',
-            'top': '50px',
-            'height': '77vh'
+            'top': '1000px',
+            'height': '74vh'
 
         }}>
+            <h1 style={{color:'white'}} className='my-3'>Welcome Back</h1>
             <Form onSubmit={handleLogin}>
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)}/>
@@ -67,7 +69,7 @@ function Login() {
                     {errorMessage}
                 </Form.Text>}
                 <br />
-                <Button variant="primary" type="submit" style={{ backgroundColor: '#213F54', color: '#ffffff', borderColor: '#213F54' }}>
+                <Button variant="light" type="submit">
                     Login
                 </Button>
                 <Button variant="warning" type="reset" className='mx-3'>

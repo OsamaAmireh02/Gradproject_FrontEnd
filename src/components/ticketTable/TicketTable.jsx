@@ -29,7 +29,7 @@ function TicketTable() {
 
 
     return (
-        <Table striped>
+        <Table striped variant='dark'>
             <thead>
                 <tr>
                     <th>User ID</th>

@@ -6,7 +6,7 @@ import PostMethod from '../PostMethod';
 
 function AddUser() {
 
-
+    const blk = {color:'white'};
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -37,12 +37,17 @@ function AddUser() {
     };
 
     return (<>
-        <Container>
+        <Container className='my-3' style={{
+            width: '80%',
+            'position': 'sticky',
+            'height': '74vh'
+
+        }}>
             <Form onSubmit={handleButtonClick}>
                 <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>First Name</Form.Label>
+                            <Form.Label style={blk}>First Name</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Enter First Name"
@@ -53,7 +58,7 @@ function AddUser() {
                     </Col>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Last Name</Form.Label>
+                            <Form.Label style={blk}>Last Name</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Enter Last Name"
@@ -67,7 +72,7 @@ function AddUser() {
                 <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Phone Number</Form.Label>
+                            <Form.Label style={blk}>Phone Number</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Enter Phone Number"
@@ -78,7 +83,7 @@ function AddUser() {
                     </Col>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Email</Form.Label>
+                            <Form.Label style={blk}>Email</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Enter Email"
@@ -92,7 +97,7 @@ function AddUser() {
                 <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Password</Form.Label>
+                            <Form.Label style={blk}>Password</Form.Label>
                             <Form.Control
                                 type="password"
                                 placeholder="Enter Password"
@@ -103,13 +108,13 @@ function AddUser() {
                     </Col>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Role</Form.Label>
+                            <Form.Label style={blk}>Role</Form.Label>
                             <Form.Select
                                 aria-label="Default select example"
                                 value={userRole}
                                 onChange={(e) => setUeserRole(e.target.value)}
                             >
-                                <option>Select a role</option>
+                                <option style={blk}>Select a role</option>
                                 <option value="STUDENT">Student</option>
                                 <option value="ADMIN">Admin</option>
                                 <option value="GUARD">Guard</option>

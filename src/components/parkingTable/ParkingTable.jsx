@@ -47,7 +47,7 @@ function ParkingsTable() {
 
     return (
         <>
-        <Table striped>
+        <Table striped variant='dark'>
             <thead>
                 <tr>
                     <th>Parking Name</th>

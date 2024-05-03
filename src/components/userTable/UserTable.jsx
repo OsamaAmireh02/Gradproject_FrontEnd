@@ -46,14 +46,12 @@ function UserTable() {
 
     return (
         <>
-            <Table striped>
+            <Table striped variant='dark'>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Data Of Birth</th>
-                        <th>Gender</th>
                         <th>Email</th>
                         <th>Phone Number</th>
                         <th>Role</th>
@@ -64,8 +62,6 @@ function UserTable() {
                         <td>{user.id}</td>
                         <td>{user.firstName}</td>
                         <td>{user.lastName}</td>
-                        <td>{user.DOB}</td>
-                        <td>{user.gender}</td>
                         <td>{user.email}</td>
                         <td>{user.phoneNumber}</td>
                         <td>{user.userRole}</td>

@@ -14,7 +14,7 @@ function HomePage() {
             <NavBar />
             <Slider />
             <Container>
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'center' }} className='my-3'>
                     <TypeAnimation
                         sequence={[
                             'We Have the best Parking',
@@ -26,7 +26,7 @@ function HomePage() {
                         ]}
                         wrapper="span"
                         speed={50}
-                        style={{ fontSize: '2em', display: 'inline-block', fontFamily: 'Jersey 20 Charted'}}
+                        style={{ fontSize: '2em', display: 'inline-block', color:'#EEF7FF'}}
                         repeat={Infinity}
                     />
                 </div>

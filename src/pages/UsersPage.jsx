@@ -2,7 +2,7 @@ import React from 'react'
 import SideBar from '../components/sidebar/SideBar'
 import NavBar from '../components/navbar/NavBar'
 import UserTable from '../components/userTable/UserTable'
-import { Button } from 'react-bootstrap'
+import { Button, Container } from 'react-bootstrap'
 const users = [{
     "id":"1",
     "firstName": "Osama",
@@ -45,7 +45,7 @@ function UsersPage() {
             <NavBar />
             <SideBar
                 table={<UserTable />}
-                button={<Button href='/admin/addUser'>Add User</Button>}
+                button={<Container className='mb-3'><Button href='/admin/addUser' variant='warning'>Add User</Button></Container>}
             />
         </div>
     )

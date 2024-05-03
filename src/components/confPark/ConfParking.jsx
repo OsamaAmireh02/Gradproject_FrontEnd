@@ -9,6 +9,8 @@ import axios from 'axios';
 
 function ConfParking() {
 
+    const blk = { color: 'white' };
+
     const location = useLocation();
     const parkingName = new URLSearchParams(location.search).get('parkingName');
 
@@ -95,12 +97,16 @@ function ConfParking() {
     };
 
     return (
-        <Container>
+        <Container className='my-4' style={{
+            'position': 'sticky',
+            'height': '73vh'
+
+        }}>
             <Form onSubmit={handleButtonClick}>
                 <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>First Name</Form.Label>
+                            <Form.Label style={blk}>First Name</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={userData.firstName}
@@ -112,7 +118,7 @@ function ConfParking() {
                     </Col>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Last Name</Form.Label>
+                            <Form.Label style={blk}>Last Name</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={userData.lastName}
@@ -127,7 +133,7 @@ function ConfParking() {
                 <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Phone Number</Form.Label>
+                            <Form.Label style={blk}>Phone Number</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={userData.phoneNumber}
@@ -139,7 +145,7 @@ function ConfParking() {
                     </Col>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Email</Form.Label>
+                            <Form.Label style={blk}>Email</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={userData.email}
@@ -154,7 +160,7 @@ function ConfParking() {
                 <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Car Model</Form.Label>
+                            <Form.Label style={blk}>Car Model</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={userData.carModel}
@@ -165,7 +171,7 @@ function ConfParking() {
                     </Col>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Car Color</Form.Label>
+                            <Form.Label style={blk}>Car Color</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={userData.carColor}
@@ -179,7 +185,7 @@ function ConfParking() {
                 <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Selected Time</Form.Label>
+                            <Form.Label style={blk}>Selected Time</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={localStorage.getItem('time')}
@@ -191,7 +197,7 @@ function ConfParking() {
                     </Col>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Selected Slot</Form.Label>
+                            <Form.Label style={blk}>Selected Slot</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={localStorage.getItem('seat')}
@@ -205,7 +211,7 @@ function ConfParking() {
                 <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Car Plate number</Form.Label>
+                            <Form.Label style={blk}>Car Plate number</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={userData.carPlateNumber}
@@ -216,7 +222,7 @@ function ConfParking() {
                     </Col>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Selected Parking</Form.Label>
+                            <Form.Label style={blk}>Selected Parking</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={{parkingName}}
@@ -227,11 +233,14 @@ function ConfParking() {
                         </Form.Group>
                     </Col>
                 </Row>
-
-                <Button variant="primary" type="submit">
+                <Row>
+                    <Col style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Button style={{width: '100px'}} variant='dark' href='/booking/chooseSlot'>Back</Button>
+                    <Button style={{width: '100px'}} className='ms-3' variant="warning" type="submit">
                     Submit
                 </Button>
-                <Button variant='dark' href='/booking/chooseSlot'>Back</Button>
+                    </Col>
+                </Row>
             </Form>
         </Container>
     );

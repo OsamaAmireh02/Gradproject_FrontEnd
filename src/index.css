@@ -2,10 +2,7 @@ body {
   font-family: "Oswald", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  background-size: cover;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-image: radial-gradient(circle, #213f54, #40596d, #5e7486, #7d90a1, #9dadbc);
+  background-color: #323437 !important;
   font-size: large;
   height: 100%;
 }
