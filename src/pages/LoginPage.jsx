@@ -11,15 +11,7 @@ function LoginPage() {
         }}>
             <NavBar />
             <Login />
-            <footer className="footer font-small blue pt-4 fixed-bottom">
-                <div className='  text-center p-3' style={{
-                    backgroundColor: '#76885B'
-                }}>
-                    &copy; {new Date().getFullYear()}
-                    : JUPark
-                </div>
-
-            </footer>
+            <Footer />
         </div>
     )
 }

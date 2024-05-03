@@ -7,8 +7,9 @@ import { Row } from 'react-bootstrap'
 function BookingPage() {
     return (
         <div style={{
-            // paddingTop: '50px',
-        }}>
+            'position': 'sticky',
+            'top': '50px',
+            'height': '100vh'}}>
             <NavBar />
             <Row className='mx-3'>
             <CreateCard />

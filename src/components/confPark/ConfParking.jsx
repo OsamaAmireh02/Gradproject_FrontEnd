@@ -195,8 +195,8 @@ function ConfParking() {
                             <Form.Control
                                 type="text"
                                 placeholder={localStorage.getItem('seat')}
-                                value={carColor}
-                                onChange={(e) => setCarColor(e.target.value)}
+                                value={slot}
+                                onChange={(e) => setSlot(e.target.value)}
                                 disabled
                             />
                         </Form.Group>

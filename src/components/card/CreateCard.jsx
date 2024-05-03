@@ -1,13 +1,9 @@
+import React from 'react';
+import { Col, Row } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import * as React from 'react';
-import ParkingBooking from '../PopUp/PopUp';
-import { Button, Row } from 'react-bootstrap';
 import makeAuthenticatedRequest from '../userTable/Api';
 
-
 function CreateCard() {
-
     const [responseData, setResponseData] = React.useState([]);
     const [isLoading, setIsLoading] = React.useState(true);
 
@@ -31,20 +27,33 @@ function CreateCard() {
 
     return (
         <Row>
-            {responseData.map(parking => <Col lg={3} className='my-2'>
-                <Card >
-                    <Card.Body>
-                        <Card.Title>{parking.name}</Card.Title>
-                        <Card.Text>
-                            Location: {parking.address}<br /><br />
-                            No. of available parking lots from 09:00 - 10:00 is {parking.numberOfAvailableSlot}.<br /><br />
-                            No. of available parking lots from 10:00 - 11:00 is {parking.numberOfAvailableSlot}.<br /><br />
-                            No. of available parking lots from 11:00 - 12:00 is {parking.numberOfAvailableSlot}.<br /><br />
-                        </Card.Text>
-                    </Card.Body>
-                    <Button href={`/booking/chooseSlot?parkingName=${encodeURIComponent(parking.name)}`}>Yalla!</Button>
-                </Card>
-            </Col>)}
+            {responseData.map(parking => (
+                <Col lg={6} className="my-2" key={parking.id}>
+                    {/* Use the Card component as a button */}
+                    <Card
+                        as="a" // Set the Card component as an anchor (button)
+                        href={`/booking/chooseSlot?parkingName=${encodeURIComponent(parking.name)}`}
+                        className="text-decoration-none" // Remove underline
+                        style={{
+                            color: 'black',
+                            cursor: 'pointer', // Show pointer cursor on hover
+                            backgroundColor: '#f8f9fa', // Light gray background
+                            border: 'none', // Remove border
+                            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // Subtle shadow
+                            borderRadius: '8px', // Rounded corners
+                            transition: 'transform 0.2s ease', // Smooth hover effect
+                        }}
+                    >
+                        <Card.Body>
+                            <Card.Title><strong>{parking.name}</strong></Card.Title>
+                            <Card.Text>
+                                Location: {parking.address}<br/>
+                                Total No. Of Slots: {parking.numberOfSlot}
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            ))}
         </Row>
     );
 }

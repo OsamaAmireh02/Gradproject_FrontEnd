@@ -6,6 +6,7 @@ import makeAuthenticatedRequest from '../userTable/Api';
 function TicketTable() {
 
     const [responseData, setResponseData] = useState([]);
+
     const [isLoading, setIsLoading] = useState(true);
 
     const fetchData = async () => {

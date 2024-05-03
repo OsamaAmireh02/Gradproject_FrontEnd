@@ -33,7 +33,7 @@ const Footer = () => <footer className="footer font-small blue pt-4">
     </div> */}
 
     <div className='  text-center p-3' style={{
-        backgroundColor: '#76885B'
+        backgroundColor: '#FDDB3A'
     }}>
         &copy; {new Date().getFullYear()}
         : JUPark

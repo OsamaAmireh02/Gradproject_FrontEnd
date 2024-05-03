@@ -53,7 +53,10 @@ function UserProfile() {
 
   return (
     <div>
-      <Container>
+      <Container style={{
+            'position': 'sticky',
+            'top': '50px',
+            'height': '78.5vh'}}>
         <Row className='my-3'>
           <Col>
             <strong>First Name: </strong>

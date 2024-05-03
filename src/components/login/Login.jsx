@@ -50,7 +50,7 @@ function Login() {
         <Container className='my-3' style={{
             'position': 'sticky',
             'top': '50px',
-            'height': '80vh'
+            'height': '77vh'
 
         }}>
             <Form onSubmit={handleLogin}>
@@ -67,7 +67,7 @@ function Login() {
                     {errorMessage}
                 </Form.Text>}
                 <br />
-                <Button variant="light" type="submit" style={{ backgroundColor: '#627254', color: '#ffffff' }}>
+                <Button variant="primary" type="submit" style={{ backgroundColor: '#213F54', color: '#ffffff', borderColor: '#213F54' }}>
                     Login
                 </Button>
                 <Button variant="warning" type="reset" className='mx-3'>

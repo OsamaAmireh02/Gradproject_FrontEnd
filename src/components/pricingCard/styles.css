@@ -1,10 +1,23 @@
-.card{
+.card {
     background-color: #DDDDDD;
     border-color: #627254;
-    border-radius: 5%;
     font-size: 25px;
+    border-radius: 8px;
+    /* Rounded corners */
+    transition: transform 0.2s ease;
+    /* Add a smooth transition effect */
 }
 
-.bottonn{
+.bottonn {
     background-color: #627254;
+}
+
+/* styles.css */
+
+/* Apply hover effect to the pricing cards */
+.card:hover {
+    transform: scale(1.05);
+    /* Increase size by 5% */
+    transition: transform 0.3s ease;
+    /* Smooth transition */
 }

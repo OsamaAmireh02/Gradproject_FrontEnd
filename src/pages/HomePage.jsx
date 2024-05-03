@@ -14,20 +14,22 @@ function HomePage() {
             <NavBar />
             <Slider />
             <Container>
-            <TypeAnimation
-            sequence={[
-                'We Have the best Parking',
-                1000,
-                'We Have the best Prices',
-                1000,
-                'We Have the best Location to park',
-                1000
-            ]}
-            wrapper="span"
-            speed={50}
-            style={{ fontSize: '2em', display: 'inline-block'}}
-            repeat={Infinity}
-        />
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <TypeAnimation
+                        sequence={[
+                            'We Have the best Parking',
+                            1000,
+                            'We Have the best Prices',
+                            1000,
+                            'We Have the best Location to park',
+                            1000
+                        ]}
+                        wrapper="span"
+                        speed={50}
+                        style={{ fontSize: '2em', display: 'inline-block', fontFamily: 'Jersey 20 Charted'}}
+                        repeat={Infinity}
+                    />
+                </div>
                 <PricingCard />
             </Container>
             <Footer />
