@@ -10,10 +10,12 @@ import axios from 'axios';
 function ConfParking() {
 
     const blk = { color: 'white' };
-
+    const slotId = 9
+    const fromTime = localStorage.getItem('time');
     const location = useLocation();
     const parkingName = new URLSearchParams(location.search).get('parkingName');
-
+    const parkingId = new URLSearchParams(location.search).get('parkingId');
+    const userId = localStorage.getItem('id')
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [parking, setParking] = useState(parkingName);
@@ -32,56 +34,63 @@ function ConfParking() {
         phoneNumber: '',
         carModel: '',
         carColor: '',
-        carPlateNumber: '',
-      });
-    
-      useEffect(() => {
+        carPlateNumber: ''
+    });
+
+    useEffect(() => {
         const token = localStorage.getItem('token');
         const email = localStorage.getItem('email');
-    
+
         if (token && email) {
-          const config = {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json',
-            },
-          };
-    
-          const data = { email };
-    
-          // Replace with your actual API endpoint
-          axios
-            .post('http://localhost:8080/user/getByEmail', data, config)
-            .then((response) => {
-              const { firstName, lastName, email, phoneNumber, carModel, carColor, carPlateNumber } = response.data;
-              // Update state with retrieved data
-              setUserData({
-                firstName,
-                lastName,
-                email,
-                phoneNumber,
-                carModel,
-                carColor, 
-                carPlateNumber
-              });
-            })
-            .catch((error) => {
-              console.error('Error fetching data:', error.message);
-              // Handle errors
-            });
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            };
+
+            const data = { email };
+
+            // Replace with your actual API endpoint
+            axios
+                .post('http://localhost:8080/user/getByEmail', data, config)
+                .then((response) => {
+                    const { firstName, lastName, email, phoneNumber, carModel, carColor, carPlateNumber } = response.data;
+                    // Update state with retrieved data
+                    setUserData({
+                        firstName,
+                        lastName,
+                        email,
+                        phoneNumber,
+                        carModel,
+                        carColor,
+                        carPlateNumber
+                    });
+                })
+                .catch((error) => {
+                    console.error('Error fetching data:', error.message);
+                    // Handle errors
+                });
         }
-      }, []);
+    }, []);
 
 
     const handleButtonClick = async (e) => {
-        const endpoint = ''; // Replace with your actual endpoint
+        const endpoint = '/ticket/save'; // Replace with your actual endpoint
         const requestData = {
             firstName,
             lastName,
             email,
             carModel,
             phoneNumber,
-            carColor
+            carColor,
+            parkingName,
+            slot,
+            userId,
+            parkingId,
+            slotId,
+            fromTime
+
         }; // Your data object
 
         try {
@@ -225,7 +234,7 @@ function ConfParking() {
                             <Form.Label style={blk}>Selected Parking</Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder={{parkingName}}
+                                placeholder={{ parkingName }}
                                 value={parking}
                                 onChange={(e) => setParking(e.target.value)}
                                 disabled
@@ -235,10 +244,10 @@ function ConfParking() {
                 </Row>
                 <Row>
                     <Col style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Button style={{width: '100px'}} variant='dark' href='/booking/chooseSlot'>Back</Button>
-                    <Button style={{width: '100px'}} className='ms-3' variant="warning" type="submit">
-                    Submit
-                </Button>
+                        <Button style={{ width: '100px' }} variant='dark' href='/booking/chooseSlot'>Back</Button>
+                        <Button style={{ width: '100px' }} className='ms-3' variant="warning" type="submit">
+                            Submit
+                        </Button>
                     </Col>
                 </Row>
             </Form>

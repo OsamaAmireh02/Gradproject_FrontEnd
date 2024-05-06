@@ -53,7 +53,6 @@ function ParkingsTable() {
                     <th>Parking Name</th>
                     <th>Address</th>
                     <th>No. Of Slots</th>
-                    <th>No. Of Available Slots</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,7 +60,6 @@ function ParkingsTable() {
                     <td>{parking.name}</td>
                     <td>{parking.address}</td>
                     <td>{parking.numberOfSlot}</td>
-                    <td>{parking.numberOfAvailableSlot}</td>
                 </tr>)}
             </tbody>
         </Table>

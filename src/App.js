@@ -40,7 +40,6 @@ function App() {
       <Route path="/student/myprofile" element={<UserViewProfilePage />} />
       <Route path="/guard/myprofile" element={<GuardViewProfiePage/>} />
 
-
     </Routes>
   </>
   );

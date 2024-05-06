@@ -49,9 +49,9 @@
 .Cinema .seats {
     display: grid;
     column-gap: 15px;
-    row-gap: 5;
+    row-gap: 5px;
     grid-gap: 5px;
-    grid-template-columns: repeat(10, min-content);
+    grid-template-columns: repeat(6, min-content);
     align-items: center;
 }
 

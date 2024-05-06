@@ -32,7 +32,7 @@ function CreateCard() {
                     {/* Use the Card component as a button */}
                     <Card
                         as="a" // Set the Card component as an anchor (button)
-                        href={`/booking/chooseSlot?parkingName=${encodeURIComponent(parking.name)}`}
+                        href={`/booking/chooseSlot?parkingId=${parking.id}&parkingName=${encodeURIComponent(parking.name)}`}
                         className="text-decoration-none" // Remove underline
                         style={{
                             color: 'black',

@@ -1,18 +1,40 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'; // Import useState for managing state
-import { Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import PostMethod from '../PostMethod';
 
 function UserProfile() {
+
+  const id = localStorage.getItem('id');
+  const blk = { color: 'white' };
+
+  const [firstName, setFirstName] = useState('');
+  const [carColor, setCarColor] = useState('');
+  const [carPlateNumber, setCarPlateNumber] = useState('');
+  const [carModel, setCarModel] = useState();
+
+  const handleButtonClick = async (e) => {
+
+
+    const endpoint = '/user/update'; // Replace with your actual endpoint
+    const requestData = {
+      id,
+      carModel,
+      carColor,
+      carPlateNumber
+    }; // Your data object
+
+    try {
+      e.preventDefault();
+      const apiResponse = await PostMethod(endpoint, requestData);
+      console.log('API Response:', apiResponse);
+    } catch (error) {
+      console.error('Error making authenticated request:', error);
+      // Handle the error
+    }
+  };
   // Initialize state variables
-  const [userData, setUserData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    carModel: '',
-    carColor: '',
-    carPlateNumber: '',
-  });
+
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -29,71 +51,79 @@ function UserProfile() {
       const data = { email };
 
       // Replace with your actual API endpoint
-      axios
-        .post('http://localhost:8080/user/getByEmail', data, config)
-        .then((response) => {
-          const { firstName, lastName, email, phoneNumber, carModel, carColor, carPlateNumber } = response.data;
-          // Update state with retrieved data
-          setUserData({
-            firstName,
-            lastName,
-            email,
-            phoneNumber,
-            carModel,
-            carColor, 
-            carPlateNumber
-          });
-        })
-        .catch((error) => {
-          console.error('Error fetching data:', error.message);
-          // Handle errors
-        });
     }
   }, []); // Empty dependency array ensures this effect runs only once
 
   return (
     <div>
-      <Container style={{
-            'position': 'sticky',
-            'top': '50px',
-            'height': '78.5vh'}}>
-        <Row className='my-3'>
-          <Col>
-            <strong>First Name: </strong>
-            {userData.firstName}
-          </Col>
-          <Col>
-            <strong>Last Name: </strong>
-            {userData.lastName}
-          </Col>
-        </Row>
-        <Row className='my-3'>
-          <Col>
-            <strong>Email: </strong>
-            {userData.email}
-          </Col>
-          <Col>
-            <strong>Phone Number: </strong>
-            {userData.phoneNumber}
-          </Col>
-        </Row>
-        <Row className='my-3'>
-          <Col>
-            <strong>Car Model: </strong>
-            {userData.carModel}
-          </Col>
-          <Col>
-            <strong>Car Color: </strong>
-            {userData.carColor}
-          </Col>
-        </Row>
-        <Row className='my-3'>
-          <Col>
-            <strong>Car Plate Number: </strong>
-            {userData.carPlateNumber}
-          </Col>
-        </Row>
-      </Container>
+      <>
+        <Container className='my-3' style={{
+          width: '80%',
+          'position': 'sticky',
+          'height': '74vh'
+
+        }}>
+          <Form onSubmit={handleButtonClick}>
+            <Row>
+              <Col>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label style={blk}>Email</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder={localStorage.getItem('email')}
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    disabled
+                  />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label style={blk}>Car Plate Number</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Car Plate Number"
+                    value={carPlateNumber}
+                    onChange={(e) => setCarPlateNumber(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label style={blk}>Car Model</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Car Model"
+                    value={carModel}
+                    onChange={(e) => setCarModel(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label style={blk}>Car Color</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Car Color"
+                    value={carColor}
+                    onChange={(e) => setCarColor(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+
+            <Row>
+
+            </Row>
+
+            <Button variant="warning" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </Container>
+      </>
     </div>
   );
 }

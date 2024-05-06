@@ -1,59 +1,42 @@
 import "./parkingchoose.css";
 import React, { useState } from "react";
 import clsx from "clsx";
+import { TypeAnimation } from "react-type-animation";
 
 const d = new Date();
 let hour = parseInt(d.getHours());
-let hourr = hour + 1;
+let hour1 = hour + 1;
+let hour2 = hour1 + 1;
+let hour3 = hour2 + 1;
+
 
 const time = [
   {
-    name: hour + ":00 - " + hourr + ":00",
+    name: hour + ":00:00",
     occupied: [20, 21, 30, 1, 2, 8],
   },
   {
-    name: "Joker",
+    name: hour1 + ":00:00",
     occupied: [9, 41, 35, 11, 65, 26],
   },
   {
-    name: "Toy story",
+    name: hour2 + ":00:00",
     occupied: [37, 25, 44, 13, 2, 3],
   },
   {
-    name: "the lion king",
+    name: hour3 + ":00:00",
     occupied: [10, 12, 50, 33, 28, 47],
   },
 ];
 
-const modifiedTime = [];
-
-for (let i = 0; i < time.length; i++) {
-  const currentElement = time[i];
-  const nextElement = time[(i + 1) % time.length]; // Wrap around to the first element if needed
-
-  // Create new elements with names based on current hour and next hour
-  modifiedTime.push({
-    name: `${hour}:00 - ${hourr}:00`,
-    occupied: currentElement.occupied,
-  });
-
-  modifiedTime.push({
-    name: `${hourr}:00 - ${(hourr + 1) % 24}:00`, // Wrap around to 0 if needed
-    occupied: nextElement.occupied,
-  });
-
-  // Update hour and hourr for the next iteration
-  hourr = (hourr + 1) % 24; // Wrap around to 0 if needed
-  hour = (hour + 1) % 24; // Wrap around to 0 if needed
-}
 
 
-const seats = Array.from({ length: 10 * 8 }, (_, i) => i);
+const seats = Array.from({ length: 6 * 8 }, (_, i) => i);
 
 export default function Parkings() {
 
 
-  const [selectedMovie, setSelectedMovie] = useState(modifiedTime[0]);
+  const [selectedMovie, setSelectedMovie] = useState(time[0]);
   const [selectedSeats, setSelectedSeats] = useState([]);
 
   localStorage.setItem('time', selectedMovie.name)
@@ -63,7 +46,7 @@ export default function Parkings() {
       'position': 'sticky',
       'height': '73vh'
 
-  }}>
+    }}>
       <Movies
         movie={selectedMovie}
         onChange={(movie) => {
@@ -84,29 +67,43 @@ export default function Parkings() {
         You have selected Slot no. <span className="count">{selectedSeats}</span>
 
       </p>
-      
+
     </div>
   );
 }
 
 function Movies({ movie, onChange }) {
   return (
-    <div className="Movies my-3" style={{ display: 'flex', justifyContent: 'center' }}>
-      <label htmlFor="movie" style={{ color: 'white' }}>Select Time: </label>
-      <select
-        id="movie"
-        value={movie.name}
-        onChange={(e) => {
-          onChange(modifiedTime.find((movie) => movie.name === e.target.value));
-        }}
-      >
-        {modifiedTime.map((movie) => (
-          <option key={movie.name} value={movie.name}>
-            {movie.name}
-          </option>
-        ))}
-      </select>
-    </div>
+    <>
+      <div className="Movies my-3" style={{ display: 'flex', justifyContent: 'center' }}>
+        <label htmlFor="movie" style={{ color: 'white' }}>Select Starting Time:</label>
+        <select
+          id="movie"
+          value={movie.name}
+          onChange={(e) => {
+            onChange(time.find((movie) => movie.name === e.target.value));
+          }}
+        >
+          {time.map((movie) => (
+            <option key={movie.name} value={movie.name}>
+              {movie.name}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }} className='my-3'>
+      <TypeAnimation
+        sequence={[
+          'Notice that every ticket lasts an hour.',
+          1000,
+        ]}
+        wrapper="span"
+        speed={50}
+        style={{ fontSize: '24px', display: 'inline-block', color: '#EEF7FF' }}
+        repeat={1}
+      />
+      </div>
+    </>
   );
 }
 

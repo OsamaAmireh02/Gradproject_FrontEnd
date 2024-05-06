@@ -11,7 +11,6 @@ function AddParking() {
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
     const [numberOfSlot, setSlots] = useState(48);
-    const [numberOfAvailableSlot, setNoSlots] = useState(0);
 
     const handleButtonClick = async (e) => {
         const endpoint = '/parking/save'; // Replace with your actual endpoint
@@ -19,8 +18,7 @@ function AddParking() {
             id: "1",
             name,
             address,
-            numberOfSlot,
-            numberOfAvailableSlot
+            numberOfSlot
         }; // Your data object
 
         try {
@@ -72,10 +70,6 @@ function AddParking() {
                         </Form.Group>
                     </Col>
                     <Col>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>No. Of Available Slots</Form.Label>
-                            <Form.Control type="text" placeholder="Enter No. Of Available Slots" value={numberOfAvailableSlot} onChange={(e) => setNoSlots(parseInt(e.target.value))} />
-                        </Form.Group>
                     </Col>
                 </Row>
                     <Button variant="light" className='me-3' type="danger">
