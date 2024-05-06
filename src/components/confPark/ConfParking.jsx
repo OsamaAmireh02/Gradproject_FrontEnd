@@ -12,6 +12,7 @@ function ConfParking() {
     const blk = { color: 'white' };
     const slotId = 9
     const fromTime = localStorage.getItem('time');
+    const ticketStatus  = "Pending";
     const location = useLocation();
     const parkingName = new URLSearchParams(location.search).get('parkingName');
     const parkingId = new URLSearchParams(location.search).get('parkingId');
@@ -23,8 +24,8 @@ function ConfParking() {
     const [carModel, setCarModel] = useState('');
     const [phoneNumber, setPhoneNumber] = useState();
     const [carColor, setCarColor] = useState('');
-    const [slot, setSlot] = useState(localStorage.getItem('seat'));
-    const [carPlate, setCarPlate] = useState();
+    const [slotNumber, setSlot] = useState(localStorage.getItem('seat'));
+    const [carPlateNumber, setCarPlate] = useState();
     const [time, settime] = useState(localStorage.getItem('time'));
 
     const [userData, setUserData] = useState({
@@ -80,16 +81,18 @@ function ConfParking() {
         const requestData = {
             firstName,
             lastName,
-            email,
-            carModel,
             phoneNumber,
-            carColor,
             parkingName,
-            slot,
+            fromTime,
+            slotNumber,
+            ticketStatus,
+            carModel,
+            carColor,
+            carPlateNumber,
             userId,
             parkingId,
             slotId,
-            fromTime
+
 
         }; // Your data object
 
@@ -210,7 +213,7 @@ function ConfParking() {
                             <Form.Control
                                 type="text"
                                 placeholder={localStorage.getItem('seat')}
-                                value={slot}
+                                value={slotNumber}
                                 onChange={(e) => setSlot(e.target.value)}
                                 disabled
                             />
@@ -224,7 +227,7 @@ function ConfParking() {
                             <Form.Control
                                 type="text"
                                 placeholder={userData.carPlateNumber}
-                                value={carPlate}
+                                value={carPlateNumber}
                                 onChange={(e) => setCarPlate(e.target.value)}
                             />
                         </Form.Group>

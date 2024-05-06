@@ -6,10 +6,7 @@ import { Row } from 'react-bootstrap'
 
 function BookingPage() {
     return (
-        <div style={{
-            'position': 'sticky',
-            'top': '50px',
-            'height': '100vh'}}>
+        <div>
             <NavBar />
             <Row className='mx-3'>
             <CreateCard />

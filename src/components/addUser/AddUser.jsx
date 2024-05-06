@@ -49,7 +49,7 @@ function AddUser() {
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>First Name</Form.Label>
                             <Form.Control
-                                type="text"
+                                type="name"
                                 placeholder="Enter First Name"
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
@@ -85,7 +85,7 @@ function AddUser() {
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>Email</Form.Label>
                             <Form.Control
-                                type="text"
+                                type="email"
                                 placeholder="Enter Email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}

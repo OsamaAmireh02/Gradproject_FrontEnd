@@ -5,6 +5,13 @@ import PostMethod from '../PostMethod';
 
 function UserProfile() {
 
+  const [adminData, setAdminData] = useState({
+    firstName: '',
+    carColor: '',
+    carModel: '',
+    carPlateNumber: '',
+  });
+
   const id = localStorage.getItem('id');
   const blk = { color: 'white' };
 
@@ -28,6 +35,9 @@ function UserProfile() {
       e.preventDefault();
       const apiResponse = await PostMethod(endpoint, requestData);
       console.log('API Response:', apiResponse);
+      window.location.href = '/?success=true';
+
+
     } catch (error) {
       console.error('Error making authenticated request:', error);
       // Handle the error
@@ -37,6 +47,8 @@ function UserProfile() {
 
 
   useEffect(() => {
+
+    
     const token = localStorage.getItem('token');
     const email = localStorage.getItem('email');
 
@@ -49,6 +61,23 @@ function UserProfile() {
       };
 
       const data = { email };
+
+      axios
+        .post('http://localhost:8080/user/getByEmail', data, config)
+        .then((response) => {
+          const { firstName, carColor, carModel, carPlateNumber } = response.data;
+          // Update state with retrieved data
+          setAdminData({
+            firstName,
+            carColor,
+            carModel,
+            carPlateNumber,
+          });
+        })
+        .catch((error) => {
+          console.error('Error fetching data:', error.message);
+          // Handle errors
+        });
 
       // Replace with your actual API endpoint
     }
@@ -82,7 +111,7 @@ function UserProfile() {
                   <Form.Label style={blk}>Car Plate Number</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Car Plate Number"
+                    placeholder={adminData.carPlateNumber || "Car Color"}
                     value={carPlateNumber}
                     onChange={(e) => setCarPlateNumber(e.target.value)}
                   />
@@ -95,7 +124,7 @@ function UserProfile() {
                   <Form.Label style={blk}>Car Model</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Car Model"
+                    placeholder={adminData.carModel || "Car Model"}
                     value={carModel}
                     onChange={(e) => setCarModel(e.target.value)}
                   />
@@ -106,7 +135,7 @@ function UserProfile() {
                   <Form.Label style={blk}>Car Color</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Car Color"
+                    placeholder={adminData.carColor || "Car Color"}
                     value={carColor}
                     onChange={(e) => setCarColor(e.target.value)}
                   />

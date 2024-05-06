@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import makeAuthenticatedRequest from './Api';
-import { Alert, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import Toast from 'react-bootstrap/Toast'; // Import the Toast component
 

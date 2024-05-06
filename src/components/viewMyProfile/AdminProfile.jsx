@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'; // Import useState for manag
 import { Col, Container, Row } from 'react-bootstrap';
 
 function AdminProfile() {
+
+  const blk = {color: 'white'}
   // Initialize state variables
   const [adminData, setAdminData] = useState({
     firstName: '',
@@ -52,21 +54,21 @@ function AdminProfile() {
             'top': '50px',
             'height': '77vh'}}>
         <Row className='my-3'>
-          <Col >
-            <strong >First Name: </strong>
+          <Col style={blk}>
+            <strong>First Name: </strong>
             {adminData.firstName}
           </Col>
-          <Col>
+          <Col style={blk}>
             <strong>Last Name: </strong>
             {adminData.lastName}
           </Col>
         </Row>
         <Row className='my-3'>
-          <Col>
+          <Col style={blk}>
             <strong>Email: </strong>
             {adminData.email}
           </Col>
-          <Col>
+          <Col style={blk}>
             <strong>Phone Number: </strong>
             {adminData.phoneNumber}
           </Col>

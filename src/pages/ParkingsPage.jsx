@@ -7,9 +7,7 @@ import { Button, Container } from 'react-bootstrap'
 
 function ParkingsPage() {
     return (
-        <div style={{
-            // paddingTop: '50px'
-        }}>
+        <div>
             <NavBar />
             <SideBar
                 table={<ParkingsTable />}

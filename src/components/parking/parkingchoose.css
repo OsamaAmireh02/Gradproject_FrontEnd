@@ -46,22 +46,31 @@
 }
 
 
+.Cinema .seats2 {
+    display: grid;
+    column-gap: 15px;
+    row-gap: 5px;
+    grid-gap: 5px;
+    grid-template-columns: 2fr 1fr  2fr 1fr 2fr 2fr ;
+    align-items: center;
+}
+
 .Cinema .seats {
     display: grid;
     column-gap: 15px;
     row-gap: 5px;
     grid-gap: 5px;
-    grid-template-columns: repeat(6, min-content);
+    grid-template-columns: 2fr 1fr  2fr 1fr 2fr 1fr 2fr 2fr;
     align-items: center;
 }
 
-.Cinema .seats .seat:nth-of-type(8n + 2) {
+/* .Cinema .seats .seat:nth-of-type(8n + 2) {
     margin-right: 35px;
 }
 
 .Cinema .seats .seat:nth-of-type(8n + 6) {
     margin-right: 35px;
-}
+} */
 
 .Cinema .seats .seat:not(.occupied):hover,
 .Cinema .seats .seat:not(.occupied):focus {

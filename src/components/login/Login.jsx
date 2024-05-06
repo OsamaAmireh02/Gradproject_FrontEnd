@@ -65,14 +65,14 @@ function Login() {
                         <label for="floatingPassword">Password</label>
                 </div>
             
-                {errorMessage && <Form.Text style={{ color: 'red' }}>
+                {errorMessage && <Form.Text style={{ color: '#ff4040' }}>
                     {errorMessage}
                 </Form.Text>}
                 <br />
-                <Button variant="light" type="submit">
+                <Button variant="warning" type="submit">
                     Login
                 </Button>
-                <Button variant="warning" type="reset" className='mx-3'>
+                <Button variant="light" type="reset" className='mx-3'>
                     Clear
                 </Button>
             </Form>
