@@ -10,23 +10,49 @@ import axios from 'axios';
 function ConfParking() {
 
     const blk = { color: 'white' };
-    const slotId = 9
     const fromTime = localStorage.getItem('time');
     const ticketStatus  = "Pending";
     const location = useLocation();
     const parkingName = new URLSearchParams(location.search).get('parkingName');
-    const parkingId = new URLSearchParams(location.search).get('parkingId');
+    const parkingId = parseInt(new URLSearchParams(location.search).get('parkingId'));
     const userId = localStorage.getItem('id')
-    const [firstName, setFirstName] = useState('');
+    const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState('');
     const [parking, setParking] = useState(parkingName);
     const [email, setEmail] = useState('');
     const [carModel, setCarModel] = useState('');
     const [phoneNumber, setPhoneNumber] = useState();
     const [carColor, setCarColor] = useState('');
-    const [slotNumber, setSlot] = useState(localStorage.getItem('seat'));
+    const [slotNumber, setSlot] = useState(parseInt(localStorage.getItem('seat')));
     const [carPlateNumber, setCarPlate] = useState();
     const [time, settime] = useState(localStorage.getItem('time'));
+
+    const sendPostRequest = async () => {
+        const url = 'http://localhost:8080/slot/getSlotId';
+        const data = {
+            parkingId,
+            slotNumber, // Replace with your actual slot number
+             // Replace with your actual parking ID
+        };
+      
+        const token = localStorage.getItem('token'); // Replace with your actual token
+      
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        };
+      
+        try {
+          const response = await axios.post(url, data, config);
+          console.log('Response:', response.data); // Save the response as needed
+          localStorage.setItem('slotId', response.data)
+        } catch (error) {
+          console.error('Error sending POST request:', error);
+        }
+      };
+
 
     const [userData, setUserData] = useState({
         firstName: '',
@@ -77,6 +103,7 @@ function ConfParking() {
 
 
     const handleButtonClick = async (e) => {
+        sendPostRequest();
         const endpoint = '/ticket/save'; // Replace with your actual endpoint
         const requestData = {
             firstName,
@@ -91,7 +118,7 @@ function ConfParking() {
             carPlateNumber,
             userId,
             parkingId,
-            slotId,
+            slotId: localStorage.getItem('slotId'),
 
 
         }; // Your data object

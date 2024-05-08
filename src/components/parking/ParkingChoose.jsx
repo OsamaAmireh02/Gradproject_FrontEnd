@@ -30,7 +30,7 @@ const time = [
 ];
 
 
-const seats = Array.from({ length: 100 }, (_, i) => i);
+const seats = Array.from({ length: 80 }, (_, i) => i);
 
 export default function Parkings() {
 
