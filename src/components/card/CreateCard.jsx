@@ -12,7 +12,6 @@ function CreateCard() {
       const response = await makeAuthenticatedRequest('/parking/all');
       setResponseData(response.data);
       setIsLoading(false);
-      console.log(responseData)
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -30,7 +29,8 @@ function CreateCard() {
     <Row className="my-4" style={{
       'position': 'sticky',
       'top': '50px',
-      'height': '73vh'}}>
+      'height': '73vh'
+    }}>
       {responseData.map(parking => (
         <Col lg={6} className="my-3" key={parking.id}>
           {/* Use the Card component as a button */}

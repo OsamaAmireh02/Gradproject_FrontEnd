@@ -54,6 +54,7 @@ function UserTable() {
                         <th>Last Name</th>
                         <th>Email</th>
                         <th>Phone Number</th>
+                        <th>faculty</th>
                         <th>Role</th>
                     </tr>
                 </thead>
@@ -64,6 +65,7 @@ function UserTable() {
                         <td>{user.lastName}</td>
                         <td>{user.email}</td>
                         <td>{user.phoneNumber}</td>
+                        <td>{user.faculty}</td>
                         <td>{user.userRole}</td>
                     </tr>
                     )}

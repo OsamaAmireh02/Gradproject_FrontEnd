@@ -11,17 +11,14 @@ function ConfParking() {
 
     const blk = { color: 'white' };
     const fromTime = localStorage.getItem('time');
-    const ticketStatus  = "Pending";
+    const ticketStatus = "Pending";
     const location = useLocation();
     const parkingName = new URLSearchParams(location.search).get('parkingName');
     const parkingId = parseInt(new URLSearchParams(location.search).get('parkingId'));
     const userId = localStorage.getItem('id')
-    const [firstName, setFirstName] = useState();
-    const [lastName, setLastName] = useState('');
+    const [slotId, setSlotId] = useState('');
     const [parking, setParking] = useState(parkingName);
-    const [email, setEmail] = useState('');
     const [carModel, setCarModel] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState();
     const [carColor, setCarColor] = useState('');
     const [slotNumber, setSlot] = useState(parseInt(localStorage.getItem('seat')));
     const [carPlateNumber, setCarPlate] = useState();
@@ -31,27 +28,29 @@ function ConfParking() {
         const url = 'http://localhost:8080/slot/getSlotId';
         const data = {
             parkingId,
-            slotNumber, // Replace with your actual slot number
-             // Replace with your actual parking ID
+            slotNumber
         };
-      
+
         const token = localStorage.getItem('token'); // Replace with your actual token
-      
+
         const config = {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
         };
-      
+
         try {
-          const response = await axios.post(url, data, config);
-          console.log('Response:', response.data); // Save the response as needed
-          localStorage.setItem('slotId', response.data)
+            const response = await axios.post(url, data, config);
+            
+            console.log(slotId);
+            console.log('Response:', response.data); // Save the response as needed
+            setSlotId(response.data);
+            
         } catch (error) {
-          console.error('Error sending POST request:', error);
+            console.error('Error sending POST request:', error);
         }
-      };
+    };
 
 
     const [userData, setUserData] = useState({
@@ -106,9 +105,9 @@ function ConfParking() {
         sendPostRequest();
         const endpoint = '/ticket/save'; // Replace with your actual endpoint
         const requestData = {
-            firstName,
-            lastName,
-            phoneNumber,
+            firstName: userData.firstName,
+            lastName: userData.lastName,
+            phoneNumber: userData.phoneNumber,
             parkingName,
             fromTime,
             slotNumber,
@@ -118,17 +117,14 @@ function ConfParking() {
             carPlateNumber,
             userId,
             parkingId,
-            slotId: localStorage.getItem('slotId'),
-
-
+            slotId
         }; // Your data object
 
         try {
             e.preventDefault();
             const apiResponse = await PostMethod(endpoint, requestData);
             console.log('API Response:', apiResponse);
-            // Handle the response data as needed
-            //window.location.href = '/admin/users';
+            //window.location.href = `/ticket?id=${apiResponse.config.data.ticketId}`; 
         } catch (error) {
             console.error('Error making authenticated request:', error);
             // Handle the error
@@ -149,8 +145,7 @@ function ConfParking() {
                             <Form.Control
                                 type="text"
                                 placeholder={userData.firstName}
-                                value={firstName}
-                                onChange={(e) => setFirstName(e.target.value)}
+                                value={userData.firstName}
                                 disabled
                             />
                         </Form.Group>
@@ -161,8 +156,7 @@ function ConfParking() {
                             <Form.Control
                                 type="text"
                                 placeholder={userData.lastName}
-                                value={lastName}
-                                onChange={(e) => setLastName(e.target.value)}
+                                value={userData.lastName}
                                 disabled
                             />
                         </Form.Group>
@@ -176,8 +170,7 @@ function ConfParking() {
                             <Form.Control
                                 type="text"
                                 placeholder={userData.phoneNumber}
-                                value={phoneNumber}
-                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                value={userData.phoneNumber}
                                 disabled
                             />
                         </Form.Group>
@@ -188,8 +181,7 @@ function ConfParking() {
                             <Form.Control
                                 type="text"
                                 placeholder={userData.email}
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                value={userData.email}
                                 disabled
                             />
                         </Form.Group>
@@ -274,7 +266,12 @@ function ConfParking() {
                 </Row>
                 <Row>
                     <Col style={{ display: 'flex', justifyContent: 'center' }}>
-                        <Button style={{ width: '100px' }} variant='dark' href='/booking/chooseSlot'>Back</Button>
+                        <Button
+                            style={{ width: '100px' }}
+                            variant='dark'
+                            href={`/booking/chooseSlot?parkingId=${parkingId}&parkingName=${encodeURIComponent(parkingName)}`}>
+                            Back
+                        </Button>
                         <Button style={{ width: '100px' }} className='ms-3' variant="warning" type="submit">
                             Submit
                         </Button>

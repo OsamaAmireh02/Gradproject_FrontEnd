@@ -16,6 +16,7 @@ function NavBar() {
     localStorage.removeItem('email');
     localStorage.removeItem('role');
     localStorage.removeItem('id');
+    localStorage.removeItem('seat');
 
   };
 

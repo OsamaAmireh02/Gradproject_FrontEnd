@@ -21,7 +21,7 @@ function ParkingsTable() {
         // For demonstration purposes, I'll simulate it after 3 seconds
         const timer = setTimeout(() => {
             setShowToast(true);
-        }, 3000);
+        }, 500);
 
         return () => clearTimeout(timer); // Clean up the timer
     }, []);

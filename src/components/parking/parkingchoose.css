@@ -38,7 +38,7 @@
 
 .Cinema {
     margin-bottom: 18px;
-    perspective: 400px;
+    /* perspective: 400px; */
 
     display: grid;
     place-items: center;

@@ -5,9 +5,11 @@ import { TypeAnimation } from "react-type-animation";
 
 const d = new Date();
 let hour = parseInt(d.getHours());
-let hour1 = hour + 1;
-let hour2 = hour1 + 1;
-let hour3 = hour2 + 1;
+let hour1 = (hour + 1) % 24;
+let hour2 = (hour1 + 1) % 24;
+let hour3 = (hour2 + 1) % 24;
+
+let length = 80;
 
 
 const time = [
@@ -30,7 +32,7 @@ const time = [
 ];
 
 
-const seats = Array.from({ length: 80 }, (_, i) => i);
+const seats = Array.from({ length: length }, (_, i) => i);
 
 export default function Parkings() {
 
@@ -63,8 +65,7 @@ export default function Parkings() {
       />
 
       <p className="info" style={{ color: 'white', display: 'flex', justifyContent: 'center' }}>
-        You have selected Slot no. <span className="count">{selectedSeats}</span>
-
+        You have selected Slot no. <span className="count">{selectedSeats}</span><br/>
       </p>
 
     </div>
@@ -91,16 +92,16 @@ function Movies({ movie, onChange }) {
         </select>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }} className='my-3'>
-      <TypeAnimation
-        sequence={[
-          'Notice that every ticket lasts an hour.',
-          1000,
-        ]}
-        wrapper="span"
-        speed={50}
-        style={{ fontSize: '24px', display: 'inline-block', color: '#EEF7FF' }}
-        repeat={1}
-      />
+        <TypeAnimation
+          sequence={[
+            'Notice that every ticket lasts an hour.',
+            1000,
+          ]}
+          wrapper="span"
+          speed={50}
+          style={{ fontSize: '24px', display: 'inline-block', color: '#EEF7FF' }}
+          repeat={1}
+        />
       </div>
     </>
   );

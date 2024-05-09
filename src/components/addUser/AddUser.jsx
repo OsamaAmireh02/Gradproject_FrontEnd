@@ -6,11 +6,12 @@ import PostMethod from '../PostMethod';
 
 function AddUser() {
 
-    const blk = {color:'white'};
+    const blk = { color: 'white' };
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [facilty, setFacilty] = useState('');
     const [phoneNumber, setPhoneNumber] = useState();
     const [userRole, setUeserRole] = useState('');
 
@@ -22,7 +23,8 @@ function AddUser() {
             email,
             password,
             phoneNumber,
-            userRole
+            userRole,
+            facilty
         }; // Your data object
 
         try {
@@ -114,7 +116,7 @@ function AddUser() {
                                 value={userRole}
                                 onChange={(e) => setUeserRole(e.target.value)}
                             >
-                                <option style={blk}>Select a role</option>
+                                <option >Select a role</option>
                                 <option value="STUDENT">Student</option>
                                 <option value="ADMIN">Admin</option>
                                 <option value="GUARD">Guard</option>
@@ -122,8 +124,21 @@ function AddUser() {
                         </Form.Group>
                     </Col>
                 </Row>
+                {userRole === "STUDENT" && <Row>
+                    <Col>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label style={blk}>Facilty</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter Facilty"
+                                value={facilty}
+                                onChange={(e) => setFacilty(e.target.value)}
+                            />
+                        </Form.Group>
+                    </Col>
+                </Row>}
 
-                <Button variant="primary" type="submit">
+                <Button variant="warning" type="submit">
                     Add User
                 </Button>
             </Form>

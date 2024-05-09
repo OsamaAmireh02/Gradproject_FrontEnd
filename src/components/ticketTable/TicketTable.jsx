@@ -112,28 +112,30 @@ function TicketTable() {
       <Table striped variant='dark' className='my-3'>
         <thead>
           <tr>
-            <th>User ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
             <th>Parking Name</th>
-            <th>From Time</th>
-            <th>To Time</th>
+            <th>Date</th>
+            <th>Starting Time</th>
             <th>Slot Number</th>
-            <th>Ticket Status</th>
             <th>Car Model</th>
             <th>Car Color</th>
             <th>Car Plate Number</th>
+            <th>Ticket Status</th>
           </tr>
         </thead>
         <tbody>
           {responseData.map(ticket => <tr>
             <td>{ticket.firstName}</td>
+            <td>{ticket.lastName}</td>
             <td>{ticket.parkingName}</td>
+            <td>{ticket.date}</td>
             <td>{ticket.fromTime}</td>
-            <td>{ticket.toTime}</td>
             <td>{ticket.slotNumber}</td>
-            <td>{ticket.ticketStatus}</td>
             <td>{ticket.carModel}</td>
             <td>{ticket.carColor}</td>
             <td>{ticket.carPlateNumber}</td>
+            <td>{ticket.ticketStatus}</td>
           </tr>)}
         </tbody>
       </Table>

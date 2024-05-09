@@ -5,7 +5,7 @@ import PostMethod from '../PostMethod';
 
 function UserProfile() {
 
-  const [adminData, setAdminData] = useState({
+  const [userData, setUserData] = useState({
     firstName: '',
     carColor: '',
     carModel: '',
@@ -15,7 +15,6 @@ function UserProfile() {
   const id = localStorage.getItem('id');
   const blk = { color: 'white' };
 
-  const [firstName, setFirstName] = useState('');
   const [carColor, setCarColor] = useState('');
   const [carPlateNumber, setCarPlateNumber] = useState('');
   const [carModel, setCarModel] = useState();
@@ -48,7 +47,6 @@ function UserProfile() {
 
   useEffect(() => {
 
-    
     const token = localStorage.getItem('token');
     const email = localStorage.getItem('email');
 
@@ -65,14 +63,13 @@ function UserProfile() {
       axios
         .post('http://localhost:8080/user/getByEmail', data, config)
         .then((response) => {
-          const { firstName, carColor, carModel, carPlateNumber } = response.data;
+          console.log(response.data)
+          const { carColor, carModel, carPlateNumber, email, faculty, firstName, id, lastName, phoneNumber, userStatus } = response.data;
           // Update state with retrieved data
-          setAdminData({
-            firstName,
-            carColor,
-            carModel,
-            carPlateNumber,
-          });
+          setUserData
+            ({
+              carColor, carModel, carPlateNumber, email, faculty, firstName, id, lastName, phoneNumber, userStatus
+            });
         })
         .catch((error) => {
           console.error('Error fetching data:', error.message);
@@ -96,12 +93,60 @@ function UserProfile() {
             <Row>
               <Col>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label style={blk}>First Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder={userData.firstName}
+                    value={userData.firstName}
+                    disabled
+                  />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label style={blk}>Last Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder={userData.lastName}
+                    value={userData.lastName}
+                    disabled
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label style={blk}>Email</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder={localStorage.getItem('email')}
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
+                    placeholder={userData.email}
+                    value={userData.email}
+                    disabled
+                  />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label style={blk}>Phone Number</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder={userData.phoneNumber}
+                    value={userData.phoneNumber}
+                    onChange={(e) => setCarPlateNumber(e.target.value)}
+                    disabled
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label style={blk}>Faculty</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder={userData.faculty}
+                    value={userData.faculty}
                     disabled
                   />
                 </Form.Group>
@@ -111,7 +156,8 @@ function UserProfile() {
                   <Form.Label style={blk}>Car Plate Number</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder={adminData.carPlateNumber || "Car Color"}
+                    placeholder={userData
+                      .carPlateNumber || "Car Plate Number"}
                     value={carPlateNumber}
                     onChange={(e) => setCarPlateNumber(e.target.value)}
                   />
@@ -124,7 +170,8 @@ function UserProfile() {
                   <Form.Label style={blk}>Car Model</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder={adminData.carModel || "Car Model"}
+                    placeholder={userData
+                      .carModel || "Car Model"}
                     value={carModel}
                     onChange={(e) => setCarModel(e.target.value)}
                   />
@@ -135,7 +182,8 @@ function UserProfile() {
                   <Form.Label style={blk}>Car Color</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder={adminData.carColor || "Car Color"}
+                    placeholder={userData
+                      .carColor || "Car Color"}
                     value={carColor}
                     onChange={(e) => setCarColor(e.target.value)}
                   />

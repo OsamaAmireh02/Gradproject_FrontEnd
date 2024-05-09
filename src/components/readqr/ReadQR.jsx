@@ -1,40 +1,54 @@
 import { Scanner } from '@yudiel/react-qr-scanner';
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import axios from 'axios';
 
 const ReadQR = () => {
   const [scannedData, setScannedData] = useState(null);
 
   // Callback function when QR code is successfully scanned
   const handleScanResult = (text, result) => {
+    
+    handlePostRequest(result.text)
     // Assuming 'result' contains the scanned data (e.g., ticket ID)
     // You can customize this logic based on your specific use case
-    setScannedData(result);
+    //setScannedData(result);
   };
 
   // Function to handle the POST request
-  const handlePostRequest = async () => {
+  const handlePostRequest = async (id) => {
     try {
+      console.log(id)
+      const endpoint = `/ticket/scan/${id}`
+      PostMethod1(endpoint)
+      window.location.href = '/';
       // Make a POST request to your server endpoint
-      const response = await fetch('https://example.com/api/scan', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ticketId: scannedData }), // Send the scanned data
-      });
-
-      if (response.ok) {
-        // Handle success (e.g., show a success message)
-        console.log('POST request successful');
-      } else {
-        // Handle error (e.g., show an error message)
-        console.error('Error making POST request');
-      }
     } catch (error) {
       console.error('Error:', error.message);
     }
   };
+
+  const api = axios.create({
+    baseURL: 'http://localhost:8080', // Replace with your API base URL
+  });
+
+  async function PostMethod1(endpoint) {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('Token not found. Please authenticate first.');
+        return null;
+      }
+  
+      // Set the Authorization header
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      // Make the request using POST method
+      const response = await api.post(endpoint);
+      return response;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      throw error
+    }
+  }
 
   return (
     <div>
@@ -48,7 +62,7 @@ const ReadQR = () => {
       />
 
       {/* Button to trigger the POST request */}
-      <Button onClick={handlePostRequest}>Make POST Request</Button>
+      {/* <Button onClick={handlePostRequest}>Make POST Request</Button> */}
     </div>
   );
 };

@@ -10,12 +10,11 @@ function AddParking() {
 
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
-    const [numberOfSlot, setSlots] = useState(48);
+    const [numberOfSlot, setSlots] = useState(80);
 
     const handleButtonClick = async (e) => {
         const endpoint = '/parking/save'; // Replace with your actual endpoint
         const requestData = {
-            id: "1",
             name,
             address,
             numberOfSlot
@@ -64,8 +63,8 @@ function AddParking() {
                                 aria-label="Default select example"
                                 value={numberOfSlot}
                                 onChange={(e) => setSlots(parseInt(e.target.value, 10))}>
-                                <option value="48">48</option>
-                                <option value="36">36</option>
+                                <option value="48">80</option>
+                                <option value="36">80</option>
                             </Form.Select>
                         </Form.Group>
                     </Col>
