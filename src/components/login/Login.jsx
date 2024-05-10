@@ -38,6 +38,14 @@ function Login() {
             // You can handle the user info as needed (e.g., display it on the UI)
             localStorage.setItem('role', userInfo.userRole);
             localStorage.setItem('id', userInfo.id);
+            if (userInfo.userStatus == 'DELETED') {
+                localStorage.removeItem('token');
+                localStorage.removeItem('email');
+                localStorage.removeItem('role');
+                localStorage.removeItem('id');
+                localStorage.removeItem('seat');
+                throw "No access"
+            }
 
             // Redirect to home page
             window.location.href = '/';
@@ -54,25 +62,25 @@ function Login() {
             'height': '74vh'
 
         }}>
-            <h1 style={{color:'white'}} className='my-3'>Welcome Back</h1>
+            <h1 style={{ color: 'white' }} className='my-3'>Welcome Back</h1>
             <Form onSubmit={handleLogin}>
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)}/>
-                        <label for="floatingInput">Email address</label>
+                <div className="form-floating mb-3">
+                    <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <label htmlFor="floatingInput">Email address</label>
                 </div>
-                <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                        <label for="floatingPassword">Password</label>
+                <div className="form-floating">
+                    <input type="password" className="form-control" id="floatingPassword" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <label htmlFor="floatingPassword">Password</label>
                 </div>
-            
+
                 {errorMessage && <Form.Text style={{ color: '#ff4040' }}>
                     {errorMessage}
                 </Form.Text>}
                 <br />
-                <Button variant="warning" type="submit">
+                <Button variant="warning" type="submit" style={{ width: '75px' }}>
                     Login
                 </Button>
-                <Button variant="light" type="reset" className='mx-3'>
+                <Button variant="light" type="reset" className='mx-3' style={{ width: '75px' }} >
                     Clear
                 </Button>
             </Form>

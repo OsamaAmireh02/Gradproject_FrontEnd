@@ -16,6 +16,8 @@ import ChooseSlotPage from './pages/ChooseSlotPage';
 import SubmitBooking from './pages/SubmitBooking';
 import UserViewProfilePage from './pages/UserViewProfilePage';
 import ViewTicket from './pages/ViewTicket';
+import UserTickets from './pages/UserTickets';
+import DeletedUsersPage from './pages/DeletedUsersPage';
 
 
 function App() {
@@ -36,6 +38,9 @@ function App() {
       {localStorage.getItem('role') === 'STUDENT' && <Route path="/booking/submit" element={<SubmitBooking />} />}
       {localStorage.getItem('role') === 'STUDENT' && <Route path="/student/myprofile" element={<UserViewProfilePage />} />}
       {localStorage.getItem('role') === 'STUDENT' && <Route path="/ticket" element={<ViewTicket />} />}
+      {localStorage.getItem('role') === 'STUDENT' && <Route path="/student/tickets" element={<UserTickets />} />}
+      {localStorage.getItem('role') === 'ADMIN' && <Route path="/admin/deletedUsers" element={<DeletedUsersPage />} />}
+
 
     </Routes>
   </>

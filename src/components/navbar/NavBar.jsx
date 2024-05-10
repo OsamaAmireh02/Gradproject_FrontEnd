@@ -17,7 +17,6 @@ function NavBar() {
     localStorage.removeItem('role');
     localStorage.removeItem('id');
     localStorage.removeItem('seat');
-
   };
 
   return (
@@ -40,6 +39,7 @@ function NavBar() {
             {isAuthenticated() && role === "STUDENT" && <Nav.Link href="/booking" style={{ color: '#ffffff' }}>Booking</Nav.Link>}
             {isAuthenticated() && role === "GUARD" && <Nav.Link href="/guard/scan" style={{ color: '#ffffff' }}>Scan QR Code</Nav.Link>}
             {isAuthenticated() && role === "GUARD" && <Nav.Link href="/guard/tickets" style={{ color: '#ffffff' }}>View Tickets</Nav.Link>}
+            {isAuthenticated() && role === "STUDENT" && <Nav.Link href="/student/tickets" style={{ color: '#ffffff' }}>My Tickets</Nav.Link>}
             {isAuthenticated() && role === "STUDENT" && <Nav.Link href="/student/myprofile" style={{ color: '#ffffff' }}>My Profile</Nav.Link>}
           </Nav>
           <Nav className="ml-auto"> {/* Apply ml-auto class */}

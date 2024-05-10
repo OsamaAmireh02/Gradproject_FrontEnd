@@ -51,14 +51,12 @@ function ParkingsTable() {
             <thead>
                 <tr>
                     <th>Parking Name</th>
-                    <th>Address</th>
                     <th>No. Of Slots</th>
                 </tr>
             </thead>
             <tbody>
                 {responseData.map(parking => <tr>
                     <td>{parking.name}</td>
-                    <td>{parking.address}</td>
                     <td>{parking.numberOfSlot}</td>
                 </tr>)}
             </tbody>

@@ -2,7 +2,7 @@ import React from 'react'
 import SideBar from '../components/sidebar/SideBar'
 import NavBar from '../components/navbar/NavBar'
 import ParkingsTable from '../components/parkingTable/ParkingTable'
-import { Button, Container } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 
 function ParkingsPage() {
@@ -11,7 +11,7 @@ function ParkingsPage() {
             <NavBar />
             <SideBar
                 table={<ParkingsTable />}
-                button={<Container className='mb-3'><Button href='/admin/addParking' variant='warning'>Add Parking</Button></Container>}
+                button={<Button className='mb-3' href='/admin/addParking' variant='warning'>Add Parking</Button>}
             />
         </div>
     )

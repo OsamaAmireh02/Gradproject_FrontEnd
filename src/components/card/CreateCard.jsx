@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import makeAuthenticatedRequest from '../userTable/Api';
 
@@ -29,7 +29,6 @@ function CreateCard() {
     <Row className="my-4" style={{
       'position': 'sticky',
       'top': '50px',
-      'height': '73vh'
     }}>
       {responseData.map(parking => (
         <Col lg={6} className="my-3" key={parking.id}>
@@ -52,7 +51,18 @@ function CreateCard() {
               <Card.Title><strong>{parking.name}</strong></Card.Title>
               <Card.Text>
                 This Parking have {parking.numberOfSlot} slots. <br />
-                <a href={parking.address}>Click here to open its location in Google maps</a>
+                <Container className='mx-4'>
+                  <iframe
+                  className='my-3'
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40005.46259253509!2d35.897279159918405!3d31.93100518875465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151ca07139c70a21%3A0xc5b2f8903093b109!2sRoman%20Theater!5e0!3m2!1sen!2sjo!4v1715340853580!5m2!1sen!2sjo"
+                    width="500"
+                    height="300"
+                    style={{ border: 0 }}
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                  </iframe>
+                </Container>
               </Card.Text>
             </Card.Body>
           </Card>

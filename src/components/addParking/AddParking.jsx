@@ -8,6 +8,8 @@ function AddParking() {
 
     const blk = { color: 'white' };
 
+    const [errorMessage, setErrorMessage] = useState('');
+
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
     const [numberOfSlot, setSlots] = useState(80);
@@ -28,6 +30,7 @@ function AddParking() {
             // Handle the response data as needed
         } catch (error) {
             console.error('Error making authenticated request:', error);
+            setErrorMessage('Please check your data and try again.');
             // Handle the error
         }
     };
@@ -71,12 +74,14 @@ function AddParking() {
                     <Col>
                     </Col>
                 </Row>
-                    <Button variant="light" className='me-3' type="danger">
-                        Add Parking
-                    </Button>
-                    <Button variant="warning" type="clear">
-                        Clear
-                    </Button>
+                {errorMessage && <div className="error-message mb-3" style={{ color: '#ff4040' }}>{errorMessage}</div>}
+
+                <Button variant="warning" className='me-3' type="danger">
+                    Add Parking
+                </Button>
+                <Button variant="light" type="clear">
+                    Clear
+                </Button>
             </Form>
         </Container>
     );

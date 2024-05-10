@@ -11,9 +11,12 @@ function AddUser() {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [facilty, setFacilty] = useState('');
+    const [faculty, setFaculty] = useState('');
     const [phoneNumber, setPhoneNumber] = useState();
     const [userRole, setUeserRole] = useState('');
+
+    const [errorMessage, setErrorMessage] = useState('');
+
 
     const handleButtonClick = async (e) => {
         const endpoint = '/user/save'; // Replace with your actual endpoint
@@ -24,7 +27,7 @@ function AddUser() {
             password,
             phoneNumber,
             userRole,
-            facilty
+            faculty
         }; // Your data object
 
         try {
@@ -34,7 +37,7 @@ function AddUser() {
             window.location.href = '/admin/users?success=true';
         } catch (error) {
             console.error('Error making authenticated request:', error);
-            // Handle the error
+            setErrorMessage('Please check your data and try again.');
         }
     };
 
@@ -126,18 +129,38 @@ function AddUser() {
                 </Row>
                 {userRole === "STUDENT" && <Row>
                     <Col>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>Facilty</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter Facilty"
-                                value={facilty}
-                                onChange={(e) => setFacilty(e.target.value)}
-                            />
+                            <Form.Select
+                                aria-label="Default select example"
+                                value={faculty}
+                                onChange={(e) => setFaculty(e.target.value)}
+                            >
+                                <option >Select the faculty</option>
+                                <option value="Science">School of Science</option>
+                                <option value="Agriculturee">School of Agriculturee</option>
+                                <option value="Engineering">School of Engineering</option>
+                                <option value="IT">King Abdullah II School for Information Technology</option>
+                                <option value="Arts">School of Arts</option>
+                                <option value="Business">School of Business</option>
+                                <option value="Sharia">School of Sharia</option>
+                                <option value="Educational">School of Educational Sciences</option>
+                                <option value="Law">School of Law</option>
+                                <option value="Nursing">School of Nursing</option>
+                                <option value="Medicine">School of Medicine</option>
+                                <option value="Pharmacy">School of Pharmacy</option>
+                                <option value="Physical">School of Physical Education</option>
+                                <option value="Arts">School of Arts and Design</option>
+                                <option value="International">School of International Studies</option>
+                                <option value="languages">School of Foreign languages</option>
+                                <option value="Archaeology">School of Archaeology and Tourism</option>
+                                <option value="Dentistry">School of Dentistry</option>
+                                <option value="Rehabilitation">School of Rehabilitation Sciences</option>
+                            </Form.Select>
                         </Form.Group>
                     </Col>
                 </Row>}
-
+                {errorMessage && <div className="error-message mb-3" style={{ color: '#ff4040' }}>{errorMessage}</div>}
                 <Button variant="warning" type="submit">
                     Add User
                 </Button>

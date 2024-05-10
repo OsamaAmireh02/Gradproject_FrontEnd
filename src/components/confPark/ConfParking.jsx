@@ -124,7 +124,7 @@ function ConfParking() {
             e.preventDefault();
             const apiResponse = await PostMethod(endpoint, requestData);
             console.log('API Response:', apiResponse);
-            //window.location.href = `/ticket?id=${apiResponse.config.data.ticketId}`; 
+            window.location.href = `/ticket?id=${apiResponse.data.ticketId}`; 
         } catch (error) {
             console.error('Error making authenticated request:', error);
             // Handle the error
