@@ -10,11 +10,9 @@ function ParkingsTable() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const isSuccess = queryParams.get('success') === 'true';
-
     const [responseData, setResponseData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-
-    const [showToast, setShowToast] = useState(false); // State for controlling the toast
+    const [showToast, setShowToast] = useState(false);
 
     useEffect(() => {
         // Set showToast to true after a successful action (e.g., user added)

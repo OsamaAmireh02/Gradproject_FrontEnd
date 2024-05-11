@@ -134,12 +134,12 @@ function ConfParking() {
     return (
         <Container className='my-4' style={{
             'position': 'sticky',
-            'height': '73vh'
+            'minHeight': '73vh'
 
         }}>
             <Form onSubmit={handleButtonClick}>
                 <Row>
-                    <Col>
+                    <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>First Name</Form.Label>
                             <Form.Control
@@ -150,7 +150,7 @@ function ConfParking() {
                             />
                         </Form.Group>
                     </Col>
-                    <Col>
+                    <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>Last Name</Form.Label>
                             <Form.Control
@@ -164,7 +164,7 @@ function ConfParking() {
                 </Row>
 
                 <Row>
-                    <Col>
+                    <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>Phone Number</Form.Label>
                             <Form.Control
@@ -175,7 +175,7 @@ function ConfParking() {
                             />
                         </Form.Group>
                     </Col>
-                    <Col>
+                    <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>Email</Form.Label>
                             <Form.Control
@@ -189,7 +189,7 @@ function ConfParking() {
                 </Row>
 
                 <Row>
-                    <Col>
+                    <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>Car Model</Form.Label>
                             <Form.Control
@@ -200,7 +200,7 @@ function ConfParking() {
                             />
                         </Form.Group>
                     </Col>
-                    <Col>
+                    <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>Car Color</Form.Label>
                             <Form.Control
@@ -214,7 +214,7 @@ function ConfParking() {
                 </Row>
 
                 <Row>
-                    <Col>
+                    <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>Selected Time</Form.Label>
                             <Form.Control
@@ -226,7 +226,7 @@ function ConfParking() {
                             />
                         </Form.Group>
                     </Col>
-                    <Col>
+                    <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>Selected Slot</Form.Label>
                             <Form.Control
@@ -240,7 +240,7 @@ function ConfParking() {
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
+                    <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>Car Plate number</Form.Label>
                             <Form.Control
@@ -251,7 +251,7 @@ function ConfParking() {
                             />
                         </Form.Group>
                     </Col>
-                    <Col>
+                    <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>Selected Parking</Form.Label>
                             <Form.Control

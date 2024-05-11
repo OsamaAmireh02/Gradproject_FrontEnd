@@ -31,7 +31,7 @@ function CreateCard() {
       'top': '50px',
     }}>
       {responseData.map(parking => (
-        <Col lg={6} className="my-3" key={parking.id}>
+        <Col lg={4} className="my-3" key={parking.id}>
           {/* Use the Card component as a button */}
           <Card
             as="a" // Set the Card component as an anchor (button)
@@ -51,18 +51,15 @@ function CreateCard() {
               <Card.Title><strong>{parking.name}</strong></Card.Title>
               <Card.Text>
                 This Parking have {parking.numberOfSlot} slots. <br />
-                <Container className='mx-4'>
-                  <iframe
-                  className='my-3'
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40005.46259253509!2d35.897279159918405!3d31.93100518875465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151ca07139c70a21%3A0xc5b2f8903093b109!2sRoman%20Theater!5e0!3m2!1sen!2sjo!4v1715340853580!5m2!1sen!2sjo"
-                    width="500"
-                    height="300"
-                    style={{ border: 0 }}
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                  </iframe>
-                </Container>
+                <iframe
+                  src={parking.address}
+                  width="300"
+                  height="300"
+                  style={{ border: 1 }}
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
               </Card.Text>
             </Card.Body>
           </Card>

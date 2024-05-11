@@ -14,9 +14,7 @@ function ChooseSlotPage() {
       // paddingTop: '50px',
     }}>
       <NavBar />
-      <Container style={{ marginBottom: '50px' }}>
-        <Parkings />
-      </Container>
+      <Parkings />
       <Container style={{ display: 'flex', justifyContent: 'center' }}>
         <Button style={{ width: '100px' }} variant='dark' href='/booking'>Back</Button>
         <Button style={{ width: '100px' }} className='mx-3' variant='warning' href={`/booking/submit?parkingId=${parkingId}&parkingName=${encodeURIComponent(parkingName)}`}>Next</Button>

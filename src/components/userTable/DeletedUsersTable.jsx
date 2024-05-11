@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import makeAuthenticatedRequest from './Api';
-import { Table } from 'react-bootstrap';
+import { Container, Table } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
@@ -55,7 +55,7 @@ function DeletedUserTable() {
                         <td>{user.phoneNumber}</td>
                         <td>{user.faculty}</td>
                         <td>{user.userRole}</td>
-                        <td>DEACTIVATED</td>
+                        <td>INACTIVE</td>
                     </tr>
                     </>
                     )}

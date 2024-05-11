@@ -5,9 +5,7 @@ import Footer from '../components/footer/Footer'
 
 function SubmitBooking() {
   return (
-    <div style={{
-      // paddingTop: '50px'
-  }}>
+    <div>
       <NavBar />
       <ConfParking />
       <Footer />

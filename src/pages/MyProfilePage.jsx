@@ -2,7 +2,6 @@ import React from 'react'
 import NavBar from '../components/navbar/NavBar'
 import Footer from '../components/footer/Footer'
 import ViewProfile from '../components/viewMyProfile/ViewProfile'
-import { Button, Row } from 'react-bootstrap'
 
 const users = [{
   "id":"1",

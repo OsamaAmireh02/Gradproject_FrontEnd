@@ -59,7 +59,7 @@ function Login() {
             width: '60%',
             'position': 'sticky',
             'top': '1000px',
-            'height': '74vh'
+            'minHeight': '74vh'
 
         }}>
             <h1 style={{ color: 'white' }} className='my-3'>Welcome Back</h1>

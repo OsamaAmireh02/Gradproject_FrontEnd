@@ -6,11 +6,13 @@ import { Container } from 'react-bootstrap'
 
 function ReadQRPage() {
     return (
-        <div style={{
-            // paddingTop: '50px'
-        }}>
+        <div>
             <NavBar />
-            <Container>
+            <Container style={{
+            'position': 'sticky',
+            'top': '1000px',
+            'minHeight': '75vh'
+        }}>
             <ReadQR />
             </Container>
             <Footer />

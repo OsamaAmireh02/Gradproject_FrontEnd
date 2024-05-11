@@ -1,11 +1,74 @@
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import makeAuthenticatedRequest from '../userTable/Api';
-import { Button, Col, Row } from 'react-bootstrap';
+import { Button, Col, Dropdown, Row } from 'react-bootstrap';
 import axios from 'axios';
 
 
 function TicketTable() {
+
+  const ShowActive = async () => {
+    try {
+      const url = 'http://localhost:8080/ticket/getActiveTickets';
+      const token = localStorage.getItem('token'); // Replace with your actual token
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      };
+
+      const response = await axios.get(url, config);
+      setResponseData(response.data); // Save the response data
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      // Handle the error
+    }
+  }
+
+  const ShowPending = async () => {
+    try {
+      const url = 'http://localhost:8080/ticket/getPendingTickets';
+      const token = localStorage.getItem('token'); // Replace with your actual token
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      };
+
+      const response = await axios.get(url, config);
+      setResponseData(response.data); // Save the response data
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      // Handle the error
+    }
+  }
+
+  const ShowFinished = async () => {
+    try {
+      const url = 'http://localhost:8080/ticket/getFinishedTickets';
+      const token = localStorage.getItem('token'); // Replace with your actual token
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      };
+
+      const response = await axios.get(url, config);
+      setResponseData(response.data); // Save the response data
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      // Handle the error
+    }
+  }
 
   const SortByDate = async () => {
     try {
@@ -27,6 +90,8 @@ function TicketTable() {
       // Handle the error
     }
   };
+
+
 
   const SortByUserName = async () => {
     try {
@@ -96,13 +161,28 @@ function TicketTable() {
     <>
       <Row>
         <Col>
-          <Button variant='warning' onClick={SortByParkingName}>Sort By Parking Name</Button>
+        <Dropdown>
+          <Dropdown.Toggle variant="warning" id="dropdown-basic">
+            Sorting
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={SortByParkingName}>Sort By Parking Name</Dropdown.Item>
+            <Dropdown.Item onClick={SortByUserName}>Sort By Student Name</Dropdown.Item>
+            <Dropdown.Item onClick={SortByDate}>Sort By Date</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
         </Col>
         <Col>
-          <Button variant='warning' onClick={SortByUserName}>Sort By Student Name</Button>
-        </Col>
-        <Col>
-          <Button variant='warning' onClick={SortByDate}>Sort By Date</Button>
+        <Dropdown>
+          <Dropdown.Toggle variant="warning" id="dropdown-basic">
+            Filtering
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={ShowActive}>Show Active Tickets</Dropdown.Item>
+            <Dropdown.Item onClick={ShowPending}>Show Pending Tickets</Dropdown.Item>
+            <Dropdown.Item onClick={ShowFinished}>Show Finished Tickets</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
         </Col>
       </Row>
 

@@ -14,6 +14,7 @@ function HomePage() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const isSuccess = queryParams.get('success') === 'true';
+    const isReaded = queryParams.get('readed') === 'true';
     const role = localStorage.getItem('role')
 
     const [showToast, setShowToast] = useState(false);
@@ -64,6 +65,21 @@ function HomePage() {
                         <strong className="me-auto">Success</strong>
                     </Toast.Header>
                     <Toast.Body>User data updated successfully!</Toast.Body>
+                </Toast>
+            )}
+
+            {isReaded && (
+                <Toast
+                    show={showToast}
+                    onClose={() => setShowToast(false)}
+                    delay={5000} // Set the delay (in milliseconds) for auto-closing
+                    autohide
+                    style={{ position: 'fixed', top: 20, right: 20 }} // Position the toast
+                >
+                    <Toast.Header closeButton={false}>
+                        <strong className="me-auto">Success</strong>
+                    </Toast.Header>
+                    <Toast.Body>Ticket status updated successfully!</Toast.Body>
                 </Toast>
             )}
             {role === "STUDENT" && <FloatingWhatsApp phoneNumber="0799078901" accountName="Osama Amireh" />}

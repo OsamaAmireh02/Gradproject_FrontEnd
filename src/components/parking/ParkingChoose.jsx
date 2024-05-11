@@ -2,6 +2,7 @@ import "./parkingchoose.css";
 import React, { useState } from "react";
 import clsx from "clsx";
 import { TypeAnimation } from "react-type-animation";
+import { Container } from "react-bootstrap";
 
 const d = new Date();
 let hour = parseInt(d.getHours());
@@ -9,7 +10,7 @@ let hour1 = (hour + 1) % 24;
 let hour2 = (hour1 + 1) % 24;
 let hour3 = (hour2 + 1) % 24;
 
-let length = 80;
+let length = 60;
 
 
 const time = [
@@ -43,11 +44,7 @@ export default function Parkings() {
   localStorage.setItem('time', selectedMovie.name)
 
   return (
-    <div className="App" style={{
-      'position': 'sticky',
-      'height': '73vh'
-
-    }}>
+    <div className="App">
       <Movies
         movie={selectedMovie}
         onChange={(movie) => {
@@ -56,6 +53,7 @@ export default function Parkings() {
         }}
       />
       <ShowCase />
+      <Container style={{ display: 'flex', justifyContent: 'center' }}>
       <Cinema
         movie={selectedMovie}
         selectedSeats={selectedSeats}
@@ -63,10 +61,15 @@ export default function Parkings() {
           setSelectedSeats(selectedSeats)
         }
       />
+      </Container>
 
+      {selectedSeats.length != 0 ? <p className="info" style={{ color: 'white', display: 'flex', justifyContent: 'center' }}>
+        You have selected slot no. <span className="count">{selectedSeats}</span><br/>
+      </p>:
       <p className="info" style={{ color: 'white', display: 'flex', justifyContent: 'center' }}>
-        You have selected Slot no. <span className="count">{selectedSeats}</span><br/>
+        Please select a slot.
       </p>
+      }
 
     </div>
   );

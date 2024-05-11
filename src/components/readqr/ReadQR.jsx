@@ -20,7 +20,7 @@ const ReadQR = () => {
       console.log(id)
       const endpoint = `/ticket/scan/${id}`
       PostMethod1(endpoint)
-      window.location.href = '/';
+      window.location.href = `/?readed=true`;
       // Make a POST request to your server endpoint
     } catch (error) {
       console.error('Error:', error.message);
@@ -52,17 +52,10 @@ const ReadQR = () => {
 
   return (
     <div>
-      {/* Display the scanned data */}
-      {scannedData && <p>Scanned Data: {scannedData}</p>}
-
-      {/* QR scanner component */}
       <Scanner
         onResult={handleScanResult}
         onError={(error) => console.log(error?.message)}
       />
-
-      {/* Button to trigger the POST request */}
-      {/* <Button onClick={handlePostRequest}>Make POST Request</Button> */}
     </div>
   );
 };
