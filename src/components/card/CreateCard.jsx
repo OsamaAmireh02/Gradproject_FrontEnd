@@ -7,6 +7,16 @@ function CreateCard() {
   const [responseData, setResponseData] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
+  const getAvailable = async (parkingId) => {
+    try {
+      const response = await makeAuthenticatedRequest('/parking/all');
+      setResponseData(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+
   const fetchData = async () => {
     try {
       const response = await makeAuthenticatedRequest('/parking/all');

@@ -33,7 +33,7 @@ function DeletedUserTable() {
 
     return (
         <>
-            <Table striped variant='dark'>
+            <Table striped variant='dark' className='table-hover'>
                 <thead>
                     <tr>
                         <th>ID</th>

@@ -1,21 +1,36 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Card, Col, Container, Row, Toast } from 'react-bootstrap'
+import { Button, Card, Col, Container, Modal, Row, Toast } from 'react-bootstrap'
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
 
 function TicketsHistory() {
 
+    const [showConfirmation, setShowConfirmation] = useState(false);
+    const [ticketId, setTicketId] = useState();
     const [showToast, setShowToast] = useState(false); // State for controlling the toast
     const location = useLocation();
     const isDone = new URLSearchParams(location.search).get('isDone');
     const [userTickets, setUserTickets] = useState([]);
     const userId = localStorage.getItem('id');
+    useEffect(() => {
+        // Set showToast to true after a successful action (e.g., user added)
+        // For demonstration purposes, I'll simulate it after 3 seconds
+        const timer = setTimeout(() => {
+            setShowToast(true);
+        }, 500);
+        return () => clearTimeout(timer); // Clean up the timer
+    }, []);
     const api = axios
         .create({
             baseURL: 'http://localhost:8080', // Replace with your API base URL
         });
 
+    const handleDeactivateClick = (userId) => {
+        setShowConfirmation(true);
+        // You can also pass userId to your changeStatus function here
+        setTicketId(userId);
+    };
 
     const deleteTicket = async (ticketId) => {
 
@@ -29,6 +44,8 @@ function TicketsHistory() {
             }
             // Set the Authorization header
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            // Show confirmation modal
+            setShowConfirmation(true);
             // Make the request using POST method
             const response = await api.post(endpoint);
             console.log("On Delete. ticketid: " + ticketId)
@@ -101,9 +118,23 @@ function TicketsHistory() {
                                         </Card.Text>
                                     </a>
                                 </Card.Body>
-                                <Card.Footer><Button variant='danger' onClick={() => deleteTicket(ticket.ticketId)}>Delete</Button></Card.Footer>
+                                <Card.Footer><Button variant='danger' onClick={() => handleDeactivateClick(ticket.ticketId)}>Delete</Button></Card.Footer>
                             </Card>
-
+                            {/* Confirmation modal */}
+                            <Modal show={showConfirmation}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Cancel Confirmation</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>Are you sure you want to cancel this ticket?</Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant='secondary' onClick={() => setShowConfirmation(false)}>
+                                        Cancel
+                                    </Button>
+                                    <Button variant='danger' onClick={() => deleteTicket(ticketId)}>
+                                        Confirm
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
                         </Col>
                     ))}
                 </Row>

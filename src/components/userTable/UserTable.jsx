@@ -80,7 +80,7 @@ function UserTable() {
 
     return (
         <>
-            <Table striped variant='dark'>
+            <Table striped variant='dark' className='table-hover'>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -103,7 +103,7 @@ function UserTable() {
                         <td>{user.faculty}</td>
                         <td>{user.userRole}</td>
                         <td><Button onClick={() => handleDeactivateClick(user.id)} variant='danger'>
-                            Deactivate
+                            Delete User
                         </Button></td>
                         {/* Confirmation modal */}
                         <Modal show={showConfirmation}>

@@ -161,64 +161,65 @@ function TicketTable() {
     <>
       <Row>
         <Col>
-        <Dropdown>
-          <Dropdown.Toggle variant="warning" id="dropdown-basic">
-            Sorting
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item onClick={SortByParkingName}>Sort By Parking Name</Dropdown.Item>
-            <Dropdown.Item onClick={SortByUserName}>Sort By Student Name</Dropdown.Item>
-            <Dropdown.Item onClick={SortByDate}>Sort By Date</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+          <Dropdown>
+            <Dropdown.Toggle variant="warning" id="dropdown-basic">
+              Sorting
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={SortByParkingName}>Sort By Parking Name</Dropdown.Item>
+              <Dropdown.Item onClick={SortByUserName}>Sort By Student Name</Dropdown.Item>
+              <Dropdown.Item onClick={SortByDate}>Sort By Date</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </Col>
         <Col>
-        <Dropdown>
-          <Dropdown.Toggle variant="warning" id="dropdown-basic">
-            Filtering
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item onClick={ShowActive}>Show Active Tickets</Dropdown.Item>
-            <Dropdown.Item onClick={ShowPending}>Show Pending Tickets</Dropdown.Item>
-            <Dropdown.Item onClick={ShowFinished}>Show Finished Tickets</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+          <Dropdown>
+            <Dropdown.Toggle variant="warning" id="dropdown-basic">
+              Filtering
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={ShowActive}>Show Active Tickets</Dropdown.Item>
+              <Dropdown.Item onClick={ShowPending}>Show Pending Tickets</Dropdown.Item>
+              <Dropdown.Item onClick={ShowFinished}>Show Finished Tickets</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </Col>
       </Row>
 
 
 
-
-      <Table striped variant='dark' className='my-3'>
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Parking Name</th>
-            <th>Date</th>
-            <th>Starting Time</th>
-            <th>Slot Number</th>
-            <th>Car Model</th>
-            <th>Car Color</th>
-            <th>Car Plate Number</th>
-            <th>Ticket Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {responseData.map(ticket => <tr>
-            <td>{ticket.firstName}</td>
-            <td>{ticket.lastName}</td>
-            <td>{ticket.parkingName}</td>
-            <td>{ticket.date}</td>
-            <td>{ticket.fromTime}</td>
-            <td>{ticket.slotNumber}</td>
-            <td>{ticket.carModel}</td>
-            <td>{ticket.carColor}</td>
-            <td>{ticket.carPlateNumber}</td>
-            <td>{ticket.ticketStatus}</td>
-          </tr>)}
-        </tbody>
-      </Table>
+      <div style={{ overflowX: 'auto' }}>
+        <Table striped variant='dark' className='my-3 table-hover' >
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Parking Name</th>
+              <th>Date</th>
+              <th>Starting Time</th>
+              <th>Slot Number</th>
+              <th>Car Model</th>
+              <th>Car Color</th>
+              <th>Car Plate Number</th>
+              <th>Ticket Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {responseData.map(ticket => <tr>
+              <td>{ticket.firstName}</td>
+              <td>{ticket.lastName}</td>
+              <td>{ticket.parkingName}</td>
+              <td>{ticket.date}</td>
+              <td>{ticket.fromTime}</td>
+              <td>{ticket.slotNumber}</td>
+              <td>{ticket.carModel}</td>
+              <td>{ticket.carColor}</td>
+              <td>{ticket.carPlateNumber}</td>
+              <td>{ticket.ticketStatus}</td>
+            </tr>)}
+          </tbody>
+        </Table>
+      </div>
     </>
   );
 }

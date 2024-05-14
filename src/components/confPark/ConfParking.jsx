@@ -42,11 +42,11 @@ function ConfParking() {
 
         try {
             const response = await axios.post(url, data, config);
-            
+
             console.log(slotId);
             console.log('Response:', response.data); // Save the response as needed
             setSlotId(response.data);
-            
+
         } catch (error) {
             console.error('Error sending POST request:', error);
         }
@@ -92,6 +92,9 @@ function ConfParking() {
                         carColor,
                         carPlateNumber
                     });
+                    setCarColor(carColor);
+                    setCarModel(carModel);
+                    setCarPlate(carPlateNumber);
                 })
                 .catch((error) => {
                     console.error('Error fetching data:', error.message);
@@ -103,8 +106,8 @@ function ConfParking() {
 
     const handleButtonClick = async (e) => {
         sendPostRequest();
-        const endpoint = '/ticket/save'; // Replace with your actual endpoint
-        const requestData = {
+        const endpoint = await '/ticket/save'; // Replace with your actual endpoint
+        const requestData = await{
             firstName: userData.firstName,
             lastName: userData.lastName,
             phoneNumber: userData.phoneNumber,
@@ -124,7 +127,7 @@ function ConfParking() {
             e.preventDefault();
             const apiResponse = await PostMethod(endpoint, requestData);
             console.log('API Response:', apiResponse);
-            window.location.href = `/ticket?id=${apiResponse.data.ticketId}`; 
+            window.location.href = `/ticket?id=${apiResponse.data.ticketId}`;
         } catch (error) {
             console.error('Error making authenticated request:', error);
             // Handle the error
@@ -187,32 +190,6 @@ function ConfParking() {
                         </Form.Group>
                     </Col>
                 </Row>
-
-                <Row>
-                    <Col lg={6}>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Car Model</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder={userData.carModel}
-                                value={carModel}
-                                onChange={(e) => setCarModel(e.target.value)}
-                            />
-                        </Form.Group>
-                    </Col>
-                    <Col lg={6}>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Car Color</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder={userData.carColor}
-                                value={carColor}
-                                onChange={(e) => setCarColor(e.target.value)}
-                            />
-                        </Form.Group>
-                    </Col>
-                </Row>
-
                 <Row>
                     <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -228,6 +205,20 @@ function ConfParking() {
                     </Col>
                     <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label style={blk}>Selected Parking</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder={{ parkingName }}
+                                value={parking}
+                                onChange={(e) => setParking(e.target.value)}
+                                disabled
+                            />
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col lg={6}>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>Selected Slot</Form.Label>
                             <Form.Control
                                 type="text"
@@ -238,8 +229,30 @@ function ConfParking() {
                             />
                         </Form.Group>
                     </Col>
+                    <Col lg={6}>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label style={blk}>Car Model</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder={userData.carModel}
+                                value={carModel}
+                                onChange={(e) => setCarModel(e.target.value)}
+                            />
+                        </Form.Group>
+                    </Col>
                 </Row>
                 <Row>
+                    <Col lg={6}>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label style={blk}>Car Color</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder={userData.carColor}
+                                value={carColor}
+                                onChange={(e) => setCarColor(e.target.value)}
+                            />
+                        </Form.Group>
+                    </Col>
                     <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>Car Plate number</Form.Label>
@@ -248,18 +261,6 @@ function ConfParking() {
                                 placeholder={userData.carPlateNumber}
                                 value={carPlateNumber}
                                 onChange={(e) => setCarPlate(e.target.value)}
-                            />
-                        </Form.Group>
-                    </Col>
-                    <Col lg={6}>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Selected Parking</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder={{ parkingName }}
-                                value={parking}
-                                onChange={(e) => setParking(e.target.value)}
-                                disabled
                             />
                         </Form.Group>
                     </Col>

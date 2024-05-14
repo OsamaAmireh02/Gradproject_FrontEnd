@@ -1,8 +1,10 @@
 import "./parkingchoose.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { TypeAnimation } from "react-type-animation";
 import { Container } from "react-bootstrap";
+import PostMethod from "../PostMethod";
+import { useLocation } from "react-router-dom";
 
 const d = new Date();
 let hour = parseInt(d.getHours());
@@ -15,62 +17,80 @@ let length = 60;
 
 const time = [
   {
-    name: hour + ":00:00",
-    occupied: [20, 21, 30, 1, 2, 8],
+    Time: hour + ":00:00",
+    occupied: [],
   },
   {
-    name: hour1 + ":00:00",
-    occupied: [9, 41, 35, 11, 65, 26],
+    Time: hour1 + ":00:00",
+    occupied: [],
   },
   {
-    name: hour2 + ":00:00",
-    occupied: [37, 25, 44, 13, 2, 3],
+    Time: hour2 + ":00:00",
+    occupied: [],
   },
   {
-    name: hour3 + ":00:00",
-    occupied: [10, 12, 50, 33, 28, 47],
+    Time: hour3 + ":00:00",
+    occupied: [],
   },
 ];
 
 
-const seats = Array.from({ length: length }, (_, i) => i+1);
+const seats = Array.from({ length: length }, (_, i) => i + 1);
 
 export default function Parkings() {
 
+  const [selectedTime, setSelectedTime] = useState(time[0]);
+  const [selectedSlots, setSelectedSlots] = useState([]);
+  const [apiData, setApiData] = useState(null);
 
-  const [selectedMovie, setSelectedMovie] = useState(time[0]);
-  const [selectedSeats, setSelectedSeats] = useState([]);
+  localStorage.setItem('time', selectedTime.Time)
 
-  localStorage.setItem('time', selectedMovie.name)
+  const location = useLocation();
+  const parkingId = new URLSearchParams(location.search).get('parkingId');
+
+  useEffect(() => {
+    // Fetch the API data here (replace with your actual API endpoint)
+    const fetchApiData = async () => {
+      try {
+        const time = selectedTime.Time
+        const data = { parkingId, time }
+        const response = await PostMethod('/ticket/getBookedSlotNumbers', data)
+        setApiData(response.data);
+        selectedTime.occupied = response.data;
+      } catch (error) {
+        console.error('Error fetching API data:', error);
+      }
+    };
+
+    fetchApiData();
+  }, [selectedTime]);
 
   return (
     <div className="App">
       <Movies
-        movie={selectedMovie}
+        movie={selectedTime}
         onChange={(movie) => {
-          setSelectedSeats([]);
-          setSelectedMovie(movie);
+          setSelectedSlots([]);
+          setSelectedTime(movie);
         }}
       />
       <ShowCase />
       <Container style={{ display: 'flex', justifyContent: 'center' }}>
-      <Cinema
-        movie={selectedMovie}
-        selectedSeats={selectedSeats}
-        onSelectedSeatsChange={(selectedSeats) =>
-          setSelectedSeats(selectedSeats)
-        }
-      />
+        <Cinema
+          movie={selectedTime}
+          selectedSlots={selectedSlots}
+          onSelectedSlotsChange={(selectedSlots) =>
+            setSelectedSlots(selectedSlots)
+          }
+        />
       </Container>
-
-      {selectedSeats.length != 0 ? <p className="info" style={{ color: 'white', display: 'flex', justifyContent: 'center' }}>
-        You have selected slot no. <span className="count">{selectedSeats}</span><br/>
-      </p>:
-      <p className="info" style={{ color: 'white', display: 'flex', justifyContent: 'center' }}>
-        Please select a slot.
-      </p>
+      {selectedSlots.length != 0 ? <p className="info" style={{ color: 'white', display: 'flex', justifyContent: 'center' }}>
+        You have selected slot no:  <span className="count">{selectedSlots}</span><br />
+      </p> :
+        <p className="info" style={{ color: 'white', display: 'flex', justifyContent: 'center' }}>
+          Please select a slot.
+        </p>
       }
-
     </div>
   );
 }
@@ -84,12 +104,12 @@ function Movies({ movie, onChange }) {
           id="movie"
           value={movie.name}
           onChange={(e) => {
-            onChange(time.find((movie) => movie.name === e.target.value));
+            onChange(time.find((movie) => movie.Time === e.target.value));
           }}
         >
           {time.map((movie) => (
-            <option key={movie.name} value={movie.name}>
-              {movie.name}
+            <option key={movie.Time} value={movie.Time}>
+              {movie.Time}
             </option>
           ))}
         </select>
@@ -112,7 +132,7 @@ function Movies({ movie, onChange }) {
 
 function ShowCase() {
   return (
-    <ul className="ShowCase">
+    <ul className="ShowCase mb-3">
       <li>
         <span className="seat" /> <small>Available</small>
       </li>
@@ -126,20 +146,20 @@ function ShowCase() {
   );
 }
 
-function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
+function Cinema({ movie, selectedSlots, onSelectedSlotsChange }) {
 
 
   function handleSelectedState(seat) {
-    const isSelected = selectedSeats.includes(seat);
+    const isSelected = selectedSlots.includes(seat);
     if (isSelected) {
-      onSelectedSeatsChange(
-        selectedSeats.filter((selectedSeat) => selectedSeat !== seat)
+      onSelectedSlotsChange(
+        selectedSlots.filter((selectedSeat) => selectedSeat !== seat)
       );
     } else {
-      onSelectedSeatsChange([seat]);
+      onSelectedSlotsChange([seat]);
     }
   }
-  localStorage.setItem('seat', selectedSeats[0])
+  localStorage.setItem('seat', selectedSlots[0])
 
   return (
     <div className="Cinema">
@@ -147,10 +167,15 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
 
       <div className="seats">
         {seats.map((seat) => {
-          const isSelected = selectedSeats.includes(seat);
+          const isSelected = selectedSlots.includes(seat);
           const isOccupied = movie.occupied.includes(seat);
           return (
-            <span
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center", // Horizontally center the content
+                alignItems: "center", // Vertically center the content
+              }}
               tabIndex="0"
               key={seat}
               className={clsx(
@@ -168,7 +193,7 @@ function Cinema({ movie, selectedSeats, onSelectedSeatsChange }) {
                     }
                   }
               }
-            />
+            >{seat}</div>
           );
         })}
       </div>
