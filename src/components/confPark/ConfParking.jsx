@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import PostMethod from '../PostMethod';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import './conf.css'
 
 
 function ConfParking() {
@@ -23,35 +24,7 @@ function ConfParking() {
     const [slotNumber, setSlot] = useState(parseInt(localStorage.getItem('seat')));
     const [carPlateNumber, setCarPlate] = useState();
     const [time, settime] = useState(localStorage.getItem('time'));
-
-    const sendPostRequest = async () => {
-        const url = 'http://localhost:8080/slot/getSlotId';
-        const data = {
-            parkingId,
-            slotNumber
-        };
-
-        const token = localStorage.getItem('token'); // Replace with your actual token
-
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-        };
-
-        try {
-            const response = await axios.post(url, data, config);
-
-            console.log(slotId);
-            console.log('Response:', response.data); // Save the response as needed
-            setSlotId(response.data);
-
-        } catch (error) {
-            console.error('Error sending POST request:', error);
-        }
-    };
-
+    const [payMethod, setPayMethod] = useState('cash');
 
     const [userData, setUserData] = useState({
         firstName: '',
@@ -62,6 +35,36 @@ function ConfParking() {
         carColor: '',
         carPlateNumber: ''
     });
+
+    useEffect(() => {
+        const url = 'http://localhost:8080/slot/getSlotId';
+        const data = {
+            parkingId, // Replace with actual parking ID
+            slotNumber, // Replace with actual slot number
+        };
+
+        const token = localStorage.getItem('token');
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        };
+
+        try {
+            axios.post(url, data, config)
+                .then((response) => {
+                    console.log('Response:', response.data);
+                    // Assuming you have a state variable called 'setSlotId'
+                    setSlotId(response.data);
+                })
+                .catch((error) => {
+                    console.error('Error sending POST request:', error);
+                });
+        } catch (error) {
+            console.error('Error in try-catch block:', error);
+        }
+    }, []);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -98,16 +101,13 @@ function ConfParking() {
                 })
                 .catch((error) => {
                     console.error('Error fetching data:', error.message);
-                    // Handle errors
                 });
         }
     }, []);
 
-
     const handleButtonClick = async (e) => {
-        sendPostRequest();
-        const endpoint = await '/ticket/save'; // Replace with your actual endpoint
-        const requestData = await{
+        const endpoint = '/ticket/save';
+        const requestData = {
             firstName: userData.firstName,
             lastName: userData.lastName,
             phoneNumber: userData.phoneNumber,
@@ -121,7 +121,7 @@ function ConfParking() {
             userId,
             parkingId,
             slotId
-        }; // Your data object
+        };
 
         try {
             e.preventDefault();
@@ -266,15 +266,116 @@ function ConfParking() {
                     </Col>
                 </Row>
                 <Row>
+                    <Col>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label style={blk}>Payment Method</Form.Label>
+                            <Form.Select
+                                aria-label="Default select example"
+                                value={payMethod}
+                                onChange={(e) => setPayMethod(e.target.value)}
+                            >
+                                <option>Select a Method</option>
+                                <option value="cash">Cash</option>
+                                <option value="visa">Visa</option>
+                            </Form.Select>
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        {payMethod === "visa" && <div className="visa-card mb-3">
+                            <div className="logoContainer">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    x="0px"
+                                    y="0px"
+                                    width="23"
+                                    height="23"
+                                    viewBox="0 0 48 48"
+                                    className="svgLogo"
+                                >
+                                    <path
+                                        fill="#ff9800"
+                                        d="M32 10A14 14 0 1 0 32 38A14 14 0 1 0 32 10Z"
+                                    ></path>
+                                    <path
+                                        fill="#d50000"
+                                        d="M16 10A14 14 0 1 0 16 38A14 14 0 1 0 16 10Z"
+                                    ></path>
+                                    <path
+                                        fill="#ff3d00"
+                                        d="M18,24c0,4.755,2.376,8.95,6,11.48c3.624-2.53,6-6.725,6-11.48s-2.376-8.95-6-11.48 C20.376,15.05,18,19.245,18,24z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div className="number-container">
+                                <label className="input-label" for="cardNumber">CARD NUMBER</label>
+                                <input
+                                    className="inputstyle"
+                                    id="cardNumber"
+                                    placeholder="XXXX XXXX XXXX XXXX"
+                                    name="cardNumber"
+                                    type="text"
+                                />
+                            </div>
+
+                            <div className="name-date-cvv-container">
+                                <div className="name-wrapper">
+                                    <label className="input-label" for="holderName">CARD HOLDER</label>
+                                    <input
+                                        className="inputstyle"
+                                        id="holderName"
+                                        placeholder="NAME"
+                                        type="text"
+                                    />
+                                </div>
+
+                                <div className="expiry-wrapper">
+                                    <label className="input-label" for="expiry">VALID THRU</label>
+                                    <input className="inputstyle" id="expiry" placeholder="MM/YY" type="text" />
+                                </div>
+                                <div className="cvv-wrapper">
+                                    <label className="input-label" for="cvv">CVV</label>
+                                    <input
+                                        className="inputstyle"
+                                        placeholder="***"
+                                        maxlength="3"
+                                        id="cvv"
+                                        type="password"
+                                    />
+                                </div>
+                            </div>
+                        </div>}
+
+                    </Col>
+                </Row>
+                <Row>
                     <Col style={{ display: 'flex', justifyContent: 'center' }}>
                         <Button
-                            style={{ width: '100px' }}
-                            variant='dark'
+                            className='btn-53'
+                            style={{ width: '100px', borderColor: '#323437' }}
+                            variant='light'
                             href={`/booking/chooseSlot?parkingId=${parkingId}&parkingName=${encodeURIComponent(parkingName)}`}>
-                            Back
+                            <div className="original" style={{ background: '#aaa' }}>Back</div>
+                            <div className="letters">
+                                <span>B</span>
+                                <span>A</span>
+                                <span>C</span>
+                                <span>K</span>
+                            </div>
                         </Button>
-                        <Button style={{ width: '100px' }} className='ms-3' variant="warning" type="submit">
-                            Submit
+                        <Button
+                            style={{ width: '100px', borderColor: '#323437' }}
+                            className='ms-3 btn-53'
+                            variant="light"
+                            type="submit">
+                            <div className="original" style={{ background: '#E9B824' }}>Submit</div>
+                            <div className="letters">
+                                <span>S</span>
+                                <span>U</span>
+                                <span>B</span>
+                                <span>M</span>
+                                <span>I</span>
+                                <span>T</span>
+                            </div>
                         </Button>
                     </Col>
                 </Row>

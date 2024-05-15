@@ -1,0 +1,23 @@
+.logoutButton {
+    padding: 10px 30px;
+    border-radius: 10px;
+    border: 0;
+    letter-spacing: 1px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: rgb(186, 2, 30) 0px 10px 0px 0px;
+    color: hsl(0, 0%, 100%);
+    cursor: pointer;
+  }
+  
+  .logoutButton:active {
+    box-shadow: rgb(188, 5, 32) 0px 7px 0px 0px;
+  }
+  
+  .logoutButton:hover {
+    background-color: rgb(208, 15, 44);
+    /*50, 168, 80*/
+    box-shadow: rgb(174, 4, 30) 0px 0px 0px 0px;
+    transform: translateY(5px);
+    transition: 200ms;
+  }

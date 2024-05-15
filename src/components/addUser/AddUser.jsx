@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, InputGroup, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import PostMethod from '../PostMethod';
@@ -57,7 +57,13 @@ function AddUser() {
                                 type="name"
                                 placeholder="Enter First Name"
                                 value={firstName}
-                                onChange={(e) => setFirstName(e.target.value)}
+                                onChange={(e) => {
+                                    const input = e.target.value;
+                                    const validFirstName = /^[A-Za-z]+$/.test(input); // Regular expression for letters only
+                                    if (validFirstName) {
+                                        setFirstName(input);
+                                    }
+                                }}
                             />
                         </Form.Group>
                     </Col>
@@ -68,7 +74,13 @@ function AddUser() {
                                 type="text"
                                 placeholder="Enter Last Name"
                                 value={lastName}
-                                onChange={(e) => setLastName(e.target.value)}
+                                onChange={(e) => {
+                                    const input = e.target.value;
+                                    const validLastName = /^[A-Za-z]*$/.test(input); // Regular expression for letters only
+                                    if (validLastName) {
+                                        setLastName(input);
+                                    }
+                                }}
                             />
                         </Form.Group>
                     </Col>
@@ -129,7 +141,7 @@ function AddUser() {
                 </Row>
                 {userRole === "STUDENT" && <Row>
                     <Col>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>Facilty</Form.Label>
                             <Form.Select
                                 aria-label="Default select example"

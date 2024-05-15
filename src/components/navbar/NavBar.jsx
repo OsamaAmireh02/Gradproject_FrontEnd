@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { isAuthenticated } from '../login/isAuthenticated';
 import Logo from "../../assests/Logo.png"
-
+import './navbar.css'
 
 function NavBar() {
 
@@ -48,7 +48,7 @@ function NavBar() {
                 variant="danger"
                 onClick={handleLogout}
                 href="/"
-                style={{ color: '#ffffff' }}
+                className='logoutButton'
               >
                 LogOut
               </Button>

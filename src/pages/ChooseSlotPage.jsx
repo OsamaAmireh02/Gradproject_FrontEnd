@@ -16,8 +16,32 @@ function ChooseSlotPage() {
       <NavBar />
       <Parkings />
       <Container style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button style={{ width: '100px' }} variant='dark' href='/booking'>Back</Button>
-        <Button style={{ width: '100px' }} className='mx-3' variant='warning' href={`/booking/submit?parkingId=${parkingId}&parkingName=${encodeURIComponent(parkingName)}`}>Next</Button>
+        <Button
+          className='btn-53'
+          style={{ width: '100px', borderColor: '#323437' }}
+          variant='light'
+          href='/booking'>
+          <div className="original" style={{ background: '#aaa' }}>Back</div>
+          <div className="letters">
+            <span>B</span>
+            <span>A</span>
+            <span>C</span>
+            <span>K</span>
+          </div>
+        </Button>
+        <Button
+          className='btn-53 ms-3'
+          style={{ width: '100px', borderColor: '#323437' }}
+          variant='light'
+          href={`/booking/submit?parkingId=${parkingId}&parkingName=${encodeURIComponent(parkingName)}`}>
+          <div className="original" style={{ background: '#E9B824' }} >NEXT</div>
+          <div className="letters">
+            <span>N</span>
+            <span>E</span>
+            <span>X</span>
+            <span>T</span>
+          </div>
+        </Button>
       </Container>
       <Footer />
     </div >

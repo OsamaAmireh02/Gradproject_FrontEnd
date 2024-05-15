@@ -97,7 +97,7 @@ function TicketsHistory() {
     return (
         <div style={{
             'position': 'sticky',
-            'minHeight': '75vh'
+            'minHeight': '77vh'
 
         }}>
             <Container className='my-3'>

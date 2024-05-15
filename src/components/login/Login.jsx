@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import './login.css'
 
 function Login() {
 
@@ -56,7 +56,8 @@ function Login() {
     };
     return (
         <Container className='my-3' style={{
-            width: '60%',
+            'minWidth': '250px',
+            'maxWidth': '500px',
             'position': 'sticky',
             'top': '1000px',
             'minHeight': '74vh'
@@ -64,24 +65,30 @@ function Login() {
         }}>
             <h1 style={{ color: 'white' }} className='my-3'>Welcome Back</h1>
             <Form onSubmit={handleLogin}>
-                <div className="form-floating mb-3">
-                    <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <label htmlFor="floatingInput">Email address</label>
+                <div className="inputbox mb-4">
+                    <input type="email" required="required" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <span>Username</span>
+                    <i></i>
                 </div>
-                <div className="form-floating">
-                    <input type="password" className="form-control" id="floatingPassword" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    <label htmlFor="floatingPassword">Password</label>
+                <div className="inputbox">
+                    <input type="password" required="required" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <span>Password</span>
+                    <i></i>
                 </div>
 
                 {errorMessage && <Form.Text style={{ color: '#ff4040' }}>
                     {errorMessage}
                 </Form.Text>}
                 <br />
-                <Button variant="warning" type="submit" style={{ width: '75px' }}>
-                    Login
-                </Button>
-                <Button variant="light" type="reset" className='mx-3' style={{ width: '75px' }} >
-                    Clear
+                <Button className='btn-53' variant='warning' type="submit">
+                    <div class="original">LogIn</div>
+                    <div class="letters">
+                        <span>L</span>
+                        <span>O</span>
+                        <span>G</span>
+                        <span>I</span>
+                        <span>N</span>
+                    </div>
                 </Button>
             </Form>
         </Container>

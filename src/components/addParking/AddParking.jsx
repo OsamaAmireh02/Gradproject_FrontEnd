@@ -47,7 +47,17 @@ function AddParking() {
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>Parking Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Parking Name" value={name} onChange={(e) => setName(e.target.value)} />
+                            <Form.Control 
+                            type="text" 
+                            placeholder="Enter Parking Name" 
+                            value={name} 
+                            onChange={(e) => {
+                                const input = e.target.value;
+                                const validName = /^[A-Za-z ]+$/.test(input); // Regular expression for letters only
+                                if (validName) {
+                                    setName(input);
+                                }
+                            }}/>
                         </Form.Group>
                     </Col>
                     <Col>
