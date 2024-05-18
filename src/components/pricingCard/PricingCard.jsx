@@ -10,14 +10,19 @@ function PricingCard() {
 
   return (
 
-    <Row className="my-3">
+    <Row className="my-3" style={{ display: 'flex', justifyContent: 'center' }}>
       <Col lg={4} className='my-3 pt-3'>
-        <div class="book">
-          <p>Hello</p>
-          <div class="cover">
-            <p>Our Prices</p>
+        <div class="PricingCard">
+          <div class="PricingCard-inner">
+            <div class="PricingCard-front">
+              <p>Our Prices</p>
+            </div>
+            <div class="PricingCard-back">
+              <p>Back Side</p>
+            </div>
           </div>
         </div>
+
         {/* <Card className="text-center card shadow p-3 mb-5 rounded" style={{backgroundColor:'#f0f1ee'}}>
       <Card.Header><strong>Just an Hour</strong></Card.Header>
       <Card.Body>
@@ -29,10 +34,14 @@ function PricingCard() {
     </Card> */}
       </Col>
       <Col lg={4} className='my-3'>
-      <div class="book">
-          <p>Hello</p>
-          <div class="cover" style={{backgroundColor: '#E9B824'}}>
-            <p>About Us</p>
+      <div class="PricingCard">
+          <div class="PricingCard-inner">
+            <div class="PricingCard-front" style={{backgroundColor: '#E9B824'}}>
+              <p>Our Prices</p>
+            </div>
+            <div class="PricingCard-back">
+              <p>Back Side</p>
+            </div>
           </div>
         </div>
         {/* <Card className="text-center card shadow p-3 mb-5 rounded" style={{backgroundColor:'#e2b714'}}>
@@ -47,10 +56,14 @@ function PricingCard() {
     </Card> */}
       </Col>
       <Col lg={4} className='my-3 pt-3'>
-      <div class="book">
-          <p>Hello</p>
-          <div class="cover">
-            <p>Contact Us</p>
+      <div class="PricingCard">
+          <div class="PricingCard-inner">
+            <div class="PricingCard-front">
+              <p>Our Prices</p>
+            </div>
+            <div class="PricingCard-back">
+              <p>Back Side</p>
+            </div>
           </div>
         </div>
         {/* <Card className="text-center card shadow p-3 mb-5 rounded" style={{backgroundColor:'#f0f1ee'}}>

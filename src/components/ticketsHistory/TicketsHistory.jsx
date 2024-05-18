@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Card, Col, Container, Modal, Row, Toast } from 'react-bootstrap'
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import './style.css'
 
 
 function TicketsHistory() {
@@ -101,43 +102,52 @@ function TicketsHistory() {
 
         }}>
             <Container className='my-3'>
-                <Row>
-                    {userTickets.map(ticket => (
-                        <Col lg={4} key={ticket.ticketId}>
-
-                            <Card className="text-center" >
-                                <Card.Header>
-                                    Ticket Status: {ticket.ticketStatus}
-                                </Card.Header>
-                                <Card.Body>
-                                    <a href={`/ticket/?id=${ticket.ticketId}`} style={{ textDecoration: 'none' }}>
-                                        <Card.Title>Parking Name: {ticket.parkingName}</Card.Title>
-                                        <Card.Text>
-                                            Time: {ticket.fromTime}<br />
-                                            {ticket.date}
-                                        </Card.Text>
+                <div className="ticketContainer">
+                    <Row>
+                        {userTickets.map(ticket => (
+                            <Col key={ticket.ticketId} className='mb-3' lg={4}>
+                                <div className="tickett" key={ticket.ticketId}>
+                                <a href={`/ticket/?id=${ticket.ticketId}`} style={{ textDecoration: 'none', color:'black' }}>
+                                    <div className="ticketTitle">{ticket.ticketStatus}</div>
+                                        <div className="ticketDetail">
+                                            <div>Parking Name:&ensp; {ticket.parkingName}</div>
+                                            <div>Slot Number:&nbsp; {ticket.slotNumber}</div>
+                                            <div>Time:&emsp; {ticket.fromTime}</div>
+                                        </div>
+                                        <div className="ticketRip">
+                                            <div className="circleLeft"></div>
+                                            <div className="ripLine"></div>
+                                            <div className="circleRight"></div>
+                                        </div>
+                                        <div className="ticketSubDetail">
+                                            <div className="code">LO-2314XXX</div>
+                                            <div className="date"> {ticket.date}</div>
+                                        </div>
                                     </a>
-                                </Card.Body>
-                                <Card.Footer><Button variant='danger' onClick={() => handleDeactivateClick(ticket.ticketId)}>Delete</Button></Card.Footer>
-                            </Card>
-                            {/* Confirmation modal */}
-                            <Modal show={showConfirmation}>
-                                <Modal.Header closeButton>
-                                    <Modal.Title>Cancel Confirmation</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>Are you sure you want to cancel this ticket?</Modal.Body>
-                                <Modal.Footer>
-                                    <Button variant='secondary' onClick={() => setShowConfirmation(false)}>
-                                        Cancel
-                                    </Button>
-                                    <Button variant='danger' onClick={() => deleteTicket(ticketId)}>
-                                        Confirm
-                                    </Button>
-                                </Modal.Footer>
-                            </Modal>
-                        </Col>
-                    ))}
-                </Row>
+                                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                        <Button variant='danger' onClick={() => handleDeactivateClick(ticket.ticketId)}>Delete</Button>
+                                    </div>
+                                    <div className="ticketShadow"></div>
+                                </div>
+                                {/* Confirmation modal */}
+                                <Modal show={showConfirmation}>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>Cancel Confirmation</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>Are you sure you want to cancel this ticket?</Modal.Body>
+                                    <Modal.Footer>
+                                        <Button variant='secondary' onClick={() => setShowConfirmation(false)}>
+                                            Cancel
+                                        </Button>
+                                        <Button variant='danger' onClick={() => deleteTicket(ticketId)}>
+                                            Confirm
+                                        </Button>
+                                    </Modal.Footer>
+                                </Modal>
+                            </Col>
+                        ))}
+                    </Row>
+                </div>
             </Container>
             {isDone && (
                 <Toast

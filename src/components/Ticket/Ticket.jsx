@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import QRCode from "react-qr-code";
 import axios from 'axios';
+import './style.css'
 
 function Ticket(props) {
 
@@ -10,19 +11,19 @@ function Ticket(props) {
 
     const api = axios.create({
         baseURL: 'http://localhost:8080', // Replace with your API base URL
-      });
+    });
 
     const fetchData = async () => {
 
-    const endpoint = `/ticket/getById/${props.ticketId}`; // Replace with your actual endpoint
+        const endpoint = `/ticket/getById/${props.ticketId}`; // Replace with your actual endpoint
 
         try {
             const token = localStorage.getItem('token');
             if (!token) {
-              console.error('Token not found. Please authenticate first.');
-              return null;
+                console.error('Token not found. Please authenticate first.');
+                return null;
             }
-        
+
             // Set the Authorization header
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             // Make the request using POST method
@@ -32,10 +33,10 @@ function Ticket(props) {
             setTicketID((response.data.ticketId).toString())
             console.log(ticketID);
             return response;
-          } catch (error) {
+        } catch (error) {
             console.error('Error fetching data:', error);
             throw error
-          }
+        }
     }
 
     useEffect(() => {
@@ -44,30 +45,59 @@ function Ticket(props) {
 
     return (
         <div>
-            <Container className='mx-4 my-4' style={{ display: 'grid', justifyContent: 'center', backgroundColor: 'white', borderRadius: '4px', maxWidth: '600px' }}>
-                <div className='mx-4 my-4'>
-                    <h3><strong>Ticket details</strong></h3>
-                    <Row className='my-3'>
-                        <Col><h3>Date: <br/>{data.date}</h3></Col>
-                        <Col><h3>Starting Time: <br/>{data.fromTime}</h3></Col>
-                    </Row>
-                    <Row className='my-3'>
-                        <Col><h3>Parking Name: <br/>{data.parkingName}</h3></Col>
-                        <Col><h3>Slot Number: <br/>{data.slotNumber}</h3></Col>
-                    </Row>
-                    <Row className='my-3'>
-                        <Col><h3>Car Model: <br/>{data.carModel}</h3></Col>
-                        <Col><h3>Car Color: <br/>{data.carColor}</h3></Col>
-                    </Row>
-                    <Row className='my-3'>
-                        <Col><h3>Car Plate Number: <br/>{data.carPlateNumber}</h3></Col>
-                        <Col><h3>Ticket Status: <br/>{data.ticketStatus}</h3></Col>
-                    </Row>
-                    <Row>
-                        <QRCode value={ticketID} />
-                    </Row>
+            <div className="ticket">
+                <div className="holes-top"></div>
+                <div style={{padding: '20px 25px'}}>
+                    <p className="cinema">{data.ticketStatus}</p>
+                    <p className="movie-title">Ticket Details</p>
                 </div>
-            </Container>
+                <div className="info">
+                    <table>
+                        <tr>
+                            <th style={{width:'33%'}}>Parking Name</th>
+                            <th style={{width:'33%'}}>Slot Number</th>
+                            <th style={{width:'33%'}}>SEAT</th>
+                        </tr>
+                        <tr>
+                            <td style={{width:'33%'}}>{data.parkingName}</td>
+                            <td style={{width:'33%'}}>{data.slotNumber}</td>
+                            <td style={{width:'33%'}}>24</td>
+                        </tr>
+                        </table>
+                        <table>
+                        <tr>
+                            <th style={{width:'33%'}}>PRICE</th>
+                            <th style={{width:'33%'}}>DATE</th>
+                            <th style={{width:'33%'}}>TIME</th>
+                        </tr>
+                        <tr>
+                            <td style={{width:'33%'}}>$12.00</td>
+                            <td style={{width:'33%'}}>{data.date}</td>
+                            <td style={{width:'33%'}}>{data.fromTime}</td>
+                        </tr>
+                        </table>
+                        <table>
+                        <tr>
+                            <th style={{width:'33%'}}>Car Model</th>
+                            <th style={{width:'33%'}}>Car Color</th>
+                            <th style={{width:'33%'}}>Car Plate Number</th>
+                        </tr>
+                        <tr>
+                            <td style={{width:'33%'}}>{data.carModel}</td>
+                            <td style={{width:'33%'}}>{data.carColor}</td>
+                            <td style={{width:'33%'}}>{data.carPlateNumber}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div className="holes-lower"></div>
+                <div className="serial">
+                    <table>
+                        <tr style={{ display: 'flex', justifyContent: 'center' }}>
+                            <QRCode value={ticketID} />
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
     )
 }

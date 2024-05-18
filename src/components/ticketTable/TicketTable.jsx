@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import makeAuthenticatedRequest from '../userTable/Api';
-import { Button, Col, Dropdown, Row } from 'react-bootstrap';
+import { Button, Col, Container, Dropdown, Row } from 'react-bootstrap';
 import axios from 'axios';
 
 
@@ -159,32 +159,28 @@ function TicketTable() {
 
   return (
     <>
-      <Row>
-        <Col>
-          <Dropdown>
-            <Dropdown.Toggle variant="warning" id="dropdown-basic">
-              Sorting
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item onClick={SortByParkingName}>Sort By Parking Name</Dropdown.Item>
-              <Dropdown.Item onClick={SortByUserName}>Sort By Student Name</Dropdown.Item>
-              <Dropdown.Item onClick={SortByDate}>Sort By Date</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Col>
-        <Col>
-          <Dropdown>
-            <Dropdown.Toggle variant="warning" id="dropdown-basic">
-              Filtering
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item onClick={ShowActive}>Show Active Tickets</Dropdown.Item>
-              <Dropdown.Item onClick={ShowPending}>Show Pending Tickets</Dropdown.Item>
-              <Dropdown.Item onClick={ShowFinished}>Show Finished Tickets</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Col>
-      </Row>
+      <Container>
+        <Dropdown>
+          <Dropdown.Toggle variant="warning" id="dropdown-basic">
+            Sorting
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={SortByParkingName}>Sort By Parking Name</Dropdown.Item>
+            <Dropdown.Item onClick={SortByUserName}>Sort By Student Name</Dropdown.Item>
+            <Dropdown.Item onClick={SortByDate}>Sort By Date</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+        <Dropdown>
+          <Dropdown.Toggle variant="warning" id="dropdown-basic">
+            Filtering
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={ShowActive}>Show Active Tickets</Dropdown.Item>
+            <Dropdown.Item onClick={ShowPending}>Show Pending Tickets</Dropdown.Item>
+            <Dropdown.Item onClick={ShowFinished}>Show Finished Tickets</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </Container>
 
 
 

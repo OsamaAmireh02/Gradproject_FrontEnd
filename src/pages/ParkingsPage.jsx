@@ -12,6 +12,7 @@ function ParkingsPage() {
             <SideBar
                 table={<ParkingsTable />}
                 button={<Button className='mb-3' href='/admin/addParking' variant='warning'>Add Parking</Button>}
+                page="parkings"
             />
         </div>
     )

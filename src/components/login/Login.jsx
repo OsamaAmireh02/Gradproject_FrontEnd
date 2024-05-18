@@ -60,14 +60,14 @@ function Login() {
             'maxWidth': '500px',
             'position': 'sticky',
             'top': '1000px',
-            'minHeight': '74vh'
+            'minHeight': '75vh'
 
         }}>
             <h1 style={{ color: 'white' }} className='my-3'>Welcome Back</h1>
             <Form onSubmit={handleLogin}>
                 <div className="inputbox mb-4">
-                    <input type="email" required="required" value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <span>Username</span>
+                    <input type="email" required="required" value={email} onChange={(e) => setEmail(e.target.value.toLowerCase())} />
+                    <span>Email</span>
                     <i></i>
                 </div>
                 <div className="inputbox">
@@ -81,7 +81,7 @@ function Login() {
                 </Form.Text>}
                 <br />
                 <Button className='btn-53' variant='warning' type="submit">
-                    <div class="original">LogIn</div>
+                    <div class="original">LOGIN</div>
                     <div class="letters">
                         <span>L</span>
                         <span>O</span>

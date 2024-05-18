@@ -8,28 +8,40 @@ import { useLocation } from "react-router-dom";
 
 const d = new Date();
 let hour = parseInt(d.getHours());
+let formattedHour = hour.toString().padStart(2, '0'); // Convert to string and pad with '0' if needed
 let hour1 = (hour + 1) % 24;
+let formattedHour1 = hour1.toString().padStart(2, '0');
 let hour2 = (hour1 + 1) % 24;
+let formattedHour2 = hour2.toString().padStart(2, '0');
 let hour3 = (hour2 + 1) % 24;
+let formattedHour3 = hour3.toString().padStart(2, '0');
+
+// Now you can use formattedHour, formattedHour1, formattedHour2, and formattedHour3
+console.log(`Formatted Hour: ${formattedHour}`);
+console.log(`Formatted Hour1: ${formattedHour1}`);
+console.log(`Formatted Hour2: ${formattedHour2}`);
+console.log(`Formatted Hour3: ${formattedHour3}`);
+
+
 
 let length = 60;
 
 
 const time = [
   {
-    Time: hour + ":00:00",
+    Time: formattedHour + ":00:00",
     occupied: [],
   },
   {
-    Time: hour1 + ":00:00",
+    Time: formattedHour1 + ":00:00",
     occupied: [],
   },
   {
-    Time: hour2 + ":00:00",
+    Time: formattedHour2 + ":00:00",
     occupied: [],
   },
   {
-    Time: hour3 + ":00:00",
+    Time: formattedHour3 + ":00:00",
     occupied: [],
   },
 ];

@@ -46,7 +46,7 @@ function HomePage() {
                         ]}
                         wrapper="span"
                         speed={50}
-                        style={{ fontSize: '2em', display: 'inline-block', color: '#EEF7FF' }}
+                        style={{ fontSize: '30px', display: 'inline-block', color: '#EEF7FF' }}
                         repeat={Infinity}
                     />
                 </div>

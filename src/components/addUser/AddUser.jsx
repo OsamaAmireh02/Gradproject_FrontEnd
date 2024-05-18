@@ -64,6 +64,7 @@ function AddUser() {
                                         setFirstName(input);
                                     }
                                 }}
+                                required="required"
                             />
                         </Form.Group>
                     </Col>
@@ -81,6 +82,7 @@ function AddUser() {
                                         setLastName(input);
                                     }
                                 }}
+                                required="required"
                             />
                         </Form.Group>
                     </Col>
@@ -95,6 +97,7 @@ function AddUser() {
                                 placeholder="Enter Phone Number"
                                 value={phoneNumber}
                                 onChange={(e) => setPhoneNumber(e.target.value)}
+                                required="required"
                             />
                         </Form.Group>
                     </Col>
@@ -105,7 +108,8 @@ function AddUser() {
                                 type="email"
                                 placeholder="Enter Email"
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e) => setEmail((e.target.value).toLowerCase())}
+                                required="required"
                             />
                         </Form.Group>
                     </Col>
@@ -120,6 +124,7 @@ function AddUser() {
                                 placeholder="Enter Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                required="required"
                             />
                         </Form.Group>
                     </Col>

@@ -48,12 +48,14 @@ function AddParking() {
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>Parking Name</Form.Label>
                             <Form.Control 
-                            type="text" 
+                            type="text"
+                            variant="warning"
+                            required
                             placeholder="Enter Parking Name" 
                             value={name} 
                             onChange={(e) => {
                                 const input = e.target.value;
-                                const validName = /^[A-Za-z ]+$/.test(input); // Regular expression for letters only
+                                const validName = /^[A-Za-z ]*$/.test(input); // Regular expression for letters only
                                 if (validName) {
                                     setName(input);
                                 }
@@ -63,7 +65,12 @@ function AddParking() {
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label style={blk}>Address</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Address" value={address} onChange={(e) => setAddress(e.target.value)} />
+                            <Form.Control 
+                            type="text" 
+                            required
+                            placeholder="Enter Address" 
+                            value={address} 
+                            onChange={(e) => setAddress(e.target.value)} />
                         </Form.Group>
                     </Col>
                 </Row>
@@ -76,8 +83,8 @@ function AddParking() {
                                 aria-label="Default select example"
                                 value={numberOfSlot}
                                 onChange={(e) => setSlots(parseInt(e.target.value, 10))}>
-                                <option value="48">80</option>
-                                <option value="36">80</option>
+                                <option value="48">60</option>
+                                <option value="36">60</option>
                             </Form.Select>
                         </Form.Group>
                     </Col>
@@ -88,9 +95,6 @@ function AddParking() {
 
                 <Button variant="warning" className='me-3' type="danger">
                     Add Parking
-                </Button>
-                <Button variant="light" type="clear">
-                    Clear
                 </Button>
             </Form>
         </Container>

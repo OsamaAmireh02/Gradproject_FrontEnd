@@ -48,7 +48,7 @@ function NavBar() {
                 variant="danger"
                 onClick={handleLogout}
                 href="/"
-                className='logoutButton'
+                className='logoutButton mb-3'
               >
                 LogOut
               </Button>

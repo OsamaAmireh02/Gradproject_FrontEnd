@@ -13,6 +13,7 @@ function TicketPage() {
             <NavBar />
             <SideBar
                 table={<TicketTable/>}
+                page="tickets"
             />
         </div>
     )

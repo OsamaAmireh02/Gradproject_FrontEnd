@@ -149,7 +149,7 @@ function ConfParking() {
                                 type="text"
                                 placeholder={userData.firstName}
                                 value={userData.firstName}
-                                disabled
+                                readOnly
                             />
                         </Form.Group>
                     </Col>
@@ -160,7 +160,7 @@ function ConfParking() {
                                 type="text"
                                 placeholder={userData.lastName}
                                 value={userData.lastName}
-                                disabled
+                                readOnly
                             />
                         </Form.Group>
                     </Col>
@@ -174,7 +174,7 @@ function ConfParking() {
                                 type="text"
                                 placeholder={userData.phoneNumber}
                                 value={userData.phoneNumber}
-                                disabled
+                                readOnly
                             />
                         </Form.Group>
                     </Col>
@@ -185,7 +185,7 @@ function ConfParking() {
                                 type="text"
                                 placeholder={userData.email}
                                 value={userData.email}
-                                disabled
+                                readOnly
                             />
                         </Form.Group>
                     </Col>
@@ -199,7 +199,7 @@ function ConfParking() {
                                 placeholder={localStorage.getItem('time')}
                                 value={time}
                                 onChange={(e) => settime(e.target.value)}
-                                disabled
+                                readOnly
                             />
                         </Form.Group>
                     </Col>
@@ -211,7 +211,7 @@ function ConfParking() {
                                 placeholder={{ parkingName }}
                                 value={parking}
                                 onChange={(e) => setParking(e.target.value)}
-                                disabled
+                                readOnly
                             />
                         </Form.Group>
                     </Col>
@@ -225,7 +225,7 @@ function ConfParking() {
                                 placeholder={localStorage.getItem('seat')}
                                 value={slotNumber}
                                 onChange={(e) => setSlot(e.target.value)}
-                                disabled
+                                readOnly
                             />
                         </Form.Group>
                     </Col>
@@ -237,6 +237,7 @@ function ConfParking() {
                                 placeholder={userData.carModel}
                                 value={carModel}
                                 onChange={(e) => setCarModel(e.target.value)}
+                                required
                             />
                         </Form.Group>
                     </Col>
@@ -250,6 +251,7 @@ function ConfParking() {
                                 placeholder={userData.carColor}
                                 value={carColor}
                                 onChange={(e) => setCarColor(e.target.value)}
+                                required
                             />
                         </Form.Group>
                     </Col>
@@ -261,6 +263,7 @@ function ConfParking() {
                                 placeholder={userData.carPlateNumber}
                                 value={carPlateNumber}
                                 onChange={(e) => setCarPlate(e.target.value)}
+                                required
                             />
                         </Form.Group>
                     </Col>
@@ -276,7 +279,7 @@ function ConfParking() {
                             >
                                 <option>Select a Method</option>
                                 <option value="cash">Cash</option>
-                                <option value="visa">Visa</option>
+                                <option value="visa">Visa (please fill your info inside the visa card)</option>
                             </Form.Select>
                         </Form.Group>
                     </Col>

@@ -7,6 +7,7 @@ import axios from 'axios';
 
 function UserTable() {
 
+    const adminId = localStorage.getItem('id')
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [ticketId, setTicketId] = useState();
     const location = useLocation();
@@ -102,9 +103,10 @@ function UserTable() {
                         <td>{user.phoneNumber}</td>
                         <td>{user.faculty}</td>
                         <td>{user.userRole}</td>
-                        <td><Button onClick={() => handleDeactivateClick(user.id)} variant='danger'>
+                        <td>{user.id != adminId && <Button onClick={() => handleDeactivateClick(user.id)} variant='danger'>
+                        <svg xmlns="http://www.w3.org/2000/svg" className='me-2' width="25" height="25" viewBox="0 0 16 16"><path fill="#ffffff" fill-rule="evenodd" d="M1 14s-1 0-1-1s1-4 6-4s6 3 6 4s-1 1-1 1zm5-6a3 3 0 1 0 0-6a3 3 0 0 0 0 6m6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708"/></svg>
                             Delete User
-                        </Button></td>
+                        </Button>}</td>
                         {/* Confirmation modal */}
                         <Modal show={showConfirmation}>
                             <Modal.Header closeButton>
