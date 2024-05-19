@@ -17,10 +17,10 @@ let hour3 = (hour2 + 1) % 24;
 let formattedHour3 = hour3.toString().padStart(2, '0');
 
 // Now you can use formattedHour, formattedHour1, formattedHour2, and formattedHour3
-console.log(`Formatted Hour: ${formattedHour}`);
-console.log(`Formatted Hour1: ${formattedHour1}`);
-console.log(`Formatted Hour2: ${formattedHour2}`);
-console.log(`Formatted Hour3: ${formattedHour3}`);
+// console.log(`Formatted Hour: ${formattedHour}`);
+// console.log(`Formatted Hour1: ${formattedHour1}`);
+// console.log(`Formatted Hour2: ${formattedHour2}`);
+// console.log(`Formatted Hour3: ${formattedHour3}`);
 
 
 

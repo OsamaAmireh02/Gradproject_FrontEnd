@@ -53,7 +53,8 @@ function ParkingsTable() {
                 </tr>
             </thead>
             <tbody>
-                {responseData.map(parking => <tr>
+                {responseData.map(parking => 
+                <tr key={parking.id}>
                     <td>{parking.name}</td>
                     <td>{parking.numberOfSlot}</td>
                 </tr>)}

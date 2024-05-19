@@ -86,7 +86,7 @@ function UserProfile() {
         <Container className='my-3' style={{
           width: '80%',
           'position': 'sticky',
-          'minHeight': '74vh'
+          'minHeight': '74.8vh'
 
         }}>
           <Form onSubmit={handleButtonClick}>
@@ -190,7 +190,7 @@ function UserProfile() {
                 </Form.Group>
               </Col>
             </Row>
-            <Button variant="warning" type="submit">
+            <Button variant="warning" type="submit" style={{width:'100px'}}>
               Submit
             </Button>
           </Form>

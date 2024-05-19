@@ -81,52 +81,54 @@ function UserTable() {
 
     return (
         <>
-            <Table striped variant='dark' className='table-hover'>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Phone Number</th>
-                        <th>faculty</th>
-                        <th>Role</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {responseData.map(user => <tr key={user.id}>
-                        <td>{user.id}</td>
-                        <td>{user.firstName}</td>
-                        <td>{user.lastName}</td>
-                        <td>{user.email}</td>
-                        <td>{user.phoneNumber}</td>
-                        <td>{user.faculty}</td>
-                        <td>{user.userRole}</td>
-                        <td>{user.id != adminId && <Button onClick={() => handleDeactivateClick(user.id)} variant='danger'>
-                        <svg xmlns="http://www.w3.org/2000/svg" className='me-2' width="25" height="25" viewBox="0 0 16 16"><path fill="#ffffff" fill-rule="evenodd" d="M1 14s-1 0-1-1s1-4 6-4s6 3 6 4s-1 1-1 1zm5-6a3 3 0 1 0 0-6a3 3 0 0 0 0 6m6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708"/></svg>
-                            Delete User
-                        </Button>}</td>
-                        {/* Confirmation modal */}
-                        <Modal show={showConfirmation}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Confirm Deactivation</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>Are you sure you want to deactivate this user?</Modal.Body>
-                            <Modal.Footer>
-                                <Button variant='secondary' onClick={() => setShowConfirmation(false)}>
-                                    Cancel
-                                </Button>
-                                <Button variant='danger' onClick={() => changeStatus(ticketId)}>
-                                    Confirm
-                                </Button>
-                            </Modal.Footer>
-                        </Modal>
-                    </tr>
-                    )}
+            <div style={{ overflowX: 'auto' }}>
+                <Table striped variant='dark' className='table-hover'>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>faculty</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {responseData.map(user => <tr key={user.id}>
+                            <td>{user.id}</td>
+                            <td>{user.firstName}</td>
+                            <td>{user.lastName}</td>
+                            <td>{user.email}</td>
+                            <td>{user.phoneNumber}</td>
+                            <td>{user.faculty}</td>
+                            <td>{user.userRole}</td>
+                            <td>{user.id != adminId && <Button onClick={() => handleDeactivateClick(user.id)} variant='danger'>
+                                <svg xmlns="http://www.w3.org/2000/svg" className='me-2' width="25" height="25" viewBox="0 0 16 16"><path fill="#ffffff" fill-rule="evenodd" d="M1 14s-1 0-1-1s1-4 6-4s6 3 6 4s-1 1-1 1zm5-6a3 3 0 1 0 0-6a3 3 0 0 0 0 6m6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708" /></svg>
+                                Delete User
+                            </Button>}</td>
+                            {/* Confirmation modal */}
+                            <Modal show={showConfirmation}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Confirm Deactivation</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>Are you sure you want to deactivate this user?</Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant='secondary' onClick={() => setShowConfirmation(false)}>
+                                        Cancel
+                                    </Button>
+                                    <Button variant='danger' onClick={() => changeStatus(ticketId)}>
+                                        Confirm
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
+                        </tr>
+                        )}
 
-                </tbody>
-            </Table>
+                    </tbody>
+                </Table>
+            </div>
             {isSuccess && (
                 <Toast
                     show={showToast}

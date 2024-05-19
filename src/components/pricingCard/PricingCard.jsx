@@ -12,12 +12,12 @@ function PricingCard() {
 
     <Row className="my-3" style={{ display: 'flex', justifyContent: 'center' }}>
       <Col lg={4} className='my-3 pt-3'>
-        <div class="PricingCard">
-          <div class="PricingCard-inner">
-            <div class="PricingCard-front">
-              <p>Our Prices</p>
+        <div className="PricingCard">
+          <div className="PricingCard-inner">
+            <div className="PricingCard-front">
+              <p style={{fontSize:'40px'}}>Our Prices</p>
             </div>
-            <div class="PricingCard-back">
+            <div className="PricingCard-back">
               <p>Back Side</p>
             </div>
           </div>
@@ -34,12 +34,12 @@ function PricingCard() {
     </Card> */}
       </Col>
       <Col lg={4} className='my-3'>
-      <div class="PricingCard">
-          <div class="PricingCard-inner">
-            <div class="PricingCard-front" style={{backgroundColor: '#E9B824'}}>
-              <p>Our Prices</p>
+      <div className="PricingCard">
+          <div className="PricingCard-inner">
+            <div className="PricingCard-front" style={{backgroundColor: '#E9B824'}}>
+              <p style={{fontSize:'40px'}}>About Us</p>
             </div>
-            <div class="PricingCard-back">
+            <div className="PricingCard-back">
               <p>Back Side</p>
             </div>
           </div>
@@ -56,12 +56,12 @@ function PricingCard() {
     </Card> */}
       </Col>
       <Col lg={4} className='my-3 pt-3'>
-      <div class="PricingCard">
-          <div class="PricingCard-inner">
-            <div class="PricingCard-front">
-              <p>Our Prices</p>
+      <div className="PricingCard">
+          <div className="PricingCard-inner">
+            <div className="PricingCard-front">
+              <p style={{fontSize:'40px'}}>Contact Us</p>
             </div>
-            <div class="PricingCard-back">
+            <div className="PricingCard-back">
               <p>Back Side</p>
             </div>
           </div>

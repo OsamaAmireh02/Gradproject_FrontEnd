@@ -4,10 +4,11 @@ import axios from 'axios';
 
 const ReadQR = () => {
   const [scannedData, setScannedData] = useState(null);
+  const [ifError, setIfError] = useState(false);
 
   // Callback function when QR code is successfully scanned
   const handleScanResult = (text, result) => {
-    
+
     handlePostRequest(result.text)
     // Assuming 'result' contains the scanned data (e.g., ticket ID)
     // You can customize this logic based on your specific use case
@@ -20,10 +21,10 @@ const ReadQR = () => {
       console.log(id)
       const endpoint = `/ticket/scan/${id}`
       PostMethod1(endpoint)
-      window.location.href = `/?readed=true`;
+      //window.location.href = `/?readed=true`;
       // Make a POST request to your server endpoint
     } catch (error) {
-      console.error('Error:', error.message);
+      console.log(error);
     }
   };
 
@@ -38,7 +39,6 @@ const ReadQR = () => {
         console.error('Token not found. Please authenticate first.');
         return null;
       }
-  
       // Set the Authorization header
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       // Make the request using POST method
@@ -51,12 +51,17 @@ const ReadQR = () => {
   }
 
   return (
-    <div>
-      <Scanner
-        onResult={handleScanResult}
-        onError={(error) => console.log(error?.message)}
-      />
-    </div>
+    <>
+      {!ifError ? <h2 style={{ color: 'white' }}>Scanning...</h2>:
+      <h2>Ticket not found, please try again.</h2>
+      }
+      <div>
+        <Scanner
+          onResult={handleScanResult}
+          onError={(error) => setIfError(true)}
+        />
+      </div>
+    </>
   );
 };
 
