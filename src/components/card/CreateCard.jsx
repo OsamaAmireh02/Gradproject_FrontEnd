@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import makeAuthenticatedRequest from '../userTable/Api';
 import './card.css'
@@ -10,7 +10,7 @@ function CreateCard() {
   const [isLoading, setIsLoading] = useState(true);
   const [available, setAvailable] = useState();
   const [parkingId, setParkingId] = useState(1);
-  
+
   const getAvailable = async (parkingId) => {
     try {
       const data = { parkingId };
@@ -23,7 +23,7 @@ function CreateCard() {
       console.error('Error fetching data:', error);
     }
   };
-  
+
   const fetchData = async () => {
     try {
       const response = await makeAuthenticatedRequest('/parking/all');
@@ -35,15 +35,15 @@ function CreateCard() {
       console.error('Error fetching data:', error);
     }
   };
-  
+
   useEffect(() => {
     fetchData();
   }, []); // Empty dependency array to run once on mount
-  
+
   if (isLoading) {
     return null; // Render loading state or spinner
   }
-  
+
 
   return (
     <>
@@ -54,7 +54,7 @@ function CreateCard() {
         'minHeight': '73vh'
       }}>
         {responseData.map(parking => (
-          <Col lg={4} className="my-3" key={parking.id}>
+          <Col lg={6} className="my-3" key={parking.id}>
             {/* Use the Card component as a button */}
             <Card
               as="a" // Set the Card component as an anchor (button)
@@ -71,19 +71,23 @@ function CreateCard() {
               }}
             >
               <Card.Body>
-                <Card.Title><strong>{parking.name}</strong></Card.Title>
-                <Card.Text>
-                  This Parking have {parking.numberOfSlot} slots. <br />
-                  <iframe
-                    src={parking.address}
-                    width="300"
-                    height="300"
-                    style={{ border: 1 }}
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade">
-                  </iframe>
-                </Card.Text>
+                <Container>
+                  <Card.Title><h2>{parking.name}</h2></Card.Title>
+                  <Card.Text>
+                    This Parking have {parking.numberOfSlot} slots. <br />
+                  </Card.Text>
+
+                  <div className="ratio ratio-21x9">
+                    <iframe
+                      src={parking.address}
+                      title="Parking location"
+                      allowFullScreen=""
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      style={{ border: '2px solid black', borderRadius: '5px' }}
+                    ></iframe>
+                  </div>
+                </Container>
               </Card.Body>
             </Card>
           </Col>

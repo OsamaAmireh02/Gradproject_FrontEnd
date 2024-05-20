@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Card, Col, Container, Modal, Row, Toast } from 'react-bootstrap'
+import { Button, Col, Container, Modal, Row, Toast } from 'react-bootstrap'
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import './style.css'
+import moment from 'moment';
 
 
 function TicketsHistory() {
-
+    const currentTime = new Date();
+    const halfHourBeforeCurrentTime = new Date(currentTime.getTime() + 30 * 60 * 1000);
+    const formattedTime = moment(halfHourBeforeCurrentTime).format('HH:mm:ss');
+    const formattedDate = moment().format('YYYY-MM-DD');
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [ticketId, setTicketId] = useState();
     const [showToast, setShowToast] = useState(false); // State for controlling the toast
@@ -59,6 +63,8 @@ function TicketsHistory() {
     }
 
     const fetchData = async () => {
+        console.log("time:" + formattedTime)
+        console.log("Date:" + formattedDate)
 
         const endpoint = `/ticket/getByUserId/${userId}`; // Replace with your actual endpoint
 
@@ -105,10 +111,10 @@ function TicketsHistory() {
                 <div className="ticketContainer">
                     <Row>
                         {userTickets.map(ticket => (
-                            <Col key={ticket.ticketId} className='mb-3' lg={4}>
+                            <Col key={ticket.ticketId} className='mb-3' lg={3}>
                                 <div className="tickett" key={ticket.ticketId}>
-                                <a href={`/ticket/?id=${ticket.ticketId}`} style={{ textDecoration: 'none', color:'black' }}>
-                                    <div className="ticketTitle">{ticket.ticketStatus}</div>
+                                    <a href={`/ticket/?id=${ticket.ticketId}`} style={{ textDecoration: 'none', color: 'black' }}>
+                                        <div className="ticketTitle">{ticket.ticketStatus}</div>
                                         <div className="ticketDetail">
                                             <div>Parking Name:&ensp; {ticket.parkingName}</div>
                                             <div>Slot Number:&nbsp; {ticket.slotNumber}</div>
@@ -124,9 +130,16 @@ function TicketsHistory() {
                                             <div className="date"> {ticket.date}</div>
                                         </div>
                                     </a>
-                                    <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                        <Button variant='danger' onClick={() => handleDeactivateClick(ticket.ticketId)}>Delete</Button>
-                                    </div>
+                                    {(ticket.fromTime > formattedTime && ticket.date >= formattedDate) && (
+                                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                            <Button
+                                                variant='danger'
+                                                onClick={() => handleDeactivateClick(ticket.ticketId)}
+                                            >
+                                                Delete
+                                            </Button>
+                                        </div>
+                                    )}
                                     <div className="ticketShadow"></div>
                                 </div>
                                 {/* Confirmation modal */}

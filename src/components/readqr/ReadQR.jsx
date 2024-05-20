@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const ReadQR = () => {
-  const [scannedData, setScannedData] = useState(null);
   const [ifError, setIfError] = useState(false);
 
   // Callback function when QR code is successfully scanned
@@ -21,7 +20,7 @@ const ReadQR = () => {
       console.log(id)
       const endpoint = `/ticket/scan/${id}`
       PostMethod1(endpoint)
-      //window.location.href = `/?readed=true`;
+      window.location.href = `/?readed=true`;
       // Make a POST request to your server endpoint
     } catch (error) {
       console.log(error);
@@ -55,8 +54,9 @@ const ReadQR = () => {
       {!ifError ? <h2 style={{ color: 'white' }}>Scanning...</h2>:
       <h2>Ticket not found, please try again.</h2>
       }
-      <div>
+      <div style={{maxHeight:'400px', maxWidth:'400px'}}>
         <Scanner
+        
           onResult={handleScanResult}
           onError={(error) => setIfError(true)}
         />
