@@ -200,6 +200,7 @@ function TicketTable() {
               <th>Car Color</th>
               <th>Car Plate Number</th>
               <th>Ticket Status</th>
+              <th>Added Time</th>
             </tr>
           </thead>
           <tbody>
@@ -214,6 +215,7 @@ function TicketTable() {
               <td>{ticket.carColor}</td>
               <td>{ticket.carPlateNumber}</td>
               <td>{ticket.ticketStatus}</td>
+              <td>{ticket.addedTime}</td>
             </tr>)}
           </tbody>
         </Table>
