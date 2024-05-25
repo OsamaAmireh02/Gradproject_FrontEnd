@@ -15,66 +15,37 @@ function PricingCard() {
         <div className="PricingCard">
           <div className="PricingCard-inner">
             <div className="PricingCard-front">
-              <p style={{fontSize:'40px'}}>Our Prices</p>
+              <p style={{ fontSize: '40px' }}>Our Prices</p>
             </div>
             <div className="PricingCard-back">
               <p>Back Side</p>
             </div>
           </div>
         </div>
-
-        {/* <Card className="text-center card shadow p-3 mb-5 rounded" style={{backgroundColor:'#f0f1ee'}}>
-      <Card.Header><strong>Just an Hour</strong></Card.Header>
-      <Card.Body>
-        <Card.Title>1JD\Per Hour!</Card.Title>
-        <Card.Text>
-          Enjoy Comfort and secure Parking for your car only for this price.
-        </Card.Text>
-      </Card.Body>
-    </Card> */}
       </Col>
       <Col lg={4} className='my-3'>
-      <div className="PricingCard">
+        <div className="PricingCard">
           <div className="PricingCard-inner">
-            <div className="PricingCard-front" style={{backgroundColor: '#E9B824'}}>
-              <p style={{fontSize:'40px'}}>About Us</p>
+            <div className="PricingCard-front" style={{ backgroundColor: '#E9B824' }}>
+              <p style={{ fontSize: '40px' }}>About Us</p>
             </div>
             <div className="PricingCard-back">
               <p>Back Side</p>
             </div>
           </div>
         </div>
-        {/* <Card className="text-center card shadow p-3 mb-5 rounded" style={{backgroundColor:'#e2b714'}}>
-      <Card.Header><strong>I want it ALL DAY</strong></Card.Header>
-      <Card.Body>
-        <Card.Title>5 JD for the whole day!</Card.Title>
-        <Card.Text>
-          Enjoy Comfort and secure Parking for your car only for this price.
-        </Card.Text>
-      </Card.Body>
-      <Card.Footer>Full Day means from 07:00 - 17:00</Card.Footer>
-    </Card> */}
       </Col>
       <Col lg={4} className='my-3 pt-3'>
-      <div className="PricingCard">
+        <div className="PricingCard">
           <div className="PricingCard-inner">
             <div className="PricingCard-front">
-              <p style={{fontSize:'40px'}}>Contact Us</p>
+              <p style={{ fontSize: '40px' }}>Contact Us</p>
             </div>
             <div className="PricingCard-back">
               <p>Back Side</p>
             </div>
           </div>
         </div>
-        {/* <Card className="text-center card shadow p-3 mb-5 rounded" style={{backgroundColor:'#f0f1ee'}}>
-      <Card.Header ><strong>I'll stay a little more</strong></Card.Header>
-      <Card.Body>
-        <Card.Title>2JD\Per 3 Hours!</Card.Title>
-        <Card.Text>
-          Enjoy Comfort and secure Parking for your car only for this price.
-        </Card.Text>
-      </Card.Body>
-    </Card> */}
       </Col>
     </Row>
   );

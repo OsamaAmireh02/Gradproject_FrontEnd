@@ -59,7 +59,7 @@ function AddUser() {
                                 value={firstName}
                                 onChange={(e) => {
                                     const input = e.target.value;
-                                    const validFirstName = /^[A-Za-z]+$/.test(input); // Regular expression for letters only
+                                    const validFirstName = /^[A-Za-z]+$/.test(input);
                                     if (validFirstName) {
                                         setFirstName(input);
                                     }

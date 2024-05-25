@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import { Container, ThemeProvider } from 'react-bootstrap';
-import image1 from '../../assests/Slider1.gif';
+import image1 from '../../assests/Slider1.jpeg';
+import image2 from '../../assests/Slider2.jpeg';
+import image3 from '../../assests/Slider3.jpeg';
 
 function Slider() {
   const [index, setIndex] = useState(0);
@@ -21,10 +23,10 @@ function Slider() {
           <img src={image1} alt='' width={"100%"} />
         </Carousel.Item>
         <Carousel.Item>
-          <img src={image1} alt='' width={"100%"} />
+          <img src={image2} alt='' width={"100%"} />
         </Carousel.Item>
         <Carousel.Item>
-          <img src={image1} alt='' width={"100%"} />
+          <img src={image3} alt='' width={"100%"} />
         </Carousel.Item>
       </Carousel>
       </Container>
