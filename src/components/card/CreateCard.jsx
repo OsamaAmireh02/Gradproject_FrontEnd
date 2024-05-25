@@ -28,7 +28,8 @@ function CreateCard() {
     try {
       const response = await makeAuthenticatedRequest('/parking/all');
       setResponseData(response.data);
-      setParkingId(response.data[2].id); // Use response.data directly
+      console.log(response.data);
+      //setParkingId(response.data[2].id); // Use response.data directly
       setIsLoading(false);
       await getAvailable(parkingId); // Wait for getAvailable() to complete
     } catch (error) {
@@ -75,6 +76,7 @@ function CreateCard() {
                   <Card.Title><h2>{parking.name}</h2></Card.Title>
                   <Card.Text>
                     This Parking have {parking.numberOfSlot} slots. <br />
+                    This Parking have {parking.numberOfAvailableSlot} available slots right now. <br />
                   </Card.Text>
 
                   <div className="ratio ratio-21x9">

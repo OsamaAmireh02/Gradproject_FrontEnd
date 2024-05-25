@@ -56,22 +56,22 @@ function Ticket(props) {
                         <tr>
                             <th style={{width:'33%'}}>Parking Name</th>
                             <th style={{width:'33%'}}>Slot Number</th>
-                            <th style={{width:'33%'}}>SEAT</th>
+                            
                         </tr>
                         <tr>
                             <td style={{width:'33%'}}>{data.parkingName}</td>
                             <td style={{width:'33%'}}>{data.slotNumber}</td>
-                            <td style={{width:'33%'}}>24</td>
+                            
                         </tr>
                         </table>
                         <table>
                         <tr>
-                            <th style={{width:'33%'}}>PRICE</th>
+                            
                             <th style={{width:'33%'}}>DATE</th>
                             <th style={{width:'33%'}}>TIME</th>
                         </tr>
                         <tr>
-                            <td style={{width:'33%'}}>$12.00</td>
+                            
                             <td style={{width:'33%'}}>{data.date}</td>
                             <td style={{width:'33%'}}>{data.fromTime}</td>
                         </tr>

@@ -50,6 +50,7 @@ function ParkingsTable() {
                 <tr>
                     <th>Parking Name</th>
                     <th>No. Of Slots</th>
+                    <th>No. Of available slots</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,6 +58,7 @@ function ParkingsTable() {
                 <tr key={parking.id}>
                     <td>{parking.name}</td>
                     <td>{parking.numberOfSlot}</td>
+                    <td>{parking.numberOfAvailableSlot}</td>
                 </tr>)}
             </tbody>
         </Table>

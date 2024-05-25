@@ -10,6 +10,7 @@ import './conf.css'
 
 function ConfParking() {
 
+    const [errorMessage, setErrorMessage] = useState('');
     const blk = { color: 'white' };
     const fromTime = localStorage.getItem('time');
     const ticketStatus = "Pending";
@@ -130,6 +131,7 @@ function ConfParking() {
             window.location.href = `/ticket?id=${apiResponse.data.ticketId}`;
         } catch (error) {
             console.error('Error making authenticated request:', error);
+            setErrorMessage('You can\'t book two tickets at the same time. Please try again.');
             // Handle the error
         }
     };
@@ -351,6 +353,9 @@ function ConfParking() {
                     </Col>
                 </Row>
                 <Row>
+                {errorMessage && <Form.Text style={{ color: '#ff4040' }}>
+                    {errorMessage}
+                </Form.Text>}
                     <Col style={{ display: 'flex', justifyContent: 'center' }}>
                         <Button
                             className='btn-53'

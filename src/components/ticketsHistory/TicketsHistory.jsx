@@ -111,7 +111,7 @@ function TicketsHistory() {
                 <div className="ticketContainer">
                     <Row>
                         {userTickets.map(ticket => (
-                            <Col key={ticket.ticketId} className='mb-3' lg={3}>
+                            <Col key={ticket.ticketId} className='mb-3'>
                                 <div className="tickett" key={ticket.ticketId}>
                                     <a href={`/ticket/?id=${ticket.ticketId}`} style={{ textDecoration: 'none', color: 'black' }}>
                                         <div className="ticketTitle">{ticket.ticketStatus}</div>

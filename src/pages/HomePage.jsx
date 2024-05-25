@@ -50,7 +50,9 @@ function HomePage() {
                         repeat={Infinity}
                     />
                 </div>
+                <Container style={{ display: 'flex', justifyContent: 'center' }}>
                 <PricingCard />
+                </Container>
             </Container>
             <Footer />
             {isSuccess && (

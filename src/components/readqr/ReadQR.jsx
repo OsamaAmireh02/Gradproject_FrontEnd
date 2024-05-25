@@ -7,23 +7,24 @@ const ReadQR = () => {
 
   // Callback function when QR code is successfully scanned
   const handleScanResult = (text, result) => {
-
-    handlePostRequest(result.text)
+    handlePostRequest(result.text);
     // Assuming 'result' contains the scanned data (e.g., ticket ID)
     // You can customize this logic based on your specific use case
-    //setScannedData(result);
+    // setScannedData(result);
   };
 
   // Function to handle the POST request
   const handlePostRequest = async (id) => {
     try {
-      console.log(id)
-      const endpoint = `/ticket/scan/${id}`
-      PostMethod1(endpoint)
+      console.log(id);
+      const endpoint = `/ticket/scan/${id}`;
+      const response = await PostMethod1(endpoint);
+      // Handle the response as needed
       window.location.href = `/?readed=true`;
-      // Make a POST request to your server endpoint
+      console.log('Response:', response);
     } catch (error) {
-      console.log(error);
+      console.error('Error fetching data:', error);
+      setIfError(true); // Set the error state to true
     }
   };
 
@@ -42,10 +43,9 @@ const ReadQR = () => {
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       // Make the request using POST method
       const response = await api.post(endpoint);
-      return response;
+      return response.data; // Return the response data
     } catch (error) {
-      console.error('Error fetching data:', error);
-      throw error
+      throw error; // Rethrow the error to be caught in handlePostRequest
     }
   }
 
