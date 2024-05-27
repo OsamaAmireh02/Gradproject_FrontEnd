@@ -6,7 +6,7 @@ import PostMethod from '../PostMethod';
 
 function AddUser() {
 
-    const blk = { color: 'white' };
+    const whiteStyling = { color: 'white' };
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -14,12 +14,11 @@ function AddUser() {
     const [faculty, setFaculty] = useState('');
     const [phoneNumber, setPhoneNumber] = useState();
     const [userRole, setUeserRole] = useState('');
+    const [errorMessage, setErrorMessage] = useState(false);
 
-    const [errorMessage, setErrorMessage] = useState('');
-
-
+    //function to save the user
     const handleButtonClick = async (e) => {
-        const endpoint = '/user/save'; // Replace with your actual endpoint
+        const endpoint = '/user/save';
         const requestData = {
             firstName,
             lastName,
@@ -28,16 +27,15 @@ function AddUser() {
             phoneNumber,
             userRole,
             faculty
-        }; // Your data object
+        };
 
         try {
             e.preventDefault();
             const apiResponse = await PostMethod(endpoint, requestData);
-            console.log('API Response:', apiResponse);
             window.location.href = '/admin/users?success=true';
         } catch (error) {
             console.error('Error making authenticated request:', error);
-            setErrorMessage('Please check your data and try again.');
+            setErrorMessage(true);
         }
     };
 
@@ -52,7 +50,7 @@ function AddUser() {
                 <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>First Name</Form.Label>
+                            <Form.Label style={whiteStyling}>First Name</Form.Label>
                             <Form.Control
                                 type="name"
                                 placeholder="Enter First Name"
@@ -70,7 +68,7 @@ function AddUser() {
                     </Col>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Last Name</Form.Label>
+                            <Form.Label style={whiteStyling}>Last Name</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Enter Last Name"
@@ -91,7 +89,7 @@ function AddUser() {
                 <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Phone Number</Form.Label>
+                            <Form.Label style={whiteStyling}>Phone Number</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Enter Phone Number"
@@ -103,7 +101,7 @@ function AddUser() {
                     </Col>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Email</Form.Label>
+                            <Form.Label style={whiteStyling}>Email</Form.Label>
                             <Form.Control
                                 type="email"
                                 placeholder="Enter Email"
@@ -118,7 +116,7 @@ function AddUser() {
                 <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Password</Form.Label>
+                            <Form.Label style={whiteStyling}>Password</Form.Label>
                             <Form.Control
                                 type="password"
                                 placeholder="Enter Password"
@@ -130,7 +128,7 @@ function AddUser() {
                     </Col>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Role</Form.Label>
+                            <Form.Label style={whiteStyling}>Role</Form.Label>
                             <Form.Select
                                 aria-label="Default select example"
                                 value={userRole}
@@ -147,7 +145,7 @@ function AddUser() {
                 {userRole === "STUDENT" && <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Facilty</Form.Label>
+                            <Form.Label style={whiteStyling}>Facilty</Form.Label>
                             <Form.Select
                                 aria-label="Default select example"
                                 value={faculty}
@@ -161,12 +159,12 @@ function AddUser() {
                                 <option value="Arts">School of Arts</option>
                                 <option value="Business">School of Business</option>
                                 <option value="Sharia">School of Sharia</option>
-                                <option value="Educational">School of Educational Sciences</option>
+                                <option value="Educational Sciences">School of Educational Sciences</option>
                                 <option value="Law">School of Law</option>
                                 <option value="Nursing">School of Nursing</option>
                                 <option value="Medicine">School of Medicine</option>
                                 <option value="Pharmacy">School of Pharmacy</option>
-                                <option value="Physical">School of Physical Education</option>
+                                <option value="Physical Education">School of Physical Education</option>
                                 <option value="Arts">School of Arts and Design</option>
                                 <option value="International">School of International Studies</option>
                                 <option value="languages">School of Foreign languages</option>
@@ -177,7 +175,8 @@ function AddUser() {
                         </Form.Group>
                     </Col>
                 </Row>}
-                {errorMessage && <div className="error-message mb-3" style={{ color: '#ff4040' }}>{errorMessage}</div>}
+                {errorMessage &&
+                    <div className="error-message mb-3" style={{ color: '#ff4040' }}>Please check your data and try again.</div>}
                 <Button variant="warning" type="submit">
                     Add User
                 </Button>

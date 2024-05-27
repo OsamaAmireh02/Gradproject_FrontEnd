@@ -7,9 +7,7 @@ import DeletedUserTable from '../components/userTable/DeletedUsersTable'
 
 function DeletedUsersPage() {
     return (
-        <div style={{
-            // paddingTop: '50px'
-        }}>
+        <div>
             <NavBar />
             <SideBar
                 table={<DeletedUserTable />}

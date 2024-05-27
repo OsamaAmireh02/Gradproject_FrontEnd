@@ -1,15 +1,12 @@
 import { Col, Row } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import './styles.css';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 
 
 function PricingCard() {
 
   return (
-
     <Row className="my-3" style={{ display: 'flex', justifyContent: 'center' }}>
       <Col lg={4} className='my-3 pt-3'>
         <div className="PricingCard">
@@ -18,7 +15,7 @@ function PricingCard() {
               <p style={{ fontSize: '40px' }}>Our Prices</p>
             </div>
             <div className="PricingCard-back">
-              <p className='mx-3' style={{textAlign:'center'}}>"Discover affordable and flexible parking plans tailored to your needs."</p>
+              <p className='mx-3' style={{ textAlign: 'center' }}>"Discover affordable and flexible parking plans tailored to your needs."</p>
             </div>
           </div>
         </div>
@@ -30,7 +27,7 @@ function PricingCard() {
               <p style={{ fontSize: '40px' }}>About Us</p>
             </div>
             <div className="PricingCard-back">
-              <p className='mx-3' style={{textAlign:'center'}}>"Learn more about our mission to provide convenient and secure parking for university students."</p>
+              <p className='mx-3' style={{ textAlign: 'center' }}>"Learn more about our mission to provide convenient and secure parking for university students."</p>
             </div>
           </div>
         </div>
@@ -42,8 +39,7 @@ function PricingCard() {
               <p style={{ fontSize: '40px' }}>Contact Us</p>
             </div>
             <div className="PricingCard-back">
-              <p className='mx-3' style={{textAlign:'center'}}>"Get in touch with us for any inquiries or support—we're here to help!"<br/>
-              {/* You can contact us using this email: <strong>Admin@jupark.com</strong> */}
+              <p className='mx-3' style={{ textAlign: 'center' }}>"Get in touch with us for any inquiries or support—we're here to help!"<br />
               </p>
             </div>
           </div>

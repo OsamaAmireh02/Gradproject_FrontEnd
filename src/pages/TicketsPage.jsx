@@ -7,9 +7,7 @@ import TicketTable from '../components/ticketTable/TicketTable'
 
 function TicketPage() {
     return (
-        <div style={{
-            // paddingTop: '50px'
-        }}>
+        <div>
             <NavBar />
             <SideBar
                 table={<TicketTable/>}

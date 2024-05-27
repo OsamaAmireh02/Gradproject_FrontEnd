@@ -18,17 +18,17 @@ function Slider() {
       minBreakpoint="xxs"
     >
       <Container className='my-3'>
-      <Carousel activeIndex={index} onSelect={handleSelect} className='lg' >
-        <Carousel.Item>
-          <img src={image1} alt='' width={"100%"} />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img src={image2} alt='' width={"100%"} />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img src={image3} alt='' width={"100%"} />
-        </Carousel.Item>
-      </Carousel>
+        <Carousel activeIndex={index} onSelect={handleSelect} className='lg' >
+          <Carousel.Item>
+            <img src={image1} alt='' width={"100%"} />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img src={image2} alt='' width={"100%"} />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img src={image3} alt='' width={"100%"} />
+          </Carousel.Item>
+        </Carousel>
       </Container>
     </ThemeProvider>
   );

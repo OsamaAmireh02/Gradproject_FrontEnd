@@ -11,7 +11,7 @@ import './conf.css'
 function ConfParking() {
 
     const [errorMessage, setErrorMessage] = useState('');
-    const blk = { color: 'white' };
+    const whiteStyling = { color: 'white' };
     const fromTime = localStorage.getItem('time');
     const ticketStatus = "Pending";
     const location = useLocation();
@@ -22,7 +22,7 @@ function ConfParking() {
     const [parking, setParking] = useState(parkingName);
     const [carModel, setCarModel] = useState('');
     const [carColor, setCarColor] = useState('');
-    const [slotNumber, setSlot] = useState(parseInt(localStorage.getItem('seat')));
+    const [slotNumber, setSlot] = useState(parseInt(localStorage.getItem('selectedSlot')));
     const [carPlateNumber, setCarPlate] = useState();
     const [time, settime] = useState(localStorage.getItem('time'));
     const [payMethod, setPayMethod] = useState('cash');
@@ -37,11 +37,12 @@ function ConfParking() {
         carPlateNumber: ''
     });
 
+    //to get the slot id
     useEffect(() => {
         const url = 'http://localhost:8080/slot/getSlotId';
         const data = {
-            parkingId, // Replace with actual parking ID
-            slotNumber, // Replace with actual slot number
+            parkingId,
+            slotNumber,
         };
 
         const token = localStorage.getItem('token');
@@ -55,8 +56,6 @@ function ConfParking() {
         try {
             axios.post(url, data, config)
                 .then((response) => {
-                    console.log('Response:', response.data);
-                    // Assuming you have a state variable called 'setSlotId'
                     setSlotId(response.data);
                 })
                 .catch((error) => {
@@ -67,6 +66,7 @@ function ConfParking() {
         }
     }, []);
 
+    //to get user data
     useEffect(() => {
         const token = localStorage.getItem('token');
         const email = localStorage.getItem('email');
@@ -81,12 +81,10 @@ function ConfParking() {
 
             const data = { email };
 
-            // Replace with your actual API endpoint
             axios
                 .post('http://localhost:8080/user/getByEmail', data, config)
                 .then((response) => {
                     const { firstName, lastName, email, phoneNumber, carModel, carColor, carPlateNumber } = response.data;
-                    // Update state with retrieved data
                     setUserData({
                         firstName,
                         lastName,
@@ -106,6 +104,7 @@ function ConfParking() {
         }
     }, []);
 
+    //to save the ticket
     const handleButtonClick = async (e) => {
         const endpoint = '/ticket/save';
         const requestData = {
@@ -127,12 +126,10 @@ function ConfParking() {
         try {
             e.preventDefault();
             const apiResponse = await PostMethod(endpoint, requestData);
-            console.log('API Response:', apiResponse);
             window.location.href = `/ticket?id=${apiResponse.data.ticketId}`;
         } catch (error) {
             console.error('Error making authenticated request:', error);
             setErrorMessage('You can\'t book two tickets at the same time. Please try again.');
-            // Handle the error
         }
     };
 
@@ -146,7 +143,7 @@ function ConfParking() {
                 <Row>
                     <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>First Name</Form.Label>
+                            <Form.Label style={whiteStyling}>First Name</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={userData.firstName}
@@ -157,7 +154,7 @@ function ConfParking() {
                     </Col>
                     <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Last Name</Form.Label>
+                            <Form.Label style={whiteStyling}>Last Name</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={userData.lastName}
@@ -171,7 +168,7 @@ function ConfParking() {
                 <Row>
                     <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Phone Number</Form.Label>
+                            <Form.Label style={whiteStyling}>Phone Number</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={userData.phoneNumber}
@@ -182,7 +179,7 @@ function ConfParking() {
                     </Col>
                     <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Email</Form.Label>
+                            <Form.Label style={whiteStyling}>Email</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={userData.email}
@@ -195,7 +192,7 @@ function ConfParking() {
                 <Row>
                     <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Selected Time</Form.Label>
+                            <Form.Label style={whiteStyling}>Selected Time</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={localStorage.getItem('time')}
@@ -207,7 +204,7 @@ function ConfParking() {
                     </Col>
                     <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Selected Parking</Form.Label>
+                            <Form.Label style={whiteStyling}>Selected Parking</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={{ parkingName }}
@@ -221,7 +218,7 @@ function ConfParking() {
                 <Row>
                     <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Selected Slot</Form.Label>
+                            <Form.Label style={whiteStyling}>Selected Slot</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={localStorage.getItem('seat')}
@@ -233,7 +230,7 @@ function ConfParking() {
                     </Col>
                     <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Car Model</Form.Label>
+                            <Form.Label style={whiteStyling}>Car Model</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={userData.carModel}
@@ -247,7 +244,7 @@ function ConfParking() {
                 <Row>
                     <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Car Color</Form.Label>
+                            <Form.Label style={whiteStyling}>Car Color</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={userData.carColor}
@@ -259,7 +256,7 @@ function ConfParking() {
                     </Col>
                     <Col lg={6}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Car Plate number</Form.Label>
+                            <Form.Label style={whiteStyling}>Car Plate number</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder={userData.carPlateNumber}
@@ -273,7 +270,7 @@ function ConfParking() {
                 <Row>
                     <Col>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label style={blk}>Payment Method</Form.Label>
+                            <Form.Label style={whiteStyling}>Payment Method</Form.Label>
                             <Form.Select
                                 aria-label="Default select example"
                                 value={payMethod}
@@ -353,9 +350,9 @@ function ConfParking() {
                     </Col>
                 </Row>
                 <Row>
-                {errorMessage && <Form.Text style={{ color: '#ff4040' }}>
-                    {errorMessage}
-                </Form.Text>}
+                    {errorMessage && <Form.Text style={{ color: '#ff4040' }}>
+                        {errorMessage}
+                    </Form.Text>}
                     <Col style={{ display: 'flex', justifyContent: 'center' }}>
                         <Button
                             className='btn-53'

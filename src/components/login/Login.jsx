@@ -11,6 +11,7 @@ function Login() {
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
+    //function to let the user login
     const handleLogin = async (e) => {
         try {
             e.preventDefault();
@@ -19,23 +20,19 @@ function Login() {
                 password
             });
 
-            // Store token and email in local storage
             localStorage.setItem('token', response.data.jwtToken);
             localStorage.setItem('email', response.data.email);
 
-            // Send another POST request to retrieve user info
             const userInfoResponse = await axios.post('http://localhost:8080/user/getByEmail', {
                 email: response.data.email
             }, {
                 headers: {
-                    Authorization: `Bearer ${response.data.jwtToken}` // Include the token in the request header
+                    Authorization: `Bearer ${response.data.jwtToken}`
                 }
             });
 
-            // Assuming the user info is returned as an object with properties like 'name', 'age', etc.
             const userInfo = userInfoResponse.data;
 
-            // You can handle the user info as needed (e.g., display it on the UI)
             localStorage.setItem('role', userInfo.userRole);
             localStorage.setItem('id', userInfo.id);
             if (userInfo.userStatus == 'DELETED') {
@@ -47,7 +44,6 @@ function Login() {
                 throw "No access"
             }
 
-            // Redirect to home page
             window.location.href = '/';
         } catch (error) {
             console.error('Login failed:', error.message);
@@ -66,12 +62,20 @@ function Login() {
             <h1 style={{ color: 'white' }} className='my-3'>Welcome Back</h1>
             <Form onSubmit={handleLogin}>
                 <div className="inputbox mb-4">
-                    <input type="email" required="required" value={email} onChange={(e) => setEmail(e.target.value.toLowerCase())} />
+                    <input 
+                    type="email" 
+                    required="required" 
+                    autoComplete="new-password"
+                    value={email} onChange={(e) => setEmail(e.target.value.toLowerCase())} />
                     <span>Email</span>
                     <i></i>
                 </div>
                 <div className="inputbox">
-                    <input type="password" required="required" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" 
+                    required="required" 
+                    autoComplete="new-password"
+                    value={password} 
+                    onChange={(e) => setPassword(e.target.value)} />
                     <span>Password</span>
                     <i></i>
                 </div>
@@ -81,8 +85,8 @@ function Login() {
                 </Form.Text>}
                 <br />
                 <Button className='btn-53' variant='warning' type="submit">
-                    <div class="original">LOGIN</div>
-                    <div class="letters">
+                    <div className="original">LOGIN</div>
+                    <div className="letters">
                         <span>L</span>
                         <span>O</span>
                         <span>G</span>

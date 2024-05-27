@@ -10,8 +10,8 @@ function NavBar() {
 
   const role = localStorage.getItem('role')
 
+  //function to log the user out
   const handleLogout = () => {
-    // Clear the token and email from localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('email');
     localStorage.removeItem('role');
@@ -36,21 +36,20 @@ function NavBar() {
             <Nav.Link href="/" style={{ color: '#ffffff' }} >Home</Nav.Link>
             {!isAuthenticated() && <Nav.Link href="/login" style={{ color: '#ffffff' }}>Login</Nav.Link>}
             {isAuthenticated() && role === "ADMIN" && <Nav.Link href="/admin/users" style={{ color: '#ffffff' }}>Dashboard</Nav.Link>}
-            {isAuthenticated() && role === "STUDENT" && <Nav.Link href="/booking" style={{ color: '#ffffff' }}>Booking</Nav.Link>}
             {isAuthenticated() && role === "GUARD" && <Nav.Link href="/guard/scan" style={{ color: '#ffffff' }}>Scan QR Code</Nav.Link>}
             {isAuthenticated() && role === "GUARD" && <Nav.Link href="/guard/tickets" style={{ color: '#ffffff' }}>View Tickets</Nav.Link>}
+            {isAuthenticated() && role === "STUDENT" && <Nav.Link href="/booking" style={{ color: '#ffffff' }}>Booking</Nav.Link>}
             {isAuthenticated() && role === "STUDENT" && <Nav.Link href="/student/tickets" style={{ color: '#ffffff' }}>My Tickets</Nav.Link>}
             {isAuthenticated() && role === "STUDENT" && <Nav.Link href="/student/myprofile" style={{ color: '#ffffff' }}>My Profile</Nav.Link>}
           </Nav>
-          <Nav className="ml-auto"> {/* Apply ml-auto class */}
+          <Nav className="ml-auto">
             {isAuthenticated() && (
               <Button
                 variant="danger"
                 onClick={handleLogout}
                 href="/"
                 className='logoutButton mb-3'
-              >
-                LogOut
+              >LogOut
               </Button>
             )}
           </Nav>

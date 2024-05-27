@@ -5,9 +5,7 @@ import GuardProfile from '../components/viewMyProfile/GuardProfie'
 
 function GuardViewProfiePage() {
   return (
-    <div style={{
-      // paddingTop: '50px',
-  }}>
+    <div>
       <NavBar />
       <GuardProfile />
       <Footer />

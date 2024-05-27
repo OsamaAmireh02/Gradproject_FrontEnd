@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import makeAuthenticatedRequest from '../userTable/Api';
-import { Button, Col, Container, Dropdown, Row } from 'react-bootstrap';
+import { Col, Dropdown, Row } from 'react-bootstrap';
 import axios from 'axios';
 
 
@@ -10,7 +10,7 @@ function TicketTable() {
   const ShowActive = async () => {
     try {
       const url = 'http://localhost:8080/ticket/getActiveTickets';
-      const token = localStorage.getItem('token'); // Replace with your actual token
+      const token = localStorage.getItem('token');
 
       const config = {
         headers: {
@@ -20,18 +20,16 @@ function TicketTable() {
       };
 
       const response = await axios.get(url, config);
-      setResponseData(response.data); // Save the response data
-      setIsLoading(false);
+      setResponseData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
-      // Handle the error
     }
   }
 
   const ShowPending = async () => {
     try {
       const url = 'http://localhost:8080/ticket/getPendingTickets';
-      const token = localStorage.getItem('token'); // Replace with your actual token
+      const token = localStorage.getItem('token');
 
       const config = {
         headers: {
@@ -41,18 +39,16 @@ function TicketTable() {
       };
 
       const response = await axios.get(url, config);
-      setResponseData(response.data); // Save the response data
-      setIsLoading(false);
+      setResponseData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
-      // Handle the error
     }
   }
 
   const ShowFinished = async () => {
     try {
       const url = 'http://localhost:8080/ticket/getFinishedTickets';
-      const token = localStorage.getItem('token'); // Replace with your actual token
+      const token = localStorage.getItem('token');
 
       const config = {
         headers: {
@@ -62,18 +58,16 @@ function TicketTable() {
       };
 
       const response = await axios.get(url, config);
-      setResponseData(response.data); // Save the response data
-      setIsLoading(false);
+      setResponseData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
-      // Handle the error
     }
   }
 
   const SortByDate = async () => {
     try {
       const url = 'http://localhost:8080/ticket/getByDate';
-      const token = localStorage.getItem('token'); // Replace with your actual token
+      const token = localStorage.getItem('token');
 
       const config = {
         headers: {
@@ -83,11 +77,9 @@ function TicketTable() {
       };
 
       const response = await axios.get(url, config);
-      setResponseData(response.data); // Save the response data
-      setIsLoading(false);
+      setResponseData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
-      // Handle the error
     }
   };
 
@@ -96,7 +88,7 @@ function TicketTable() {
   const SortByUserName = async () => {
     try {
       const url = 'http://localhost:8080/ticket/getByStudentName';
-      const token = localStorage.getItem('token'); // Replace with your actual token
+      const token = localStorage.getItem('token');
 
       const config = {
         headers: {
@@ -106,18 +98,16 @@ function TicketTable() {
       };
 
       const response = await axios.get(url, config);
-      setResponseData(response.data); // Save the response data
-      setIsLoading(false);
+      setResponseData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
-      // Handle the error
     }
   };
 
   const SortByParkingName = async () => {
     try {
       const url = 'http://localhost:8080/ticket/getByParkingName';
-      const token = localStorage.getItem('token'); // Replace with your actual token
+      const token = localStorage.getItem('token');
 
       const config = {
         headers: {
@@ -127,22 +117,17 @@ function TicketTable() {
       };
 
       const response = await axios.get(url, config);
-      setResponseData(response.data); // Save the response data
-      setIsLoading(false);
+      setResponseData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
-      // Handle the error
     }
   };
   const [responseData, setResponseData] = useState([]);
-
-  const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
     try {
       const response = await makeAuthenticatedRequest('/ticket/all');
       setResponseData(response.data);
-      setIsLoading(false);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -151,10 +136,6 @@ function TicketTable() {
   useEffect(() => {
     fetchData();
   }, []);
-
-  if (isLoading) {
-    return null; // Render loading state or spinner
-  }
 
 
   return (
@@ -171,8 +152,8 @@ function TicketTable() {
               <Dropdown.Item onClick={SortByDate}>Sort By Date</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          </Col>
-          <Col>
+        </Col>
+        <Col>
           <Dropdown>
             <Dropdown.Toggle variant="warning" id="dropdown-basic">
               Filtering
@@ -204,7 +185,7 @@ function TicketTable() {
             </tr>
           </thead>
           <tbody>
-            {responseData.map(ticket => <tr>
+            {responseData.map(ticket => <tr key={ticket.ticketId}>
               <td>{ticket.firstName}</td>
               <td>{ticket.lastName}</td>
               <td>{ticket.parkingName}</td>

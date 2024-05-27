@@ -1,35 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import makeAuthenticatedRequest from './Api';
-import { Container, Table } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
+import { Table } from 'react-bootstrap';
 import axios from 'axios';
 
 function DeletedUserTable() {
 
     const [responseData, setResponseData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);   
 
     const fetchData = async () => {
         try {
             const response = await makeAuthenticatedRequest('/user/getDeletedUsers');
             setResponseData(response.data);
-            setIsLoading(false);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
 
     const api = axios.create({
-        baseURL: 'http://localhost:8080', // Replace with your API base URL
+        baseURL: 'http://localhost:8080',
     });
 
     useEffect(() => {
         fetchData();
     }, []);
 
-    if (isLoading) {
-        return null; // Render loading state or spinner
-    }
+
 
     return (
         <>

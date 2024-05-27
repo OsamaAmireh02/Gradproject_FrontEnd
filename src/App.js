@@ -29,18 +29,17 @@ function App() {
       {localStorage.getItem('role') === 'ADMIN' && <Route path="/admin/users" element={<UsersPage />} />}
       {localStorage.getItem('role') === 'ADMIN' && <Route path="/admin/parkings" element={<ParkingsPage />} />}
       {localStorage.getItem('role') === 'ADMIN' && <Route path="/admin/tickets" element={<TicketPage />} />}
-      {localStorage.getItem('role') === 'STUDENT' && <Route path="/booking" element={<BookingPage />} />}
-      {localStorage.getItem('role') === 'GUARD' && <Route path="/guard/scan" element={<ReadQRPage />} />}
-      {localStorage.getItem('role') === 'GUARD' && <Route path="/guard/tickets" element={<GuardViewTickets />} />}
       {localStorage.getItem('role') === 'ADMIN' && <Route path="/admin/addUser" element={<CreateUserPage />} />}
       {localStorage.getItem('role') === 'ADMIN' && <Route path="/admin/addParking" element={<AddParkingPage />} />}
+      {localStorage.getItem('role') === 'ADMIN' && <Route path="/admin/deletedUsers" element={<DeletedUsersPage />} />}
+      {localStorage.getItem('role') === 'GUARD' && <Route path="/guard/scan" element={<ReadQRPage />} />}
+      {localStorage.getItem('role') === 'GUARD' && <Route path="/guard/tickets" element={<GuardViewTickets />} />}
+      {localStorage.getItem('role') === 'STUDENT' && <Route path="/booking" element={<BookingPage />} />}
       {localStorage.getItem('role') === 'STUDENT' && <Route path="/booking/chooseSlot" element={<ChooseSlotPage />} />}
       {localStorage.getItem('role') === 'STUDENT' && <Route path="/booking/submit" element={<SubmitBooking />} />}
       {localStorage.getItem('role') === 'STUDENT' && <Route path="/student/myprofile" element={<UserViewProfilePage />} />}
       {localStorage.getItem('role') === 'STUDENT' && <Route path="/ticket" element={<ViewTicket />} />}
       {localStorage.getItem('role') === 'STUDENT' && <Route path="/student/tickets" element={<UserTickets />} />}
-      {localStorage.getItem('role') === 'ADMIN' && <Route path="/admin/deletedUsers" element={<DeletedUsersPage />} />}
-
 
     </Routes>
   </>

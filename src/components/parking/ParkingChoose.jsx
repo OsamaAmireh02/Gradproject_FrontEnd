@@ -15,9 +15,19 @@ let hour2 = (hour1 + 1) % 24;
 let formattedHour2 = hour2.toString().padStart(2, '0');
 let hour3 = (hour2 + 1) % 24;
 let formattedHour3 = hour3.toString().padStart(2, '0');
+let hour4 = (hour3 + 1) % 24;
+let formattedHour4 = hour4.toString().padStart(2, '0');
+let hour5 = (hour4 + 1) % 24;
+let formattedHour5 = hour5.toString().padStart(2, '0');
+let hour6 = (hour5 + 1) % 24;
+let formattedHour6 = hour6.toString().padStart(2, '0');
+let hour7 = (hour6 + 1) % 24;
+let formattedHour7 = hour7.toString().padStart(2, '0');
+let hour8 = (hour7 + 1) % 24;
+let formattedHour8 = hour8.toString().padStart(2, '0');
 
 
-let length = 60;
+const length = 60;
 
 
 const time = [
@@ -37,24 +47,41 @@ const time = [
     Time: formattedHour3 + ":00:00",
     occupied: [],
   },
+  {
+    Time: formattedHour4 + ":00:00",
+    occupied: [],
+  },
+  {
+    Time: formattedHour5 + ":00:00",
+    occupied: [],
+  },
+  {
+    Time: formattedHour6 + ":00:00",
+    occupied: [],
+  },
+  {
+    Time: formattedHour7 + ":00:00",
+    occupied: [],
+  },
+  {
+    Time: formattedHour8 + ":00:00",
+    occupied: [],
+  },
 ];
 
 
-const seats = Array.from({ length: length }, (_, i) => i + 1);
+const slots = Array.from({ length: length }, (_, i) => i + 1);
 
 export default function Parkings() {
 
   const [selectedTime, setSelectedTime] = useState(time[0]);
   const [selectedSlots, setSelectedSlots] = useState([]);
   const [apiData, setApiData] = useState(null);
-
-  localStorage.setItem('time', selectedTime.Time)
-
   const location = useLocation();
   const parkingId = new URLSearchParams(location.search).get('parkingId');
+  localStorage.setItem('time', selectedTime.Time)
 
   useEffect(() => {
-    // Fetch the API data here (replace with your actual API endpoint)
     const fetchApiData = async () => {
       try {
         const time = selectedTime.Time
@@ -72,17 +99,17 @@ export default function Parkings() {
 
   return (
     <div className="App">
-      <Movies
-        movie={selectedTime}
-        onChange={(movie) => {
+      <Time
+        selectedHour={selectedTime}
+        onChange={(selectedHour) => {
           setSelectedSlots([]);
-          setSelectedTime(movie);
+          setSelectedTime(selectedHour);
         }}
       />
       <ShowCase />
       <Container style={{ display: 'flex', justifyContent: 'center' }}>
-        <Cinema
-          movie={selectedTime}
+        <Slots
+          Selectedhour={selectedTime}
           selectedSlots={selectedSlots}
           onSelectedSlotsChange={(selectedSlots) =>
             setSelectedSlots(selectedSlots)
@@ -100,21 +127,21 @@ export default function Parkings() {
   );
 }
 
-function Movies({ movie, onChange }) {
+function Time({ selectedHour, onChange }) {
   return (
     <>
-      <div className="Movies my-3" style={{ display: 'flex', justifyContent: 'center' }}>
-        <label htmlFor="movie" style={{ color: 'white' }}>Select Starting Time:</label>
+      <div className="Time my-3" style={{ display: 'flex', justifyContent: 'center' }}>
+        <label htmlFor="time" style={{ color: 'white' }}>Select Starting Time:</label>
         <select
-          id="movie"
-          value={movie.name}
+          id="time"
+          value={selectedHour.name}
           onChange={(e) => {
-            onChange(time.find((movie) => movie.Time === e.target.value));
+            onChange(time.find((selectedHour) => selectedHour.Time === e.target.value));
           }}
         >
-          {time.map((movie) => (
-            <option key={movie.Time} value={movie.Time}>
-              {movie.Time}
+          {time.map((selectedHour) => (
+            <option key={selectedHour.Time} value={selectedHour.Time}>
+              {selectedHour.Time}
             </option>
           ))}
         </select>
@@ -139,41 +166,40 @@ function ShowCase() {
   return (
     <ul className="ShowCase mb-3">
       <li>
-        <span className="seat" /> <small>Available</small>
+        <span className="slot" /> <small>Available</small>
       </li>
       <li>
-        <span className="seat selected" /> <small>Selected</small>
+        <span className="slot selected" /> <small>Selected</small>
       </li>
       <li>
-        <span className="seat occupied" /> <small>Booked</small>
+        <span className="slot occupied" /> <small>Booked</small>
       </li>
     </ul>
   );
 }
 
-function Cinema({ movie, selectedSlots, onSelectedSlotsChange }) {
+function Slots({ Selectedhour, selectedSlots, onSelectedSlotsChange }) {
 
 
-  function handleSelectedState(seat) {
-    const isSelected = selectedSlots.includes(seat);
+  function handleSelectedState(slot) {
+    const isSelected = selectedSlots.includes(slot);
     if (isSelected) {
       onSelectedSlotsChange(
-        selectedSlots.filter((selectedSeat) => selectedSeat !== seat)
+        selectedSlots.filter((selectedSlot) => selectedSlot !== slot)
       );
     } else {
-      onSelectedSlotsChange([seat]);
+      onSelectedSlotsChange([slot]);
     }
   }
-  localStorage.setItem('seat', selectedSlots[0])
+  localStorage.setItem('selectedSlot', selectedSlots[0])
 
   return (
-    <div className="Cinema">
-      <div className="screen" />
+    <div className="Slots">
 
-      <div className="seats">
-        {seats.map((seat) => {
-          const isSelected = selectedSlots.includes(seat);
-          const isOccupied = movie.occupied.includes(seat);
+      <div className="allSlots">
+        {slots.map((slot) => {
+          const isSelected = selectedSlots.includes(slot);
+          const isOccupied = Selectedhour.occupied.includes(slot);
           return (
             <div
               style={{
@@ -182,23 +208,23 @@ function Cinema({ movie, selectedSlots, onSelectedSlotsChange }) {
                 alignItems: "center", // Vertically center the content
               }}
               tabIndex="0"
-              key={seat}
+              key={slot}
               className={clsx(
-                "seat",
+                "slot",
                 isSelected && "selected",
                 isOccupied && "occupied"
               )}
-              onClick={isOccupied ? null : () => handleSelectedState(seat)}
+              onClick={isOccupied ? null : () => handleSelectedState(slot)}
               onKeyPress={
                 isOccupied
                   ? null
                   : (e) => {
                     if (e.key === "Enter") {
-                      handleSelectedState(seat);
+                      handleSelectedState(slot);
                     }
                   }
               }
-            >{seat}</div>
+            >{slot}</div>
           );
         })}
       </div>

@@ -7,9 +7,7 @@ import axios from 'axios';
 function AdminViewProfilePage() {
 
     return (
-        <div style={{
-            // paddingTop: '50px',
-        }}>
+        <div>
             <NavBar />
             <AdminProfile />
             <Footer />

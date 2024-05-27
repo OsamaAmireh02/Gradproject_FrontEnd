@@ -5,9 +5,7 @@ import Footer from '../components/footer/Footer'
 
 function CreateUserPage() {
   return (
-    <div style={{
-      // paddingTop: '50px',
-  }}>
+    <div>
       <NavBar />
       <AddUser />
       <Footer />

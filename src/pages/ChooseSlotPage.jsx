@@ -10,9 +10,7 @@ function ChooseSlotPage() {
   const parkingName = new URLSearchParams(location.search).get('parkingName');
   const parkingId = new URLSearchParams(location.search).get('parkingId');
   return (
-    <div style={{
-      // paddingTop: '50px',
-    }}>
+    <div>
       <NavBar />
       <Parkings />
       <Container style={{ display: 'flex', justifyContent: 'center' }}>

@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import NavBar from '../components/navbar/NavBar'
 import Slider from '../components/slider/Slider'
 import Footer from '../components/footer/Footer'
-import { Button, Container, Toast } from 'react-bootstrap'
+import { Container, Toast } from 'react-bootstrap'
 import PricingCard from '../components/pricingCard/PricingCard'
 import { TypeAnimation } from 'react-type-animation';
 import { useLocation } from 'react-router-dom';
 import { FloatingWhatsApp } from 'react-floating-whatsapp';
-
 
 
 function HomePage() {
@@ -16,17 +15,14 @@ function HomePage() {
     const isSuccess = queryParams.get('success') === 'true';
     const isReaded = queryParams.get('readed') === 'true';
     const role = localStorage.getItem('role')
-
     const [showToast, setShowToast] = useState(false);
 
     useEffect(() => {
-        // Set showToast to true after a successful action (e.g., user added)
-        // For demonstration purposes, I'll simulate it after 3 seconds
         const timer = setTimeout(() => {
             setShowToast(true);
         }, 500);
 
-        return () => clearTimeout(timer); // Clean up the timer
+        return () => clearTimeout(timer);
     }, []);
 
     return (
@@ -51,7 +47,7 @@ function HomePage() {
                     />
                 </div>
                 <Container style={{ display: 'flex', justifyContent: 'center' }}>
-                <PricingCard />
+                    <PricingCard />
                 </Container>
             </Container>
             <Footer />
@@ -59,9 +55,9 @@ function HomePage() {
                 <Toast
                     show={showToast}
                     onClose={() => setShowToast(false)}
-                    delay={5000} // Set the delay (in milliseconds) for auto-closing
+                    delay={5000}
                     autohide
-                    style={{ position: 'fixed', top: 20, right: 20 }} // Position the toast
+                    style={{ position: 'fixed', top: 20, right: 20 }}
                 >
                     <Toast.Header closeButton={false}>
                         <strong className="me-auto">Success</strong>
@@ -69,14 +65,13 @@ function HomePage() {
                     <Toast.Body>User data updated successfully!</Toast.Body>
                 </Toast>
             )}
-
             {isReaded && (
                 <Toast
                     show={showToast}
                     onClose={() => setShowToast(false)}
-                    delay={5000} // Set the delay (in milliseconds) for auto-closing
+                    delay={5000}
                     autohide
-                    style={{ position: 'fixed', top: 20, right: 20 }} // Position the toast
+                    style={{ position: 'fixed', top: 20, right: 20 }}
                 >
                     <Toast.Header closeButton={false}>
                         <strong className="me-auto">Success</strong>

@@ -10,7 +10,7 @@ function ReadQRPage() {
             <NavBar />
             <Container style={{
             'position': 'sticky',
-            'top': '300px',
+            'top': '100px',
             'minHeight': '77vh'
         }}>
             <ReadQR />
